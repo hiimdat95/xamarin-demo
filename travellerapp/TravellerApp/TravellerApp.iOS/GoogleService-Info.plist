@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>46793563754-o464ekte974eukcfdaecdv0ogov8gm27.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.46793563754-o464ekte974eukcfdaecdv0ogov8gm27</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAv7dyoHkSoE4ePkNr-U1_O7E4Jk_Adl_o</string>
+	<key>GCM_SENDER_ID</key>
+	<string>46793563754</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.kamooni.traveller</string>
+	<key>PROJECT_ID</key>
+	<string>kamooni-traveller</string>
+	<key>STORAGE_BUCKET</key>
+	<string>kamooni-traveller.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true></true>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false></false>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:46793563754:ios:e87139c8d7f35713</string>
+	<key>DATABASE_URL</key>
+	<string>https://kamooni-traveller.firebaseio.com</string>
+</dict>
+</plist>

@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<ContentPage 
+    x:Class="TravellerApp.Views.ExplorePage" 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:controls="clr-namespace:Xamarin.Forms.Controls" 
+    xmlns:cv="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions" 
+    xmlns:effects="clr-namespace:TravellerApp.Effects" 
+    xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
+    xmlns:map="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"> 
+    <ContentPage.Content> 
+        <Grid> 
+            <StackLayout 
+                BackgroundColor="White" 
+                HorizontalOptions="FillAndExpand" 
+                VerticalOptions="FillAndExpand"> 
+                <!--  Title  --> 
+                <Label 
+                    Margin="0,10,0,0" 
+                    FontSize="Medium" 
+                    HorizontalOptions="Center" 
+                    Text="Explore" 
+                    TextColor="Gray" 
+                    VerticalOptions="Start" /> 
+                <!--  Filters  --> 
+                <Grid 
+                    Margin="0,10,0,0" 
+                    Padding="10,0,10,0" 
+                    HorizontalOptions="FillAndExpand" 
+                    VerticalOptions="Start"> 
+                    <Grid.ColumnDefinitions> 
+                        <ColumnDefinition Width="*" /> 
+                        <ColumnDefinition Width="*" /> 
+                    </Grid.ColumnDefinitions> 
+                    <Grid.RowDefinitions> 
+                        <RowDefinition Height="Auto" /> 
+                        <RowDefinition Height="Auto" /> 
+                    </Grid.RowDefinitions> 
+                    <Frame 
+                        Grid.Row="0" 
+                        Grid.Column="0" 
+                        Grid.ColumnSpan="2" 
+                        Padding="0" 
+                        CornerRadius="8" 
+                        HasShadow="True" 
+                        HorizontalOptions="FillAndExpand" 
+                        VerticalOptions="FillAndExpand"> 
+                        <controls:CustomSearchBar 
+                            x:Name="srbSearch" 
+                            BackgroundColor="#FFFFFF" 
+                            HeightRequest="36" 
+                            HorizontalOptions="FillAndExpand" 
+                            Placeholder="Search" 
+                            PlaceholderColor="Gray" 
+                            TextColor="Black" 
+                            VerticalOptions="Start"> 
+                            <controls:CustomSearchBar.Effects> 
+                                <effects:BorderlessEffect /> 
+                            </controls:CustomSearchBar.Effects> 
+                        </controls:CustomSearchBar> 
+                    </Frame> 
+                    <Frame 
+                        x:Name="FrameListView" 
+                        Grid.Row="1" 
+                        Grid.Column="0" 
+                        Padding="8,8,15,0" 
+                        BackgroundColor="White" 
+                        CornerRadius="8" 
+                        HasShadow="true" 
+                        HeightRequest="36" 
+                        HorizontalOptions="FillAndExpand" 
+                        OutlineColor="LightGray"> 
+                        <Frame.GestureRecognizers> 
+                            <TapGestureRecognizer Tapped="OnTapListViewTravel" /> 
+                        </Frame.GestureRecognizers> 
+                        <Grid> 
+                            <Grid.ColumnDefinitions> 
+                                <ColumnDefinition Width="2*" /> 
+                                <ColumnDefinition Width="8*" /> 
+                            </Grid.ColumnDefinitions> 
+                            <Grid.RowDefinitions> 
+                                <RowDefinition Height="Auto" /> 
+                            </Grid.RowDefinitions> 
+                            <forms:CachedImage 
+                                Grid.Column="0" 
+                                HeightRequest="25" 
+                                Source="ic_menu_black.png" 
+                                VerticalOptions="Center" /> 
+                            <Label 
+                                Grid.Column="1" 
+                                HorizontalOptions="Center" 
+                                Text="List View" 
+                                TextColor="Gray" 
+                                VerticalOptions="Center" /> 
+                        </Grid> 
+                    </Frame> 
+                    <Frame 
+                        x:Name="FrameMapView" 
+                        Grid.Row="1" 
+                        Grid.Column="1" 
+                        Padding="8,8,15,0" 
+                        BackgroundColor="White" 
+                        CornerRadius="8" 
+                        HasShadow="true" 
+                        HeightRequest="36" 
+                        HorizontalOptions="FillAndExpand" 
+                        OutlineColor="LightGray"> 
+                        <Frame.GestureRecognizers> 
+                            <TapGestureRecognizer Tapped="OnTapMapView" /> 
+                        </Frame.GestureRecognizers> 
+                        <Grid> 
+                            <Grid.ColumnDefinitions> 
+                                <ColumnDefinition Width="2*" /> 
+                                <ColumnDefinition Width="8*" /> 
+                            </Grid.ColumnDefinitions> 
+                            <Grid.RowDefinitions> 
+                                <RowDefinition Height="Auto" /> 
+                            </Grid.RowDefinitions> 
+                            <forms:CachedImage 
+                                Grid.Column="0" 
+                                Margin="8,0,0,0" 
+                                HeightRequest="25" 
+                                Source="icons_local.png" 
+                                VerticalOptions="Center" /> 
+                            <Label 
+                                Grid.Column="1" 
+                                HorizontalOptions="Center" 
+                                Text="Map View" 
+                                TextColor="Gray" 
+                                VerticalOptions="Center" /> 
+                        </Grid> 
+                    </Frame> 
+                </Grid> 
+                <!--  Content  --> 
+                <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"> 
+                    <ScrollView 
+                        x:Name="ListContent" 
+                        AbsoluteLayout.LayoutBounds="0,0,1,1" 
+                        AbsoluteLayout.LayoutFlags="All" 
+                        BackgroundColor="White" 
+                        HorizontalOptions="FillAndExpand" 
+                        Orientation="Vertical" 
+                        VerticalOptions="FillAndExpand" 
+                        VerticalScrollBarVisibility="Never"> 
+                        <StackLayout 
+                            Padding="10,0,10,0" 
+                            HorizontalOptions="FillAndExpand" 
+                            VerticalOptions="Start"> 
+                            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Start"> 
+                                <Label Text="Hosts supporting conscious travel" TextColor="Gray" /> 
+                                <ScrollView HeightRequest="160" Orientation="Horizontal"> 
+                                    <controls:DynamicStackLayout 
+                                        ItemsSource="{Binding Accomodations}" 
+                                        Orientation="Horizontal" 
+                                        Spacing="12"> 
+                                        <controls:DynamicStackLayout.ItemTemplate> 
+                                            <DataTemplate> 
+                                                <Frame 
+                                                    Grid.Row="1" 
+                                                    Padding="0" 
+                                                    CornerRadius="8" 
+                                                    HasShadow="true" 
+                                                    IsClippedToBounds="True" 
+                                                    OutlineColor="Gray" 
+                                                    VerticalOptions="FillAndExpand" 
+                                                    WidthRequest="320"> 
+                                                    <Grid> 
+                                                        <Grid.GestureRecognizers> 
+                                                            <TapGestureRecognizer CommandParameter="{Binding .}" Tapped="OnChooseItem" /> 
+                                                        </Grid.GestureRecognizers> 
+                                                        <forms:CachedImage Aspect="AspectFill" Source="{Binding image_url}" /> 
+                                                        <StackLayout 
+                                                            Margin="8,0,0,8" 
+                                                            BackgroundColor="Black" 
+                                                            HorizontalOptions="Start" 
+                                                            Opacity=".8" 
+                                                            VerticalOptions="End"> 
+                                                            <Label 
+                                                                FontSize="13" 
+                                                                Text="{Binding name}" 
+                                                                TextColor="White" /> 
+                                                            <Label 
+                                                                FontSize="10" 
+                                                                Text="{Binding Display_host_info}" 
+                                                                TextColor="White" 
+                                                                VerticalTextAlignment="Start" /> 
+                                                        </StackLayout> 
+                                                    </Grid> 
+                                                </Frame> 
+                                            </DataTemplate> 
+                                        </controls:DynamicStackLayout.ItemTemplate> 
+                                    </controls:DynamicStackLayout> 
+                                </ScrollView> 
+                            </StackLayout> 
+                            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Start"> 
+                                <Label Text="Ethical activities" TextColor="Gray" /> 
+                                <ScrollView HeightRequest="160" Orientation="Horizontal"> 
+                                    <controls:DynamicStackLayout 
+                                        ItemsSource="{Binding Adventures}" 
+                                        Orientation="Horizontal" 
+                                        Spacing="12"> 
+                                        <controls:DynamicStackLayout.ItemTemplate> 
+                                            <DataTemplate> 
+                                                <Frame 
+                                                    Grid.Row="1" 
+                                                    Padding="0" 
+                                                    CornerRadius="8" 
+                                                    HasShadow="true" 
+                                                    IsClippedToBounds="True" 
+                                                    OutlineColor="Gray" 
+                                                    VerticalOptions="FillAndExpand" 
+                                                    WidthRequest="320"> 
+                                                    <Grid> 
+                                                        <Grid.GestureRecognizers> 
+                                                            <TapGestureRecognizer CommandParameter="{Binding .}" Tapped="OnChooseItem" /> 
+                                                        </Grid.GestureRecognizers> 
+                                                        <forms:CachedImage Aspect="AspectFill" Source="{Binding image_url}" /> 
+                                                        <StackLayout 
+                                                            Margin="8,0,0,8" 
+                                                            BackgroundColor="Black" 
+                                                            HorizontalOptions="Start" 
+                                                            Opacity=".8" 
+                                                            VerticalOptions="End"> 
+                                                            <Label 
+                                                                FontSize="13" 
+                                                                Text="{Binding name}" 
+                                                                TextColor="White" /> 
+                                                            <Label 
+                                                                FontSize="10" 
+                                                                Text="{Binding Display_host_info}" 
+                                                                TextColor="White" 
+                                                                VerticalTextAlignment="Start" /> 
+ 
+                                                        </StackLayout> 
+ 
+                                                    </Grid> 
+                                                </Frame> 
+                                            </DataTemplate> 
+                                        </controls:DynamicStackLayout.ItemTemplate> 
+                                    </controls:DynamicStackLayout> 
+                                </ScrollView> 
+                            </StackLayout> 
+                            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Start"> 
+                                <Label Text="Wholesome food" TextColor="Gray" /> 
+                                <ScrollView HeightRequest="160" Orientation="Horizontal"> 
+                                    <controls:DynamicStackLayout 
+                                        ItemsSource="{Binding Foods}" 
+                                        Orientation="Horizontal" 
+                                        Spacing="12"> 
+                                        <controls:DynamicStackLayout.ItemTemplate> 
+                                            <DataTemplate> 
+                                                <Frame 
+                                                    Grid.Row="1" 
+                                                    Padding="0" 
+                                                    CornerRadius="8" 
+                                                    HasShadow="true" 
+                                                    IsClippedToBounds="True" 
+                                                    OutlineColor="Gray" 
+                                                    VerticalOptions="FillAndExpand" 
+                                                    WidthRequest="320"> 
+                                                    <Grid> 
+                                                        <Grid.GestureRecognizers> 
+                                                            <TapGestureRecognizer CommandParameter="{Binding .}" Tapped="OnChooseItem" /> 
+                                                        </Grid.GestureRecognizers> 
+                                                        <forms:CachedImage Aspect="AspectFill" Source="{Binding image_url}" /> 
+                                                        <StackLayout 
+                                                            Margin="8,0,0,8" 
+                                                            BackgroundColor="Black" 
+                                                            HorizontalOptions="Start" 
+                                                            Opacity=".8" 
+                                                            VerticalOptions="End"> 
+                                                            <Label 
+                                                                FontSize="13" 
+                                                                Text="{Binding name}" 
+                                                                TextColor="White" /> 
+                                                            <Label 
+                                                                FontSize="10" 
+                                                                Text="{Binding Display_host_info}" 
+                                                                TextColor="White" 
+                                                                VerticalTextAlignment="Start" /> 
+                                                        </StackLayout> 
+                                                    </Grid> 
+                                                </Frame> 
+                                            </DataTemplate> 
+                                        </controls:DynamicStackLayout.ItemTemplate> 
+                                    </controls:DynamicStackLayout> 
+                                </ScrollView> 
+                            </StackLayout> 
+                            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Start"> 
+                                <Label Text="Tours" TextColor="Gray" /> 
+                                <ScrollView HeightRequest="160" Orientation="Horizontal"> 
+                                    <controls:DynamicStackLayout 
+                                        ItemsSource="{Binding Tours}" 
+                                        Orientation="Horizontal" 
+                                        Spacing="12"> 
+                                        <controls:DynamicStackLayout.ItemTemplate> 
+                                            <DataTemplate> 
+                                                <Frame 
+                                                    Grid.Row="1" 
+                                                    Margin="0" 
+                                                    Padding="0" 
+                                                    CornerRadius="8" 
+                                                    HasShadow="true" 
+                                                    IsClippedToBounds="True" 
+                                                    OutlineColor="Gray" 
+                                                    VerticalOptions="FillAndExpand" 
+                                                    WidthRequest="320"> 
+                                                    <Grid> 
+                                                        <Grid.GestureRecognizers> 
+                                                            <TapGestureRecognizer CommandParameter="{Binding .}" Tapped="OnChooseItem" /> 
+                                                        </Grid.GestureRecognizers> 
+                                                        <forms:CachedImage Aspect="AspectFill" Source="{Binding image_url}" /> 
+                                                        <StackLayout 
+                                                            Margin="8,0,0,8" 
+                                                            BackgroundColor="Black" 
+                                                            HorizontalOptions="Start" 
+                                                            Opacity=".8" 
+                                                            VerticalOptions="End"> 
+                                                            <Label 
+                                                                FontSize="13" 
+                                                                Text="{Binding name}" 
+                                                                TextColor="White" /> 
+                                                            <Label 
+                                                                FontSize="10" 
+                                                                Text="{Binding Display_host_info}" 
+                                                                TextColor="White" 
+                                                                VerticalTextAlignment="Start" /> 
+                                                        </StackLayout> 
+                                                    </Grid> 
+                                                </Frame> 
+                                            </DataTemplate> 
+                                        </controls:DynamicStackLayout.ItemTemplate> 
+                                    </controls:DynamicStackLayout> 
+                                </ScrollView> 
+                            </StackLayout> 
+                            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Start"> 
+                                <Label Text="Art &amp; History" TextColor="Gray" /> 
+                                <ScrollView HeightRequest="160" Orientation="Horizontal"> 
+                                    <controls:DynamicStackLayout 
+                                        ItemsSource="{Binding Museums}" 
+                                        Orientation="Horizontal" 
+                                        Spacing="12"> 
+                                        <controls:DynamicStackLayout.ItemTemplate> 
+                                            <DataTemplate> 
+                                                <Frame 
+                                                    Grid.Row="1" 
+                                                    Padding="0" 
+                                                    CornerRadius="8" 
+                                                    HasShadow="true" 
+                                                    IsClippedToBounds="True" 
+                                                    OutlineColor="Gray" 
+                                                    VerticalOptions="FillAndExpand" 
+                                                    WidthRequest="320"> 
+                                                    <Grid> 
+                                                        <Grid.GestureRecognizers> 
+                                                            <TapGestureRecognizer CommandParameter="{Binding .}" Tapped="OnChooseItem" /> 
+                                                        </Grid.GestureRecognizers> 
+                                                        <forms:CachedImage Aspect="AspectFill" Source="{Binding image_url}" /> 
+                                                        <StackLayout 
+                                                            Margin="8,0,0,8" 
+                                                            BackgroundColor="Black" 
+                                                            HorizontalOptions="Start" 
+                                                            Opacity=".8" 
+                                                            VerticalOptions="End"> 
+                                                            <Label 
+                                                                FontSize="13" 
+                                                                Text="{Binding name}" 
+                                                                TextColor="White" /> 
+                                                            <Label 
+                                                                FontSize="10" 
+                                                                Text="{Binding Display_host_info}" 
+                                                                TextColor="White" 
+                                                                VerticalTextAlignment="Start" /> 
+                                                        </StackLayout> 
+                                                    </Grid> 
+                                                </Frame> 
+                                            </DataTemplate> 
+                                        </controls:DynamicStackLayout.ItemTemplate> 
+                                    </controls:DynamicStackLayout> 
+                                </ScrollView> 
+                            </StackLayout> 
+                            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Start"> 
+                                <Label Text="Volunteering Opportunities" TextColor="Gray" /> 
+                                <ScrollView HeightRequest="160" Orientation="Horizontal"> 
+                                    <controls:DynamicStackLayout 
+                                        ItemsSource="{Binding Volunteers}" 
+                                        Orientation="Horizontal" 
+                                        Spacing="12"> 
+                                        <controls:DynamicStackLayout.ItemTemplate> 
+                                            <DataTemplate> 
+                                                <Frame 
+                                                    Grid.Row="1" 
+                                                    Padding="0" 
+                                                    CornerRadius="8" 
+                                                    HasShadow="true" 
+                                                    IsClippedToBounds="True" 
+                                                    OutlineColor="Gray" 
+                                                    VerticalOptions="FillAndExpand" 
+                                                    WidthRequest="320"> 
+                                                    <Grid> 
+                                                        <Grid.GestureRecognizers> 
+                                                            <TapGestureRecognizer CommandParameter="{Binding .}" Tapped="OnChooseItem" /> 
+                                                        </Grid.GestureRecognizers> 
+                                                        <forms:CachedImage Aspect="AspectFill" Source="{Binding image_url}" /> 
+                                                        <StackLayout 
+                                                            Margin="8,0,0,8" 
+                                                            BackgroundColor="Black" 
+                                                            HorizontalOptions="Start" 
+                                                            Opacity=".8" 
+                                                            VerticalOptions="End"> 
+                                                            <Label 
+                                                                FontSize="13" 
+                                                                Text="{Binding name}" 
+                                                                TextColor="White" /> 
+                                                            <Label 
+                                                                FontSize="10" 
+                                                                Text="{Binding Display_host_info}" 
+                                                                TextColor="White" 
+                                                                VerticalTextAlignment="Start" /> 
+                                                        </StackLayout> 
+                                                    </Grid> 
+                                                </Frame> 
+                                            </DataTemplate> 
+                                        </controls:DynamicStackLayout.ItemTemplate> 
+                                    </controls:DynamicStackLayout> 
+                                </ScrollView> 
+                            </StackLayout> 
+                        </StackLayout> 
+                    </ScrollView> 
+                    <map:Map 
+                        x:Name="maps" 
+                        AbsoluteLayout.LayoutBounds="0,0,1,1" 
+                        AbsoluteLayout.LayoutFlags="All" 
+                        HorizontalOptions="FillAndExpand" 
+                        IsVisible="False" 
+                        MapType="Street" 
+                        VerticalOptions="FillAndExpand" /> 
+                </AbsoluteLayout> 
+            </StackLayout> 
+        </Grid> 
+    </ContentPage.Content> 
+</ContentPage>

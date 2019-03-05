@@ -1,0 +1,301 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="KamooniHost.Views.BookingRoomPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Xamarin.Forms.Controls"
+    xmlns:ex="clr-namespace:Xamarin.Forms.Extensions"
+    x:Name="this"
+    Title="{ex:Translate Key=title_activity_booking_room}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Command="{Binding GoToHomeCommand}"
+            Icon="home_white"
+            Order="Primary"
+            Text="Home" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <StackLayout
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                BackgroundColor="White">
+                <StackLayout
+                    BackgroundColor="{StaticResource colorAccent}"
+                    HeightRequest="40"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="Start">
+                    <Label HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <FormattedString.Spans>
+                                    <Span
+                                        FontAttributes="Bold"
+                                        FontSize="16"
+                                        Text="{Binding Booking.CheckInDate, StringFormat='{0:dd-MM-yyyy}'}"
+                                        TextColor="White" />
+                                    <Span
+                                        FontAttributes="Bold"
+                                        FontSize="16"
+                                        Text=" / "
+                                        TextColor="White" />
+                                    <Span
+                                        FontAttributes="Bold"
+                                        FontSize="16"
+                                        Text="{Binding Booking.CheckOutDate, StringFormat='{0:dd-MM-yyyy}'}"
+                                        TextColor="White" />
+                                </FormattedString.Spans>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </StackLayout>
+                <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+                        <ScrollView
+                            BackgroundColor="White"
+                            Orientation="Vertical"
+                            VerticalScrollBarVisibility="Never">
+                            <controls:RepeaterView ItemsSource="{Binding Booking.ListRoom}">
+                                <controls:RepeaterView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Frame
+                                            Margin="5"
+                                            Padding="0"
+                                            CornerRadius="5">
+                                            <StackLayout>
+                                                <AbsoluteLayout
+                                                    BackgroundColor="{StaticResource transparent_dark}"
+                                                    HeightRequest="35"
+                                                    HorizontalOptions="FillAndExpand"
+                                                    VerticalOptions="Start">
+                                                    <Label
+                                                        AbsoluteLayout.LayoutBounds=".5,.5,AutoSize,AutoSize"
+                                                        AbsoluteLayout.LayoutFlags="PositionProportional"
+                                                        FontAttributes="Bold"
+                                                        FontSize="16"
+                                                        Text="{Binding RoomType}"
+                                                        TextColor="White" />
+                                                    <Image
+                                                        AbsoluteLayout.LayoutBounds="1,.5,AutoSize,AutoSize"
+                                                        AbsoluteLayout.LayoutFlags="PositionProportional"
+                                                        HeightRequest="30"
+                                                        IsVisible="{Binding CanRemove}"
+                                                        Source="ic_close_white.png"
+                                                        WidthRequest="30">
+                                                        <Image.GestureRecognizers>
+                                                            <TapGestureRecognizer
+                                                                Command="{Binding BindingContext.DeleteRoomCommand, Source={x:Reference this}}"
+                                                                CommandParameter="{Binding .}"
+                                                                NumberOfTapsRequired="1" />
+                                                        </Image.GestureRecognizers>
+                                                    </Image>
+                                                </AbsoluteLayout>
+                                                <Grid>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                    </Grid.RowDefinitions>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*" />
+                                                        <ColumnDefinition Width="120" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Label
+                                                        Grid.Row="0"
+                                                        Grid.Column="0"
+                                                        Margin="8,4,0,4"
+                                                        FontAttributes="Bold"
+                                                        FontSize="16"
+                                                        Text="{ex:Translate Key=subheading_no_of_guests}"
+                                                        TextColor="{StaticResource colorAccent}"
+                                                        VerticalOptions="Center" />
+                                                    <Label
+                                                        Grid.Row="0"
+                                                        Grid.Column="1"
+                                                        Margin="0,4,8,4"
+                                                        FontAttributes="Bold"
+                                                        HorizontalOptions="End"
+                                                        Text="{Binding Price, StringFormat='R{0:N2}'}"
+                                                        TextColor="{StaticResource Blue}"
+                                                        VerticalOptions="Center" />
+                                                    <ScrollView
+                                                        Grid.Row="1"
+                                                        Grid.Column="0"
+                                                        Grid.ColumnSpan="2"
+                                                        Margin="8,0,8,8"
+                                                        HorizontalScrollBarVisibility="Never"
+                                                        Orientation="Horizontal">
+                                                        <controls:RepeaterView
+                                                            ItemTappedCommand="{Binding BindingContext.GuestQuantitySelectedCommand, Source={x:Reference this}}"
+                                                            ItemsSource="{Binding ListGuestSelectButton}"
+                                                            Orientation="Horizontal"
+                                                            Spacing="8">
+                                                            <controls:RepeaterView.ItemTemplate>
+                                                                <DataTemplate>
+                                                                    <Frame
+                                                                        Padding="0"
+                                                                        BackgroundColor="{Binding BackgroundColor}"
+                                                                        CornerRadius="5"
+                                                                        HasShadow="False"
+                                                                        HeightRequest="40"
+                                                                        OutlineColor="{Binding OutlineColor}"
+                                                                        WidthRequest="100">
+                                                                        <StackLayout Orientation="Horizontal">
+                                                                            <ContentView
+                                                                                BackgroundColor="{Binding ImageColor}"
+                                                                                HeightRequest="40"
+                                                                                WidthRequest="40">
+                                                                                <Image
+                                                                                    Margin="1,1,0,1"
+                                                                                    HeightRequest="35"
+                                                                                    HorizontalOptions="Center"
+                                                                                    Source="ic_face_white.png"
+                                                                                    VerticalOptions="Center"
+                                                                                    WidthRequest="35" />
+                                                                            </ContentView>
+                                                                            <Label
+                                                                                FontSize="16"
+                                                                                HorizontalOptions="CenterAndExpand"
+                                                                                Text="{Binding Quantity}"
+                                                                                TextColor="{Binding TextColor}"
+                                                                                VerticalOptions="Center" />
+                                                                        </StackLayout>
+                                                                    </Frame>
+                                                                </DataTemplate>
+                                                            </controls:RepeaterView.ItemTemplate>
+                                                        </controls:RepeaterView>
+                                                    </ScrollView>
+                                                </Grid>
+                                            </StackLayout>
+                                        </Frame>
+                                    </DataTemplate>
+                                </controls:RepeaterView.ItemTemplate>
+                            </controls:RepeaterView>
+                        </ScrollView>
+                    </StackLayout>
+                    <controls:FloatingActionButton
+                        AbsoluteLayout.LayoutBounds="1,1,AutoSize,AutoSize"
+                        AbsoluteLayout.LayoutFlags="PositionProportional"
+                        Command="{Binding AddRoomCommand}"
+                        ImageSource="ic_add_white.png"
+                        IsVisible="{Binding IsBookingValid}"
+                        NormalColor="{StaticResource colorAccent}" />
+                </AbsoluteLayout>
+                <Button
+                    BackgroundColor="{StaticResource colorAccent}"
+                    Command="{Binding ProceedCommand}"
+                    CornerRadius="0"
+                    FontSize="16"
+                    HeightRequest="55"
+                    HorizontalOptions="FillAndExpand"
+                    IsVisible="{Binding IsBookingValid}"
+                    Text="{ex:Translate Key=button_proceed}"
+                    TextColor="White"
+                    VerticalOptions="End" />
+            </StackLayout>
+            <AbsoluteLayout
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                IsVisible="{Binding RoomSelectVisible}">
+                <ContentView
+                    AbsoluteLayout.LayoutBounds="0,0,1,1"
+                    AbsoluteLayout.LayoutFlags="All"
+                    BackgroundColor="Black"
+                    Opacity=".4" />
+                <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding CloseRoomSelectCommand}" NumberOfTapsRequired="1" />
+                    </StackLayout.GestureRecognizers>
+                    <ScrollView
+                        HeightRequest="150"
+                        HorizontalOptions="FillAndExpand"
+                        HorizontalScrollBarVisibility="Never"
+                        Orientation="Horizontal"
+                        VerticalOptions="CenterAndExpand">
+                        <controls:RepeaterView
+                            ItemTappedCommand="{Binding RoomSelectedCommand}"
+                            ItemsSource="{Binding ListRoomDisplay}"
+                            Orientation="Horizontal">
+                            <controls:RepeaterView.ItemTemplate>
+                                <DataTemplate>
+                                    <Frame
+                                        Margin="5"
+                                        Padding="0"
+                                        CornerRadius="5"
+                                        HeightRequest="150"
+                                        WidthRequest="180">
+                                        <StackLayout>
+                                            <StackLayout
+                                                BackgroundColor="{StaticResource transparent_dark}"
+                                                HeightRequest="35"
+                                                HorizontalOptions="FillAndExpand"
+                                                VerticalOptions="Start">
+                                                <Label
+                                                    FontAttributes="Bold"
+                                                    FontSize="16"
+                                                    HorizontalOptions="Center"
+                                                    Text="{Binding RoomType}"
+                                                    TextColor="White"
+                                                    VerticalOptions="CenterAndExpand" />
+                                            </StackLayout>
+                                            <StackLayout
+                                                Margin="0,0,8,0"
+                                                HorizontalOptions="EndAndExpand"
+                                                Orientation="Horizontal"
+                                                VerticalOptions="Start">
+                                                <Label
+                                                    FontSize="10"
+                                                    HorizontalOptions="End"
+                                                    Text="{ex:Translate Key=subheading_sleeps}" />
+                                                <Label
+                                                    FontSize="10"
+                                                    HorizontalOptions="End"
+                                                    Text="{Binding Capacity}" />
+                                            </StackLayout>
+                                            <StackLayout Margin="0,-8,0,0" VerticalOptions="FillAndExpand">
+                                                <Label
+                                                    FontSize="16"
+                                                    HorizontalOptions="Center"
+                                                    Text="{Binding Price, StringFormat='R{0:N2}'}"
+                                                    TextColor="{StaticResource Blue}"
+                                                    VerticalOptions="CenterAndExpand" />
+                                            </StackLayout>
+                                            <StackLayout
+                                                BackgroundColor="{StaticResource colorAccent}"
+                                                HeightRequest="35"
+                                                HorizontalOptions="FillAndExpand"
+                                                Orientation="Horizontal"
+                                                VerticalOptions="End">
+                                                <Label HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <FormattedString.Spans>
+                                                                <Span
+                                                                    FontAttributes="Bold"
+                                                                    FontSize="16"
+                                                                    Text="{Binding Available}"
+                                                                    TextColor="White" />
+                                                                <Span
+                                                                    FontAttributes="Bold"
+                                                                    FontSize="16"
+                                                                    Text=" " />
+                                                                <Span
+                                                                    FontAttributes="Bold"
+                                                                    FontSize="16"
+                                                                    Text="{ex:Translate Key=subheading_units_left}"
+                                                                    TextColor="White" />
+                                                            </FormattedString.Spans>
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </Frame>
+                                </DataTemplate>
+                            </controls:RepeaterView.ItemTemplate>
+                        </controls:RepeaterView>
+                    </ScrollView>
+                </StackLayout>
+            </AbsoluteLayout>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage> 

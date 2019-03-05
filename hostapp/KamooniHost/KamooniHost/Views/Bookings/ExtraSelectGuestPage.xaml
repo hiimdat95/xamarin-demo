@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="KamooniHost.Views.ExtraSelectGuestPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviors="clr-namespace:Xamarin.Forms.Behaviors"
+    xmlns:controls="clr-namespace:Xamarin.Forms.Controls"
+    xmlns:converters="clr-namespace:Xamarin.Forms.Converters"
+    xmlns:ex="clr-namespace:Xamarin.Forms.Extensions"
+    xmlns:popup="clr-namespace:KamooniHost.Views.Popup"
+    x:Name="this"
+    Title="{ex:Translate Key=title_activity_select_guest}">
+    <ContentPage.Content>
+        <StackLayout
+            BackgroundColor="White"
+            HorizontalOptions="FillAndExpand"
+            Spacing="0"
+            VerticalOptions="FillAndExpand">
+            <StackLayout
+                Padding="2"
+                BackgroundColor="{StaticResource colorPrimary}"
+                HorizontalOptions="FillAndExpand"
+                IsVisible="{Binding IsSearchingGuest}"
+                Orientation="Horizontal"
+                VerticalOptions="Start">
+                <controls:RoundedSearchBar
+                    HorizontalOptions="FillAndExpand"
+                    InputTransparent="{Binding IsBusy}"
+                    Placeholder="{ex:Translate Key=hint_search_guest_name}"
+                    SearchCommand="{Binding SearchGuestCommand}"
+                    VerticalOptions="Center" />
+                <Label
+                    Margin="0,0,5,0"
+                    FontAttributes="Bold"
+                    FontSize="16"
+                    HorizontalOptions="End"
+                    Text="Cancel"
+                    TextColor="White"
+                    VerticalOptions="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding CancelSearchGuestCommand}" NumberOfTapsRequired="1" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </StackLayout>
+            <Grid
+                Margin="5,0,5,0"
+                Padding="5,0,5,0"
+                ColumnSpacing="0"
+                HorizontalOptions="FillAndExpand"
+                IsVisible="{Binding IsSearchingGuest, Converter={StaticResource ReverseBoolConverter}}"
+                RowSpacing="0"
+                VerticalOptions="Start">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="1" />
+                    <ColumnDefinition Width="75" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40" />
+                </Grid.RowDefinitions>
+                <Image
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    HeightRequest="30"
+                    Source="ic_search_grey_400.png"
+                    VerticalOptions="Center"
+                    WidthRequest="30">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding StartSearchGuestCommand}" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    FontAttributes="Bold"
+                    HorizontalOptions="Center"
+                    Text="{ex:Translate Key=subheading_guest_name}"
+                    TextColor="{StaticResource colorPrimary}"
+                    VerticalOptions="Center" />
+                <controls:Separator
+                    Grid.Row="0"
+                    Grid.Column="2"
+                    Margin="0,10,0,10"
+                    BackgroundColor="{StaticResource colorPrimary}"
+                    Opacity=".5"
+                    Orientation="Vertical"
+                    VerticalOptions="FillAndExpand" />
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="3"
+                    FontAttributes="Bold"
+                    HorizontalOptions="Center"
+                    Text="{ex:Translate Key=subheading_balance}"
+                    TextColor="{StaticResource colorPrimary}"
+                    VerticalOptions="Center" />
+            </Grid>
+            <controls:Separator
+                BackgroundColor="{StaticResource colorPrimary}"
+                HorizontalOptions="FillAndExpand"
+                Orientation="Horizontal"
+                VerticalOptions="Start" />
+            <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <ListView
+                    AbsoluteLayout.LayoutBounds="0,0,1,1"
+                    AbsoluteLayout.LayoutFlags="All"
+                    HasUnevenRows="True"
+                    ItemsSource="{Binding ListGuestBill}"
+                    SelectionMode="None"
+                    SeparatorVisibility="None">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame
+                                    Margin="5"
+                                    Padding="5,0,5,5"
+                                    CornerRadius="5"
+                                    HorizontalOptions="FillAndExpand">
+                                    <Grid
+                                        ColumnSpacing="0"
+                                        HorizontalOptions="FillAndExpand"
+                                        RowSpacing="0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="40" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="75" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="40" />
+                                        </Grid.RowDefinitions>
+                                        <Label
+                                            Grid.Row="0"
+                                            Grid.Column="1"
+                                            FontAttributes="Bold"
+                                            HorizontalOptions="Center"
+                                            Text="{Binding GuestDetails.Name}"
+                                            TextColor="{StaticResource colorAccent}"
+                                            VerticalOptions="Center" />
+                                        <Label
+                                            Grid.Row="0"
+                                            Grid.Column="2"
+                                            FontAttributes="Bold"
+                                            HorizontalOptions="Center"
+                                            Text="{Binding GuestDetails.Balance, StringFormat='R{0:N2}'}"
+                                            VerticalOptions="Center" />
+                                    </Grid>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.Behaviors>
+                        <behaviors:EventToCommandBehavior
+                            Command="{Binding GuestSelectedCommand}"
+                            EventArgsConverter="{StaticResource ItemTappedConverter}"
+                            EventName="ItemTapped" />
+                    </ListView.Behaviors>
+                </ListView>
+                <popup:LoadingScreen
+                    AbsoluteLayout.LayoutBounds="0,0,1,1"
+                    AbsoluteLayout.LayoutFlags="All"
+                    IsVisible="{Binding IsBusy}" />
+            </AbsoluteLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

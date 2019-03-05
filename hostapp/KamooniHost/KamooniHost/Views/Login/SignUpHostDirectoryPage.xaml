@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="KamooniHost.Views.SignUpHostDirectoryPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Xamarin.Forms.Controls"
+    xmlns:ex="clr-namespace:Xamarin.Forms.Extensions"
+    xmlns:popup="clr-namespace:KamooniHost.Views.Popup"
+    x:Name="this"
+    Title="{ex:Translate Key=title_activity_host_directory}">
+    <ContentPage.Content>
+        <StackLayout
+            BackgroundColor="White"
+            HorizontalOptions="FillAndExpand"
+            Spacing="0"
+            VerticalOptions="FillAndExpand">
+            <controls:RoundedSearchBar
+                BackgroundColor="{StaticResource colorPrimary}"
+                HorizontalOptions="FillAndExpand"
+                InputTransparent="{Binding IsBusy}"
+                Placeholder="{ex:Translate Key=hint_search_property}"
+                Text="{Binding SearchKey}"
+                VerticalOptions="Start" />
+            <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <ScrollView
+                    AbsoluteLayout.LayoutBounds="0,0,1,1"
+                    AbsoluteLayout.LayoutFlags="All"
+                    Orientation="Vertical"
+                    VerticalScrollBarVisibility="Never">
+                    <controls:RepeaterView
+                        HorizontalOptions="FillAndExpand"
+                        ItemsSource="{Binding HostDirectory}"
+                        VerticalOptions="FillAndExpand">
+                        <controls:RepeaterView.ItemTemplate>
+                            <DataTemplate>
+                                <controls:ExpandableView
+                                    Margin="5"
+                                    ContentHeight="110"
+                                    HeaderHeight="40"
+                                    HorizontalOptions="FillAndExpand">
+                                    <controls:ExpandableView.HeaderTemplate>
+                                        <DataTemplate>
+                                            <StackLayout
+                                                BackgroundColor="{StaticResource transparent_dark}"
+                                                HeightRequest="40"
+                                                HorizontalOptions="FillAndExpand"
+                                                VerticalOptions="FillAndExpand">
+                                                <Label
+                                                    FontAttributes="Bold"
+                                                    FontSize="16"
+                                                    HorizontalOptions="CenterAndExpand"
+                                                    Text="{Binding Name}"
+                                                    TextColor="White"
+                                                    VerticalOptions="CenterAndExpand" />
+                                            </StackLayout>
+                                        </DataTemplate>
+                                    </controls:ExpandableView.HeaderTemplate>
+                                    <controls:ExpandableView.ContentTemplate>
+                                        <DataTemplate>
+                                            <Grid
+                                                Margin="16,0,0,0"
+                                                HorizontalOptions="FillAndExpand"
+                                                RowSpacing="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="60" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="35" />
+                                                    <RowDefinition Height="35" />
+                                                    <RowDefinition Height="40" />
+                                                </Grid.RowDefinitions>
+                                                <Label
+                                                    Grid.Row="0"
+                                                    Grid.Column="0"
+                                                    FontAttributes="Bold"
+                                                    FontSize="14"
+                                                    HorizontalOptions="Start"
+                                                    Text="Email:"
+                                                    TextColor="{StaticResource colorAccent}"
+                                                    VerticalOptions="Center" />
+                                                <Label
+                                                    Grid.Row="0"
+                                                    Grid.Column="1"
+                                                    FontSize="14"
+                                                    HorizontalOptions="Start"
+                                                    LineBreakMode="TailTruncation"
+                                                    Text="{Binding Email}"
+                                                    VerticalOptions="Center" />
+                                                <Label
+                                                    Grid.Row="1"
+                                                    Grid.Column="0"
+                                                    FontAttributes="Bold"
+                                                    FontSize="14"
+                                                    HorizontalOptions="Start"
+                                                    Text="Mobile:"
+                                                    TextColor="{StaticResource colorAccent}"
+                                                    VerticalOptions="Center" />
+                                                <Label
+                                                    Grid.Row="1"
+                                                    Grid.Column="1"
+                                                    FontSize="14"
+                                                    HorizontalOptions="Start"
+                                                    LineBreakMode="TailTruncation"
+                                                    Text="{Binding Mobile}"
+                                                    VerticalOptions="Center" />
+                                                <Button
+                                                    Grid.Row="2"
+                                                    Grid.Column="1"
+                                                    Margin="0,0,5,5"
+                                                    Padding="0"
+                                                    BackgroundColor="{StaticResource colorPrimary}"
+                                                    Command="{Binding BindingContext.SelectHostCommand, Source={x:Reference this}}"
+                                                    CommandParameter="{Binding .}"
+                                                    CornerRadius="5"
+                                                    FontAttributes="Bold"
+                                                    FontSize="14"
+                                                    HeightRequest="35"
+                                                    HorizontalOptions="EndAndExpand"
+                                                    Text="{ex:Translate Key=button_select}"
+                                                    TextColor="White"
+                                                    VerticalOptions="Center"
+                                                    WidthRequest="100" />
+                                            </Grid>
+                                        </DataTemplate>
+                                    </controls:ExpandableView.ContentTemplate>
+                                </controls:ExpandableView>
+                            </DataTemplate>
+                        </controls:RepeaterView.ItemTemplate>
+                    </controls:RepeaterView>
+                </ScrollView>
+                <popup:LoadingScreen
+                    AbsoluteLayout.LayoutBounds="0,0,1,1"
+                    AbsoluteLayout.LayoutFlags="All"
+                    IsVisible="{Binding IsBusy}" />
+            </AbsoluteLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

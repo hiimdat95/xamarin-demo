@@ -1,0 +1,17 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2017
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KamooniHost", "KamooniHost.csproj", "{9329350E-2CC7-46AF-9089-F3BA8BC55460}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9329350E-2CC7-46AF-9089-F3BA8BC55460}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9329350E-2CC7-46AF-9089-F3BA8BC55460}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9329350E-2CC7-46AF-9089-F3BA8BC55460}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9329350E-2CC7-46AF-9089-F3BA8BC55460}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

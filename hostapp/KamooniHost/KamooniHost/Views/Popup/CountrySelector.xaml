@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="KamooniHost.Views.Popup.CountrySelector"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Xamarin.Forms.Controls"
+    xmlns:ex="clr-namespace:Xamarin.Forms.Extensions"
+    IsVisible="False">
+    <ContentView.Content>
+        <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <ContentView
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                BackgroundColor="Black"
+                Opacity="0.4" />
+            <Frame
+                Padding="0"
+                AbsoluteLayout.LayoutBounds=".5,.5,.9,.9"
+                AbsoluteLayout.LayoutFlags="All"
+                CornerRadius="5">
+                <StackLayout Spacing="0">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HeightRequest="45"
+                        HorizontalOptions="Center"
+                        Text="{ex:Translate Key=title_popup_select_nationality}"
+                        TextColor="{StaticResource colorAccent}"
+                        VerticalOptions="Start"
+                        VerticalTextAlignment="Center" />
+                    <controls:Separator BackgroundColor="LightGray" Orientation="Horizontal" />
+                    <controls:RoundedSearchBar x:Name="SBNationality" Margin="5,5,5,0" />
+                    <ListView
+                        x:Name="LVNationality"
+                        Margin="1,0,1,0"
+                        BackgroundColor="White"
+                        CachingStrategy="RecycleElement"
+                        HasUnevenRows="True"
+                        SelectionMode="None">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout Padding="8,4,8,4" Orientation="Horizontal">
+                                        <Image
+                                            HeightRequest="40"
+                                            HorizontalOptions="Start"
+                                            Source="{Binding FlagImage}"
+                                            WidthRequest="40" />
+                                        <Label Text="{Binding Name}" VerticalOptions="Center" />
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <controls:Separator BackgroundColor="LightGray" Orientation="Horizontal" />
+                    <Label
+                        x:Name="LblClose"
+                        Margin="0,0,10,0"
+                        FontAttributes="Bold"
+                        FontSize="16"
+                        HeightRequest="45"
+                        HorizontalOptions="EndAndExpand"
+                        Text="{ex:Translate Key=title_popup_close}"
+                        TextColor="{StaticResource colorAccent}"
+                        VerticalOptions="End"
+                        VerticalTextAlignment="Center" />
+                </StackLayout>
+            </Frame>
+        </AbsoluteLayout>
+    </ContentView.Content>
+</ContentView>

@@ -1,0 +1,275 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="KamooniHost.Views.GuestProfilePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:abstractions="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+    xmlns:controls="clr-namespace:Xamarin.Forms.Controls"
+    xmlns:converters="clr-namespace:Xamarin.Forms.Converters"
+    xmlns:ex="clr-namespace:Xamarin.Forms.Extensions"
+    xmlns:popup="clr-namespace:KamooniHost.Views.Popup"
+    Title="{ex:Translate Key=title_activity_guest_book}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:Base64StringToImageSourceConverter x:Key="Base64StringToImageSourceConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <StackLayout
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                Spacing="0">
+                <ScrollView
+                    HorizontalOptions="FillAndExpand"
+                    Orientation="Vertical"
+                    VerticalOptions="FillAndExpand"
+                    VerticalScrollBarVisibility="Never">
+                    <StackLayout
+                        BackgroundColor="WhiteSmoke"
+                        HorizontalOptions="FillAndExpand"
+                        Spacing="0"
+                        VerticalOptions="FillAndExpand">
+                        <Frame
+                            Margin="16,16,16,0"
+                            Padding="0"
+                            BackgroundColor="{StaticResource colorAccent}"
+                            CornerRadius="5">
+                            <StackLayout Spacing="0">
+                                <StackLayout
+                                    Padding="8,0,8,0"
+                                    HeightRequest="45"
+                                    Orientation="Horizontal">
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="18"
+                                        HorizontalOptions="FillAndExpand"
+                                        Text="Guest ID"
+                                        TextColor="White"
+                                        VerticalOptions="Center" />
+                                    <Image
+                                        HeightRequest="40"
+                                        HorizontalOptions="End"
+                                        Source="main_logo_white.png"
+                                        WidthRequest="40" />
+                                </StackLayout>
+                                <controls:Separator BackgroundColor="White" Orientation="Horizontal" />
+                                <Grid Padding="8">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="135" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <abstractions:CircleImage
+                                        Grid.Row="0"
+                                        Grid.RowSpan="5"
+                                        Grid.Column="0"
+                                        HorizontalOptions="FillAndExpand"
+                                        Source="{Binding GuestProfile.Image, Converter={StaticResource Base64StringToImageSourceConverter}}"
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        FontSize="14"
+                                        Text="{Binding GuestProfile.Name}"
+                                        TextColor="White"
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        FontSize="14"
+                                        Text="{Binding GuestProfile.PassportId}"
+                                        TextColor="White"
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        Grid.Row="2"
+                                        Grid.Column="1"
+                                        FontSize="14"
+                                        Text="{Binding GuestProfile.Email}"
+                                        TextColor="White"
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        Grid.Row="3"
+                                        Grid.Column="1"
+                                        FontSize="14"
+                                        Text="{Binding GuestProfile.Mobile}"
+                                        TextColor="White"
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        Grid.Row="4"
+                                        Grid.Column="1"
+                                        FontSize="14"
+                                        Text="{Binding GuestProfile.CountryName}"
+                                        TextColor="White"
+                                        VerticalOptions="Center" />
+                                </Grid>
+                            </StackLayout>
+                        </Frame>
+                        <Label
+                            Margin="0,8,8,0"
+                            FontSize="18"
+                            HorizontalOptions="Center"
+                            Text="Guest Passport" />
+                        <Frame
+                            Margin="16,8,16,0"
+                            Padding="0"
+                            BackgroundColor="White"
+                            CornerRadius="5">
+                            <Image
+                                HeightRequest="200"
+                                HorizontalOptions="FillAndExpand"
+                                Source="{Binding GuestProfile.PassportImage, Converter={StaticResource Base64StringToImageSourceConverter}}"
+                                VerticalOptions="Center" />
+                        </Frame>
+                        <Label
+                            Margin="0,8,8,0"
+                            FontSize="18"
+                            HorizontalOptions="Center"
+                            Text="Other Info" />
+                        <Frame
+                            Margin="16,8,16,0"
+                            Padding="0"
+                            CornerRadius="5">
+                            <Grid Padding="8">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="120" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    FontSize="14"
+                                    Text="Total Visits:"
+                                    VerticalOptions="Center" />
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    FontSize="14"
+                                    Text="{Binding GuestProfile.TotalVisits}"
+                                    VerticalOptions="Center" />
+                                <Label
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    FontSize="14"
+                                    Text="Total Ratings:"
+                                    VerticalOptions="Center" />
+                                <Label
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    FontSize="14"
+                                    Text="{Binding GuestProfile.TotalRatings}"
+                                    VerticalOptions="Center" />
+                            </Grid>
+                        </Frame>
+                    </StackLayout>
+                </ScrollView>
+                <StackLayout
+                    HeightRequest="50"
+                    HorizontalOptions="FillAndExpand"
+                    Orientation="Horizontal"
+                    Spacing="0"
+                    VerticalOptions="End">
+                    <Button
+                        BackgroundColor="{StaticResource colorPrimary}"
+                        Command="{Binding DownVoteGuestCommand}"
+                        CornerRadius="0"
+                        FontSize="16"
+                        HorizontalOptions="FillAndExpand"
+                        Text="Report Correction"
+                        TextColor="White"
+                        VerticalOptions="FillAndExpand" />
+                    <Button
+                        BackgroundColor="{StaticResource colorAccent}"
+                        Command="{Binding UpVoteGuestCommand}"
+                        CornerRadius="0"
+                        FontSize="16"
+                        HorizontalOptions="FillAndExpand"
+                        Text="Info Correct"
+                        TextColor="White"
+                        VerticalOptions="FillAndExpand" />
+                </StackLayout>
+            </StackLayout>
+            <AbsoluteLayout
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                IsVisible="{Binding VoteNoteVisible}">
+                <ContentView
+                    AbsoluteLayout.LayoutBounds="0,0,1,1"
+                    AbsoluteLayout.LayoutFlags="All"
+                    BackgroundColor="Black"
+                    Opacity=".4" />
+                <Frame
+                    Margin="0,0,0,50"
+                    Padding="0"
+                    AbsoluteLayout.LayoutBounds=".5,.5,.9,.9"
+                    AbsoluteLayout.LayoutFlags="All"
+                    CornerRadius="5"
+                    HasShadow="False">
+                    <StackLayout
+                        HorizontalOptions="FillAndExpand"
+                        Spacing="0"
+                        VerticalOptions="FillAndExpand">
+                        <StackLayout
+                            HeightRequest="45"
+                            HorizontalOptions="FillAndExpand"
+                            Orientation="Horizontal"
+                            VerticalOptions="Start">
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="18"
+                                HorizontalOptions="CenterAndExpand"
+                                Text="Down Vote Confirm"
+                                TextColor="{StaticResource colorAccent}"
+                                VerticalOptions="Center" />
+                            <Image
+                                HeightRequest="40"
+                                HorizontalOptions="End"
+                                Source="ic_close_grey_400.png"
+                                VerticalOptions="Center"
+                                WidthRequest="40">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding CloseVoteNoteCommand}" NumberOfTapsRequired="1" />
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </StackLayout>
+                        <controls:Separator BackgroundColor="LightGray" Orientation="Horizontal" />
+                        <controls:RoundedEditor
+                            Margin="8"
+                            AutoSize="TextChanges"
+                            FontSize="16"
+                            HorizontalOptions="FillAndExpand"
+                            Placeholder="Vote Note"
+                            Text="{Binding VoteNote}"
+                            TextColor="Black"
+                            VerticalOptions="FillAndExpand" />
+                        <Button
+                            Margin="8,0,8,8"
+                            BackgroundColor="{StaticResource colorPrimary}"
+                            Command="{Binding DownVoteGuestConfirmCommand}"
+                            CornerRadius="0"
+                            FontSize="16"
+                            HeightRequest="50"
+                            HorizontalOptions="FillAndExpand"
+                            Text="Confirm Report"
+                            TextColor="White"
+                            VerticalOptions="End" />
+                    </StackLayout>
+                </Frame>
+            </AbsoluteLayout>
+            <popup:LoadingScreenDimmed
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                IsVisible="{Binding IsBusy}" />
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

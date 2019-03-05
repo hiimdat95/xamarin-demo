@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<AbsoluteLayout
+    x:Class="KamooniHost.Views.Popup.PremindNotification"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:imageCircle="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+    BackgroundColor="Transparent">
+    <AbsoluteLayout.GestureRecognizers>
+        <TapGestureRecognizer Tapped="OnBackGroundTapped" />
+        <SwipeGestureRecognizer Swiped="OnBackGroundSwiped" />
+    </AbsoluteLayout.GestureRecognizers>
+    <imageCircle:CircleImage
+        x:Name="icon"
+        AbsoluteLayout.LayoutBounds="1,.5,60,60"
+        AbsoluteLayout.LayoutFlags="PositionProportional"
+        HeightRequest="60"
+        HorizontalOptions="End"
+        VerticalOptions="Center"
+        WidthRequest="60" />
+</AbsoluteLayout>

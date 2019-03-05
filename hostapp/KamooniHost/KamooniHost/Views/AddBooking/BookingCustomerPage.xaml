@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="KamooniHost.Views.BookingCustomerPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Xamarin.Forms.Controls"
+    xmlns:ex="clr-namespace:Xamarin.Forms.Extensions"
+    xmlns:popup="clr-namespace:KamooniHost.Views.Popup"
+    Title="{ex:Translate Key=title_activity_booking_customer}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Command="{Binding GoToHomeCommand}"
+            Icon="home_white"
+            Order="Primary"
+            Text="Home" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <StackLayout
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                BackgroundColor="White">
+                <StackLayout
+                    BackgroundColor="{StaticResource colorAccent}"
+                    HeightRequest="40"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="Start">
+                    <Label HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <FormattedString.Spans>
+                                    <Span
+                                        FontAttributes="Bold"
+                                        FontSize="16"
+                                        Text="{Binding Booking.CheckInDate, StringFormat='{0:dd/MM/yyyy}'}"
+                                        TextColor="White" />
+                                    <Span
+                                        FontAttributes="Bold"
+                                        FontSize="16"
+                                        Text=" - "
+                                        TextColor="White" />
+                                    <Span
+                                        FontAttributes="Bold"
+                                        FontSize="16"
+                                        Text="{Binding Booking.CheckOutDate, StringFormat='{0:dd/MM/yyyy}'}"
+                                        TextColor="White" />
+                                </FormattedString.Spans>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </StackLayout>
+                <controls:RoundedEntry
+                    x:Name="NameEntry"
+                    Margin="8,8,8,0"
+                    FontSize="16"
+                    HorizontalOptions="FillAndExpand"
+                    Placeholder="{ex:Translate Key=hint_full_name}"
+                    ReturnType="Next"
+                    Text="{Binding Booking.Customer.Name}"
+                    VerticalOptions="Start" />
+                <controls:RoundedEntry
+                    x:Name="EmailEntry"
+                    Margin="8,8,8,0"
+                    FontSize="16"
+                    HorizontalOptions="FillAndExpand"
+                    Keyboard="Email"
+                    Placeholder="{ex:Translate Key=hint_email}"
+                    ReturnType="Next"
+                    Text="{Binding Booking.Customer.Email}"
+                    VerticalOptions="Start" />
+                <controls:RoundedEntry
+                    x:Name="MobileEntry"
+                    Margin="8,8,8,0"
+                    FontSize="16"
+                    HorizontalOptions="FillAndExpand"
+                    Keyboard="Telephone"
+                    Placeholder="{ex:Translate Key=hint_mobile_number}"
+                    Text="{Binding Booking.Customer.Mobile}"
+                    VerticalOptions="Start" />
+                <Button
+                    BackgroundColor="{StaticResource colorAccent}"
+                    Command="{Binding CreateBookingCommand}"
+                    CornerRadius="0"
+                    FontSize="16"
+                    HeightRequest="55"
+                    HorizontalOptions="FillAndExpand"
+                    IsVisible="{Binding IsFormValid}"
+                    Text="{ex:Translate Key=button_create_booking}"
+                    TextColor="White"
+                    VerticalOptions="EndAndExpand" />
+            </StackLayout>
+            <popup:LoadingScreenDimmed
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                IsVisible="{Binding IsBusy}" />
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

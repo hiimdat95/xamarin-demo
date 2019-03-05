@@ -1,0 +1,338 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="KamooniHost.Views.SignUpCreateHostPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviors="clr-namespace:Xamarin.Forms.Behaviors"
+    xmlns:controls="clr-namespace:Xamarin.Forms.Controls"
+    xmlns:ex="clr-namespace:Xamarin.Forms.Extensions"
+    xmlns:popup="clr-namespace:KamooniHost.Views.Popup"
+    x:Name="this"
+    Title="{ex:Translate Key=title_activity_create_host}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <behaviors:EventToCommandBehavior x:Key="EventToCommandBehavior" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <AbsoluteLayout
+            BackgroundColor="White"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+            <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+                <ScrollView
+                    HorizontalOptions="FillAndExpand"
+                    Orientation="Vertical"
+                    VerticalOptions="FillAndExpand"
+                    VerticalScrollBarVisibility="Never">
+                    <StackLayout HorizontalOptions="FillAndExpand" Spacing="1">
+                        <controls:RoundedEntry
+                            Margin="16,16,16,0"
+                            HorizontalOptions="FillAndExpand"
+                            NextFocus="{x:Reference EntryEmail}"
+                            Placeholder="Property Name"
+                            ReturnType="Next"
+                            Text="{Binding HostToCreate.Name}"
+                            VerticalOptions="Start" />
+                        <controls:RoundedEntry
+                            x:Name="EntryEmail"
+                            Margin="16,4,16,0"
+                            HorizontalOptions="FillAndExpand"
+                            Keyboard="Email"
+                            NextFocus="{x:Reference EntryMobile}"
+                            Placeholder="Email"
+                            ReturnType="Next"
+                            Text="{Binding HostToCreate.Email}"
+                            VerticalOptions="Start" />
+                        <controls:RoundedEntry
+                            x:Name="EntryMobile"
+                            Margin="16,4,16,0"
+                            HorizontalOptions="FillAndExpand"
+                            Keyboard="Telephone"
+                            NextFocus="{x:Reference EntryStreet}"
+                            Placeholder="Mobile Number"
+                            ReturnType="Next"
+                            Text="{Binding HostToCreate.Mobile}"
+                            VerticalOptions="Start" />
+                        <StackLayout
+                            Margin="16,4,16,0"
+                            Orientation="Horizontal"
+                            VerticalOptions="Start">
+                            <Label
+                                FontSize="16"
+                                HorizontalOptions="FillAndExpand"
+                                Text="Address"
+                                TextColor="{StaticResource colorPrimary}"
+                                VerticalOptions="Center" />
+                            <Label
+                                FontSize="16"
+                                HorizontalOptions="End"
+                                Text="Find on Maps"
+                                TextColor="DodgerBlue"
+                                TextDecorations="Underline">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding FindOnMapCommand}" NumberOfTapsRequired="1" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </StackLayout>
+                        <controls:RoundedEntry
+                            x:Name="EntryStreet"
+                            Margin="16,4,16,0"
+                            HorizontalOptions="FillAndExpand"
+                            NextFocus="{x:Reference EntryStreet2}"
+                            Placeholder="Street"
+                            ReturnType="Next"
+                            Text="{Binding HostToCreate.Street}"
+                            VerticalOptions="Start" />
+                        <controls:RoundedEntry
+                            x:Name="EntryStreet2"
+                            Margin="16,4,16,0"
+                            HorizontalOptions="FillAndExpand"
+                            NextFocus="{x:Reference EntryCity}"
+                            Placeholder="Street 2"
+                            ReturnType="Next"
+                            Text="{Binding HostToCreate.Street2}"
+                            VerticalOptions="Start" />
+                        <StackLayout
+                            Margin="16,4,16,0"
+                            HorizontalOptions="FillAndExpand"
+                            Orientation="Horizontal"
+                            VerticalOptions="Start">
+                            <controls:RoundedEntry
+                                x:Name="EntryCity"
+                                HorizontalOptions="FillAndExpand"
+                                NextFocus="{x:Reference EntryZip}"
+                                Placeholder="City"
+                                ReturnType="Next"
+                                Text="{Binding HostToCreate.City}" />
+                            <controls:RoundedEntry
+                                x:Name="EntryZip"
+                                HorizontalOptions="FillAndExpand"
+                                Placeholder="Postal Code"
+                                ReturnType="Done"
+                                Text="{Binding HostToCreate.Zip}" />
+                        </StackLayout>
+                        <StackLayout
+                            Margin="16,4,16,0"
+                            HorizontalOptions="FillAndExpand"
+                            Orientation="Horizontal"
+                            Spacing="10"
+                            VerticalOptions="Start">
+                            <Button
+                                BackgroundColor="{StaticResource colorAccent}"
+                                Command="{Binding SelectProvinceCommand}"
+                                CornerRadius="5"
+                                HeightRequest="40"
+                                HorizontalOptions="Start"
+                                Text="{ex:Translate Key=button_select_province}"
+                                TextColor="White"
+                                WidthRequest="120" />
+                            <Label
+                                FontSize="16"
+                                Text="{Binding HostToCreate.State.Name}"
+                                TextColor="{StaticResource grayShade_2}"
+                                VerticalOptions="Center" />
+                        </StackLayout>
+                        <StackLayout
+                            Margin="16,4,16,0"
+                            HorizontalOptions="FillAndExpand"
+                            Orientation="Horizontal"
+                            Spacing="10"
+                            VerticalOptions="Start">
+                            <Button
+                                BackgroundColor="{StaticResource colorAccent}"
+                                Command="{Binding SelectCountryCommand}"
+                                CornerRadius="5"
+                                HeightRequest="40"
+                                HorizontalOptions="Start"
+                                Text="{ex:Translate Key=button_select_country}"
+                                TextColor="White"
+                                WidthRequest="120" />
+                            <Label
+                                FontSize="16"
+                                HorizontalOptions="FillAndExpand"
+                                Text="{Binding HostToCreate.Country.Name}"
+                                TextColor="{StaticResource grayShade_2}"
+                                VerticalOptions="Center" />
+                            <Image
+                                HeightRequest="40"
+                                HorizontalOptions="End"
+                                Source="{Binding HostToCreate.Country.FlagImage}"
+                                VerticalOptions="Center"
+                                WidthRequest="40" />
+                        </StackLayout>
+                        <Label
+                            Margin="16,4,16,0"
+                            FontSize="16"
+                            Text="Type"
+                            TextColor="{StaticResource colorPrimary}"
+                            VerticalOptions="Start" />
+                        <Frame
+                            Margin="16,4,16,0"
+                            Padding="0,5,0,5"
+                            BorderColor="LightGray"
+                            CornerRadius="10"
+                            HasShadow="False"
+                            HorizontalOptions="FillAndExpand"
+                            IsClippedToBounds="True"
+                            VerticalOptions="Start">
+                            <StackLayout
+                                HorizontalOptions="FillAndExpand"
+                                Orientation="Horizontal"
+                                Spacing="0">
+                                <StackLayout HorizontalOptions="CenterAndExpand">
+                                    <Label
+                                        HorizontalOptions="Center"
+                                        LineBreakMode="TailTruncation"
+                                        Text="Activity"
+                                        TextColor="Black" />
+                                    <Switch HorizontalOptions="Center" IsToggled="{Binding HostToCreate.IsActivity}" />
+                                </StackLayout>
+                                <StackLayout HorizontalOptions="CenterAndExpand">
+                                    <Label
+                                        HorizontalOptions="Center"
+                                        LineBreakMode="TailTruncation"
+                                        Text="Accommodation"
+                                        TextColor="Black" />
+                                    <Switch HorizontalOptions="Center" IsToggled="{Binding HostToCreate.IsAccommodation}" />
+                                </StackLayout>
+                                <StackLayout HorizontalOptions="CenterAndExpand">
+                                    <Label
+                                        HorizontalOptions="Center"
+                                        LineBreakMode="TailTruncation"
+                                        Text="Transport"
+                                        TextColor="Black" />
+                                    <Switch HorizontalOptions="Center" IsToggled="{Binding HostToCreate.IsTransport}" />
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+                        <StackLayout
+                            Margin="16,4,16,0"
+                            Orientation="Horizontal"
+                            VerticalOptions="Start">
+                            <Label
+                                FontSize="16"
+                                HorizontalOptions="FillAndExpand"
+                                Text="Picture"
+                                TextColor="{StaticResource colorPrimary}"
+                                VerticalOptions="Center" />
+                            <Image
+                                Aspect="Fill"
+                                HeightRequest="35"
+                                HorizontalOptions="End"
+                                Source="ic_camera_black.png"
+                                WidthRequest="35">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding TakePictureCommand}" NumberOfTapsRequired="1" />
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </StackLayout>
+                        <Frame
+                            Margin="16,4,16,0"
+                            Padding="1"
+                            BorderColor="LightGray"
+                            CornerRadius="10"
+                            HasShadow="False"
+                            HeightRequest="200"
+                            HorizontalOptions="FillAndExpand"
+                            IsClippedToBounds="True"
+                            VerticalOptions="Start">
+                            <Image Source="{Binding HostToCreate.Image, Converter={x:StaticResource Base64StringToImageSourceConverter}}" VerticalOptions="FillAndExpand" />
+                        </Frame>
+                    </StackLayout>
+                </ScrollView>
+                <Button
+                    BackgroundColor="{StaticResource colorAccent}"
+                    Command="{Binding CreateHostCommand}"
+                    HeightRequest="55"
+                    HorizontalOptions="FillAndExpand"
+                    Text="{ex:Translate Key=button_sign_up}"
+                    TextColor="White"
+                    VerticalOptions="End" />
+            </StackLayout>
+            <AbsoluteLayout
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                IsVisible="{Binding ProvinceSelectorVisible}">
+                <ContentView
+                    AbsoluteLayout.LayoutBounds="0,0,1,1"
+                    AbsoluteLayout.LayoutFlags="All"
+                    BackgroundColor="Black"
+                    Opacity="0.4" />
+                <Frame
+                    Padding="0"
+                    AbsoluteLayout.LayoutBounds=".5,.5,.9,.9"
+                    AbsoluteLayout.LayoutFlags="All"
+                    CornerRadius="5">
+                    <StackLayout Spacing="0">
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="18"
+                            HeightRequest="45"
+                            HorizontalOptions="Center"
+                            Text="Select Province"
+                            TextColor="{StaticResource colorAccent}"
+                            VerticalOptions="Start"
+                            VerticalTextAlignment="Center" />
+                        <controls:Separator BackgroundColor="LightGray" Orientation="Horizontal" />
+                        <ListView
+                            Margin="1,0,1,0"
+                            BackgroundColor="White"
+                            CachingStrategy="RecycleElement"
+                            ItemsSource="{Binding ListState}"
+                            RowHeight="40"
+                            SelectionMode="None">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout Padding="8,4,8,4" Orientation="Horizontal">
+                                            <Label
+                                                HorizontalOptions="Start"
+                                                Text="{Binding Code}"
+                                                VerticalOptions="Center"
+                                                WidthRequest="80" />
+                                            <Label
+                                                HorizontalOptions="FillAndExpand"
+                                                Text="{Binding Name}"
+                                                VerticalOptions="Center" />
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                            <ListView.Behaviors>
+                                <behaviors:EventToCommandBehavior
+                                    Command="{Binding ProvinceSelectedCommand}"
+                                    EventArgsConverter="{StaticResource ItemTappedConverter}"
+                                    EventName="ItemTapped" />
+                            </ListView.Behaviors>
+                        </ListView>
+                        <controls:Separator BackgroundColor="LightGray" Orientation="Horizontal" />
+                        <Label
+                            Margin="0,0,10,0"
+                            FontAttributes="Bold"
+                            FontSize="16"
+                            HeightRequest="45"
+                            HorizontalOptions="EndAndExpand"
+                            Text="{ex:Translate Key=title_popup_close}"
+                            TextColor="{StaticResource colorAccent}"
+                            VerticalOptions="End"
+                            VerticalTextAlignment="Center">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CloseProvinceSelectorCommand}" NumberOfTapsRequired="1" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
+                </Frame>
+            </AbsoluteLayout>
+            <popup:CountrySelector
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                CountrySelectedCommand="{Binding CountrySelectedCommand}"
+                IsVisible="{Binding CountrySelectorVisible, Mode=TwoWay}" />
+            <popup:LoadingScreenDimmed
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                IsVisible="{Binding IsBusy}" />
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

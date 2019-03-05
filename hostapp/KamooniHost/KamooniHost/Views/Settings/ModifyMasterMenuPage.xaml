@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="KamooniHost.Views.Settings.ModifyMasterMenuPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Xamarin.Forms.Controls"
+    Title="Modify Master Menu">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding SaveMasterMenuCommand}" Icon="ic_save_white.png" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <StackLayout
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                BackgroundColor="White"
+                Spacing="0">
+                <Grid
+                    Padding="8,0,5,0"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="Start">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="60" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40" />
+                    </Grid.RowDefinitions>
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        FontAttributes="Bold"
+                        FontSize="16"
+                        Text="Menu Name"
+                        TextColor="{StaticResource colorPrimary}"
+                        VerticalOptions="Center" />
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        FontAttributes="Bold"
+                        FontSize="16"
+                        HorizontalOptions="Center"
+                        Text="Hide"
+                        TextColor="{StaticResource colorPrimary}"
+                        VerticalOptions="Center" />
+                </Grid>
+                <controls:ExtendedListView
+                    BackgroundColor="White"
+                    HasUnevenRows="True"
+                    HorizontalOptions="FillAndExpand"
+                    ItemsSource="{Binding MasterMenus}"
+                    VerticalOptions="FillAndExpand">
+                    <controls:ExtendedListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Padding="8,5,5,5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="60" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        FontSize="16"
+                                        Text="{Binding Title}"
+                                        TextColor="DimGray"
+                                        VerticalOptions="Center" />
+                                    <Switch
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        HorizontalOptions="Center"
+                                        IsToggled="{Binding Hide}"
+                                        VerticalOptions="Center" />
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </controls:ExtendedListView.ItemTemplate>
+                </controls:ExtendedListView>
+            </StackLayout>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

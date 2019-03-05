@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TravellerApp.Views.ExplainTheStats">
+    <ContentPage.Content>
+        <StackLayout Margin="10,10,10,10" HorizontalOptions="FillAndExpand" Orientation="Vertical" VerticalOptions="StartAndExpand">
+            <Label Margin="0,10,0,0" 
+                Text="Points"
+                TextColor="Black"
+                VerticalOptions="Start" 
+                HorizontalOptions="FillAndExpand" />
+
+            <Label Margin="0,0,0,0" 
+                Text=" - Points are earned every time you: visit a place, publish a post, share the post on social media or discover and register a place of interest on the map. Scoring high points makes you eligible for free last minute room upgrades and other rewards."
+                TextColor="Gray"
+                VerticalOptions="Start" 
+                HorizontalOptions="FillAndExpand" />
+
+            <Label Margin="0,10,0,0" 
+                Text="Earned for Kamoonity"
+                TextColor="Black"
+                VerticalOptions="Start" 
+                HorizontalOptions="FillAndExpand" />
+
+            <Label Margin="0,0,0,0" 
+                Text=" - Every time you book through the Kamooni Traveller app or Kamooni.com, 5% of booking value goes towards sustainable business growth in South Africa."
+                TextColor="Gray"
+                VerticalOptions="Start" 
+                HorizontalOptions="FillAndExpand" />
+
+            <Label Margin="0,10,0,0" 
+                Text="Classtime funded (Coming Soon)"
+                TextColor="Black"
+                VerticalOptions="Start" 
+                HorizontalOptions="FillAndExpand" />
+
+            <Label Margin="0,0,0,0" 
+                Text=" - Every time you pay via the Kamooni App, you will have the option to donate minutes, hours even days of class time towards children in need."
+                TextColor="Gray"
+                VerticalOptions="Start" 
+                HorizontalOptions="FillAndExpand" />
+
+            <Button  Margin="0,30,0,10" Text="Okay" Clicked="BackClicked"/>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

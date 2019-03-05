@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="TravellerApp.Views.AddPlacePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Xamarin.Forms.Controls">
+
+    <ContentPage.ToolbarItems>
+
+        <ToolbarItem Clicked="AddPlace_Clicked" Text="Save" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+
+        <AbsoluteLayout
+            Padding="0"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+
+            <ScrollView AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+
+                <Frame
+                    Padding="10"
+                    BackgroundColor="White"
+                    HasShadow="False"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand">
+
+                    <StackLayout Spacing="10">
+
+                        <Editor
+                            x:Name="txtName"
+                            HorizontalOptions="FillAndExpand"
+                            Placeholder="Name of place"
+                            PlaceholderColor="LightGray"
+                            VerticalOptions="Fill" />
+
+                        <StackLayout
+                            x:Name="stackTypes"
+                            HeightRequest="32"
+                            HorizontalOptions="FillAndExpand"
+                            Orientation="Horizontal"
+                            VerticalOptions="Center">
+
+                            <Label
+                                Margin="0,5,5,5"
+                                Text="Click select type of place:"
+                                TextColor="Gray" />
+
+                            <Label
+                                x:Name="typesPicker"
+                                Margin="0,5,0,5"
+                                HorizontalOptions="FillAndExpand"
+                                TextColor="Gray" />
+                        </StackLayout>
+
+                        <Editor
+                            x:Name="txtContent"
+                            HorizontalOptions="FillAndExpand"
+                            MinimumHeightRequest="120"
+                            Placeholder="Review for place "
+                            PlaceholderColor="LightGray"
+                            VerticalOptions="FillAndExpand" />
+
+                        <RelativeLayout>
+
+                            <controls:ImageWithLongPressGesture
+                                x:Name="image"
+                                Aspect="AspectFill"
+                                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                                      Property=Width,
+                                                                                      Factor=1,
+                                                                                      Constant=0}" />
+
+                            <Image
+                                x:Name="imgDelete"
+                                HeightRequest="40"
+                                IsVisible="false"
+                                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                                  Property=Height,
+                                                                                  Factor=0.88,
+                                                                                  Constant=0}"
+                                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                                  Property=Height,
+                                                                                  Factor=0,
+                                                                                  Constant=0}"
+                                Source="icon_delete.png"
+                                WidthRequest="40">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnDeleteImageTapped" />
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </RelativeLayout>
+
+                        <StackLayout
+                            HorizontalOptions="FillAndExpand"
+                            Orientation="Horizontal"
+                            VerticalOptions="End">
+
+                            <controls:RatingView
+                                x:Name="rating"
+                                HorizontalOptions="Start"
+                                MaxStars="5"
+                                Rating="5"
+                                StarSize="40"
+                                VerticalOptions="Start" />
+
+                            <Image
+                                HeightRequest="30"
+                                HorizontalOptions="EndAndExpand"
+                                Source="icon_camera.png"
+                                WidthRequest="30">
+
+                                <Image.GestureRecognizers>
+
+                                    <TapGestureRecognizer Tapped="OnCameraTapped" />
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+            </ScrollView>
+
+            <!--  Popup Types  -->
+            <ContentView
+                x:Name="popupTypes"
+                Padding="10,0"
+                AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                AbsoluteLayout.LayoutFlags="All"
+                BackgroundColor="#C0808080"
+                IsVisible="false">
+                <StackLayout
+                    x:Name="popupChil"
+                    Margin="10,10,10,10"
+                    BackgroundColor="White"
+                    HorizontalOptions="CenterAndExpand"
+                    Orientation="Vertical"
+                    VerticalOptions="Center">
+                    <ListView
+                        x:Name="lstViewTypes"
+                        HasUnevenRows="True"
+                        ItemSelected="OnItemSelected">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                                        <Image
+                                            Margin="5,5,5,5"
+                                            HeightRequest="40"
+                                            Source="{Binding image, Converter={StaticResource Base64StringToImageSourceConverter}}"
+                                            WidthRequest="40" />
+                                        <Label
+                                            Margin="5,5,5,5"
+                                            HorizontalOptions="FillAndExpand"
+                                            Text="{Binding name}"
+                                            TextColor="Black"
+                                            VerticalOptions="Center"
+                                            VerticalTextAlignment="Center" />
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+                    <BoxView
+                        BackgroundColor="Gray"
+                        HeightRequest="1"
+                        HorizontalOptions="FillAndExpand" />
+                    <Label
+                        x:Name="lbCancel"
+                        HeightRequest="48"
+                        HorizontalOptions="FillAndExpand"
+                        HorizontalTextAlignment="Center"
+                        Text="Cancel"
+                        TextColor="Blue"
+                        VerticalOptions="Center"
+                        VerticalTextAlignment="Center" />
+                </StackLayout>
+            </ContentView>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

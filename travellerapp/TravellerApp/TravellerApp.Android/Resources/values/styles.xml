@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <style name="MainTheme" parent="MainTheme.Base">
+    <item name="android:buttonStyle">@style/buttonStandard</item>
+    <item name="android:editTextStyle">@style/editTextStandard</item>
+    <!--<item name="android:alertDialogTheme">@style/AlertDialogCustom</item>-->
+  </style>
+  <style name="buttonStandard">
+    <item name="android:gravity">center</item>
+    <item name="android:background">@drawable/button_primary</item>
+    <item name="android:textColor">@color/black</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+  <style name="editTextStandard" parent="@android:style/Widget.EditText">
+    <item name="android:background">@drawable/edit_text_corner_radius</item>
+    <item name="android:paddingLeft">8dip</item>
+    <item name="android:paddingTop">4dip</item>
+    <item name="android:paddingRight">8dip</item>
+    <item name="android:paddingBottom">4dip</item>
+  </style>
+  <style name="MyTheme.Launch" parent="MainTheme">
+    <item name="android:windowBackground">@drawable/launch_background</item>
+  </style>
+  <!-- Base theme applied no matter what API -->
+  <style name="MainTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar">
+    <item name="windowNoTitle">true</item>
+    <!--We will be using the toolbar so no need to show ActionBar-->
+    <item name="windowActionBar">false</item>
+    <item name="colorPrimary">@color/colorPrimary</item>
+    <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+    <item name="colorAccent">@color/colorAccent</item>
+    <item name="windowActionModeOverlay">true</item>
+    <item name="android:datePickerDialogTheme">@style/AppCompatDialogStyle</item>
+  </style>
+  <style name="AppCompatDialogStyle" parent="Theme.AppCompat.Light.Dialog">
+    <!--background-->
+    <item name="android:background">@color/sunflower</item>
+    <!--title-->
+    <item name="android:textColor">@color/colorAccent</item>
+    <!--text-->
+    <item name="android:textColorPrimary">@color/white</item>
+    <!--selection list-->
+    <item name="android:textColorTertiary">@color/colorAccent</item>
+    <!--buttons-->
+    <item name="colorAccent">@color/colorAccent</item>
+  </style>
+  <!-- Custom checkout theme -->
+  <style name="CustomCheckoutTheme" parent="Theme.Checkout.Light">
+    <item name="colorAccent">@color/colorAccent</item>
+    <item name="headerBackground">@color/colorAccent</item>
+  </style>
+  <style name="BottomBarText">
+    <item name="android:textSize">10sp</item>
+  </style>
+</resources>

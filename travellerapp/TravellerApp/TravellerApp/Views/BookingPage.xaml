@@ -1,0 +1,825 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="TravellerApp.Views.BookingPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Xamarin.Forms.Controls"
+    xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:u="clr-namespace:TravellerApp.Controls"
+    Title="Booking">
+    <ContentPage.Content>
+        <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <StackLayout
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                BackgroundColor="WhiteSmoke">
+                <!--<SearchBar
+                    x:Name="srbSearch"
+                    BackgroundColor="#F8F8FF"
+                    HeightRequest="40"
+                    HorizontalOptions="FillAndExpand"
+                    Placeholder="Cape Town, Western Cape Homes"
+                    PlaceholderColor="LightGray"
+                    TextColor="Black"
+                    VerticalOptions="Start" />-->
+                <ScrollView
+                    HorizontalOptions="FillAndExpand"
+                    Orientation="Vertical"
+                    VerticalOptions="FillAndExpand"
+                    VerticalScrollBarVisibility="Never">
+                    <StackLayout
+                        BackgroundColor="WhiteSmoke"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand">
+                        <forms:CachedImage
+                            x:Name="imageHeader"
+                            Aspect="Fill"
+                            HeightRequest="200"
+                            HorizontalOptions="FillAndExpand"
+                            InputTransparent="True"
+                            VerticalOptions="StartAndExpand" />
+                        <Label
+                            x:Name="nameHeader"
+                            Margin="5,5,5,5"
+                            FontAttributes="Bold"
+                            FontSize="Large"
+                            HorizontalOptions="CenterAndExpand"
+                            TextColor="Black"
+                            VerticalOptions="StartAndExpand" />
+                        <StackLayout Padding="5,0,5,5" Orientation="Horizontal">
+                            <forms:CachedImage HeightRequest="20" WidthRequest="20" />
+                            <Label
+                                x:Name="provinceHeader"
+                                FontSize="Micro"
+                                TextColor="#000000" />
+                        </StackLayout>
+                        <StackLayout
+                            Padding="5,5,5,5"
+                            HeightRequest="40"
+                            Orientation="Horizontal">
+                            <Frame
+                                Padding="0"
+                                BackgroundColor="#6CD1F0"
+                                CornerRadius="20"
+                                HeightRequest="40"
+                                WidthRequest="40">
+                                <Label
+                                    x:Name="host_rating"
+                                    FontAttributes="Bold"
+                                    FontSize="16"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center" />
+                            </Frame>
+                            <Label
+                                FontAttributes="Bold"
+                                HorizontalOptions="Center"
+                                Text="Real reviews"
+                                TextColor="Black"
+                                VerticalOptions="Center"
+                                VerticalTextAlignment="Center" />
+                            <forms:CachedImage HorizontalOptions="EndAndExpand" Source="call_phone">
+                                <forms:CachedImage.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnCallPhoneClick" />
+                                </forms:CachedImage.GestureRecognizers>
+                            </forms:CachedImage>
+                            <forms:CachedImage Source="pin_map">
+                                <forms:CachedImage.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnPinMapClick" />
+                                </forms:CachedImage.GestureRecognizers>
+                            </forms:CachedImage>
+                        </StackLayout>
+                        <Frame
+                            Padding="1"
+                            BackgroundColor="{StaticResource colorPrimaryDark}"
+                            BorderColor="#DDDDDD"
+                            CornerRadius="0"
+                            HasShadow="False">
+                            <Grid Padding="5" RowSpacing="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="10" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="30" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="10" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                </Grid.RowDefinitions>
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    FontSize="16"
+                                    HorizontalTextAlignment="Center"
+                                    LineBreakMode="TailTruncation"
+                                    Text="Arrive"
+                                    TextColor="Gray" />
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="3"
+                                    Grid.ColumnSpan="1"
+                                    FontSize="16"
+                                    HorizontalTextAlignment="Center"
+                                    LineBreakMode="TailTruncation"
+                                    Text="Depart"
+                                    TextColor="Gray" />
+                                <DatePicker
+                                    x:Name="startDatePicker"
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    Date="{Binding SelectedDate, Mode=TwoWay}"
+                                    DateSelected="MainDatePicker_DateStartSelected"
+                                    FontSize="12"
+                                    Format="dddd, dd MMM yyyy"
+                                    MaximumDate="{Binding MaximumDate}"
+                                    TextColor="Gray"
+                                    VerticalOptions="CenterAndExpand" />
+                                <DatePicker
+                                    x:Name="endDatePicker"
+                                    Grid.Row="1"
+                                    Grid.Column="3"
+                                    Date="{Binding SelectedDate, Mode=TwoWay}"
+                                    DateSelected="MainDatePicker_DateEndSelected"
+                                    FontSize="12"
+                                    Format="dddd, dd MMM yyyy"
+                                    MaximumDate="{Binding MaximumDate}"
+                                    TextColor="Gray"
+                                    VerticalOptions="CenterAndExpand" />
+                                <Button
+                                    Grid.Row="2"
+                                    Grid.Column="1"
+                                    Grid.ColumnSpan="3"
+                                    Margin="0,5,0,2"
+                                    Padding="0,3,0,3"
+                                    BackgroundColor="#52B499"
+                                    Clicked="ShowAvailableRooms"
+                                    Text="Show available rooms"
+                                    TextColor="White" />
+                            </Grid>
+                        </Frame>
+                        <StackLayout>
+                            <Label
+                                x:Name="notAvailableRoom"
+                                FontAttributes="Italic"
+                                FontSize="Medium"
+                                HorizontalTextAlignment="Center"
+                                IsVisible="False"
+                                Text="The room is not available for this date."
+                                TextColor="Black" />
+                        </StackLayout>
+                        <!--  Private Rooms  -->
+                        <Frame
+                            x:Name="privateRoomsLayout"
+                            Padding="1"
+                            BackgroundColor="#FCC84C"
+                            CornerRadius="5"
+                            IsClippedToBounds="true">
+                            <StackLayout
+                                Padding="8,4,8,4"
+                                Orientation="Vertical"
+                                Spacing="0">
+                                <Label
+                                    FontSize="Large"
+                                    HorizontalOptions="Start"
+                                    Text="Private Rooms"
+                                    VerticalOptions="CenterAndExpand" />
+                            </StackLayout>
+                        </Frame>
+                        <controls:RepeaterView
+                            x:Name="listPrivateRooms"
+                            Margin="5,5,5,0"
+                            HorizontalOptions="FillAndExpand"
+                            Spacing="5">
+                            <controls:RepeaterView.ItemTemplate>
+                                <DataTemplate>
+                                    <Frame
+                                        Padding="1"
+                                        BackgroundColor="White"
+                                        BorderColor="#DDDDDD"
+                                        CornerRadius="0"
+                                        HasShadow="False">
+                                        <Grid Padding="5" RowSpacing="2">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="70" />
+                                                <ColumnDefinition Width="1" />
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <Label
+                                                Grid.Row="0"
+                                                Grid.Column="0"
+                                                Grid.ColumnSpan="1"
+                                                FontSize="16"
+                                                LineBreakMode="TailTruncation"
+                                                Text="{Binding roomAvailableType}"
+                                                TextColor="Black" />
+                                            <Label
+                                                Grid.Row="1"
+                                                Grid.Column="0"
+                                                Grid.ColumnSpan="2">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span
+                                                            FontSize="15"
+                                                            Text="{Binding capacity, StringFormat='Sleeps {0}'}"
+                                                            TextColor="#949494" />
+                                                        <Span
+                                                            FontSize="15"
+                                                            Text=" - "
+                                                            TextColor="#949494" />
+                                                        <Span
+                                                            FontSize="15"
+                                                            Text="{Binding type}"
+                                                            TextColor="#949494" />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                            <StackLayout
+                                                Grid.Row="2"
+                                                Grid.Column="0"
+                                                Orientation="Horizontal">
+                                                <Label
+                                                    FontAttributes="Bold"
+                                                    FontSize="Medium"
+                                                    Text="ZAR"
+                                                    TextColor="#F9C948" />
+                                                <Label
+                                                    FontAttributes="Bold"
+                                                    FontSize="Medium"
+                                                    Text="{Binding price}"
+                                                    TextColor="#F9C948" />
+                                            </StackLayout>
+                                            <StackLayout
+                                                Grid.Row="0"
+                                                Grid.RowSpan="3"
+                                                Grid.Column="1"
+                                                Orientation="Horizontal">
+                                                <!--<Label
+                                                    FontSize="Small"
+                                                    Text="Rooms"
+                                                    TextColor="Black"
+                                                    VerticalOptions="Center" />-->
+                                                <Picker
+                                                    Title="Rooms"
+                                                    FontSize="14"
+                                                    HorizontalOptions="FillAndExpand"
+                                                    ItemsSource="{Binding list_room}"
+                                                    SelectedIndexChanged="Choose_Room"
+                                                    SelectedItem="{Binding selected_room}"
+                                                    TextColor="#F9C948" />
+                                            </StackLayout>
+                                        </Grid>
+                                    </Frame>
+                                </DataTemplate>
+                            </controls:RepeaterView.ItemTemplate>
+                        </controls:RepeaterView>
+                        <!--  Shared Rooms  -->
+                        <Frame
+                            x:Name="sharedRoomsLayout"
+                            Margin="0,10,0,0"
+                            Padding="1"
+                            BackgroundColor="#FCC84C"
+                            CornerRadius="5"
+                            IsClippedToBounds="true">
+                            <StackLayout
+                                Padding="8,4,8,4"
+                                Orientation="Vertical"
+                                Spacing="0">
+                                <Label
+                                    FontSize="Large"
+                                    HorizontalOptions="Start"
+                                    Text="Shared Rooms"
+                                    VerticalOptions="CenterAndExpand" />
+                            </StackLayout>
+                        </Frame>
+                        <controls:RepeaterView
+                            x:Name="listSharedRooms"
+                            Margin="5,5,5,0"
+                            HorizontalOptions="FillAndExpand"
+                            Spacing="5">
+                            <controls:RepeaterView.ItemTemplate>
+                                <DataTemplate>
+                                    <Frame
+                                        Padding="1"
+                                        BackgroundColor="White"
+                                        BorderColor="#DDDDDD"
+                                        CornerRadius="0"
+                                        HasShadow="False">
+                                        <Grid Padding="5" RowSpacing="2">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="70" />
+                                                <ColumnDefinition Width="1" />
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <Label
+                                                Grid.Row="0"
+                                                Grid.Column="0"
+                                                Grid.ColumnSpan="1"
+                                                FontSize="16"
+                                                LineBreakMode="TailTruncation"
+                                                Text="{Binding roomAvailableType}"
+                                                TextColor="Black" />
+                                            <Label
+                                                Grid.Row="1"
+                                                Grid.Column="0"
+                                                Grid.ColumnSpan="2">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span
+                                                            FontSize="15"
+                                                            Text="{Binding capacity, StringFormat='Sleeps {0}'}"
+                                                            TextColor="#949494" />
+                                                        <Span
+                                                            FontSize="15"
+                                                            Text=" - "
+                                                            TextColor="#949494" />
+                                                        <Span
+                                                            FontSize="15"
+                                                            Text="{Binding type}"
+                                                            TextColor="#949494" />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                            <StackLayout
+                                                Grid.Row="2"
+                                                Grid.Column="0"
+                                                Orientation="Horizontal">
+                                                <Label
+                                                    FontAttributes="Bold"
+                                                    FontSize="Medium"
+                                                    Text="ZAR"
+                                                    TextColor="#F9C948" />
+                                                <Label
+                                                    FontAttributes="Bold"
+                                                    FontSize="Medium"
+                                                    Text="{Binding price}"
+                                                    TextColor="#F9C948" />
+                                            </StackLayout>
+                                            <StackLayout
+                                                Grid.Row="0"
+                                                Grid.RowSpan="3"
+                                                Grid.Column="1"
+                                                Orientation="Horizontal">
+                                                <!--<Label
+                                                    FontSize="Small"
+                                                    Text="Rooms"
+                                                    TextColor="Black"
+                                                    VerticalOptions="Center" />-->
+                                                <Picker
+                                                    Title="Bed/Unit"
+                                                    FontSize="14"
+                                                    HorizontalOptions="FillAndExpand"
+                                                    ItemsSource="{Binding list_room}"
+                                                    SelectedIndexChanged="Choose_Room"
+                                                    SelectedItem="{Binding selected_room}"
+                                                    TextColor="#F9C948" />
+                                            </StackLayout>
+                                        </Grid>
+                                    </Frame>
+                                </DataTemplate>
+                            </controls:RepeaterView.ItemTemplate>
+                        </controls:RepeaterView>
+                        <!--  Camping Rooms  -->
+                        <Frame
+                            x:Name="campingRoomsLayout"
+                            Margin="0,10,0,0"
+                            Padding="1"
+                            BackgroundColor="#FCC84C"
+                            CornerRadius="5"
+                            IsClippedToBounds="true">
+                            <StackLayout
+                                Padding="8,4,8,4"
+                                Orientation="Vertical"
+                                Spacing="0">
+                                <Label
+                                    FontSize="Large"
+                                    HorizontalOptions="Start"
+                                    Text="Camping"
+                                    VerticalOptions="CenterAndExpand" />
+                            </StackLayout>
+                        </Frame>
+                        <controls:RepeaterView
+                            x:Name="listCampingRooms"
+                            Margin="5,5,5,0"
+                            HorizontalOptions="FillAndExpand"
+                            Spacing="5">
+                            <controls:RepeaterView.ItemTemplate>
+                                <DataTemplate>
+                                    <Frame
+                                        Padding="1"
+                                        BackgroundColor="White"
+                                        BorderColor="#DDDDDD"
+                                        CornerRadius="0"
+                                        HasShadow="False">
+                                        <Grid Padding="5" RowSpacing="2">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="70" />
+                                                <ColumnDefinition Width="1" />
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <Label
+                                                Grid.Row="0"
+                                                Grid.Column="0"
+                                                Grid.ColumnSpan="1"
+                                                FontSize="16"
+                                                LineBreakMode="TailTruncation"
+                                                Text="{Binding roomAvailableType}"
+                                                TextColor="Black" />
+                                            <Label
+                                                Grid.Row="1"
+                                                Grid.Column="0"
+                                                Grid.ColumnSpan="2">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span
+                                                            FontSize="15"
+                                                            Text="{Binding capacity, StringFormat='Sleeps {0}'}"
+                                                            TextColor="#949494" />
+                                                        <Span
+                                                            FontSize="15"
+                                                            Text=" - "
+                                                            TextColor="#949494" />
+                                                        <Span
+                                                            FontSize="15"
+                                                            Text="{Binding type}"
+                                                            TextColor="#949494" />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                            <StackLayout
+                                                Grid.Row="2"
+                                                Grid.Column="0"
+                                                Orientation="Horizontal">
+                                                <Label
+                                                    FontAttributes="Bold"
+                                                    FontSize="Medium"
+                                                    Text="ZAR"
+                                                    TextColor="#F9C948" />
+                                                <Label
+                                                    FontAttributes="Bold"
+                                                    FontSize="Medium"
+                                                    Text="{Binding price}"
+                                                    TextColor="#F9C948" />
+                                            </StackLayout>
+                                            <StackLayout
+                                                Grid.Row="0"
+                                                Grid.RowSpan="3"
+                                                Grid.Column="1"
+                                                Orientation="Horizontal">
+                                                <!--<Label
+                                                    FontSize="Small"
+                                                    Text="Rooms"
+                                                    TextColor="Black"
+                                                    VerticalOptions="Center" />-->
+                                                <Picker
+                                                    Title="Bed/Unit"
+                                                    FontSize="14"
+                                                    HorizontalOptions="FillAndExpand"
+                                                    ItemsSource="{Binding list_room}"
+                                                    SelectedIndexChanged="Choose_Room"
+                                                    SelectedItem="{Binding selected_room}"
+                                                    TextColor="#F9C948" />
+                                            </StackLayout>
+                                        </Grid>
+                                    </Frame>
+                                </DataTemplate>
+                            </controls:RepeaterView.ItemTemplate>
+                        </controls:RepeaterView>
+                        <!--  Review  -->
+                        <StackLayout HeightRequest="70" />
+                        <Label
+                            x:Name="nameHeaderLast"
+                            Margin="10,0,0,0"
+                            FontSize="Large"
+                            LineBreakMode="TailTruncation"
+                            TextColor="Gray" />
+                        <controls:RepeaterView
+                            x:Name="ReviewLayer"
+                            Margin="5,0,5,0"
+                            HorizontalOptions="FillAndExpand"
+                            Spacing="5">
+                            <controls:RepeaterView.ItemTemplate>
+                                <DataTemplate>
+                                    <Frame
+                                        Padding="0"
+                                        BackgroundColor="White"
+                                        BorderColor="#DDDDDD"
+                                        CornerRadius="0"
+                                        HasShadow="False">
+                                        <Grid Padding="5" RowSpacing="2">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="80" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="80" />
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="20" />
+                                                <RowDefinition Height="20" />
+                                                <RowDefinition Height="20" />
+                                                <RowDefinition Height="20" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="5" />
+                                            </Grid.RowDefinitions>
+                                            <forms:CachedImage
+                                                Grid.Row="0"
+                                                Grid.RowSpan="4"
+                                                Grid.Column="0"
+                                                HeightRequest="120"
+                                                HorizontalOptions="FillAndExpand"
+                                                Source="{Binding image_medium, Converter={StaticResource Base64StringToImageSourceConverter}}"
+                                                VerticalOptions="CenterAndExpand" />
+                                            <Label
+                                                Grid.Row="0"
+                                                Grid.Column="1"
+                                                FontSize="16"
+                                                LineBreakMode="TailTruncation"
+                                                Text="{Binding traveller_partner_id}"
+                                                TextColor="Black" />
+                                            <Label
+                                                Grid.Row="1"
+                                                Grid.Column="1"
+                                                FontSize="12"
+                                                LineBreakMode="TailTruncation"
+                                                Text="{Binding dateDisplay}"
+                                                TextColor="#949494" />
+                                            <Label
+                                                Grid.Row="2"
+                                                Grid.Column="1"
+                                                FontSize="10"
+                                                LineBreakMode="TailTruncation"
+                                                Text="{Binding total_visits, StringFormat='Visited {0} places'}"
+                                                TextColor="#949494" />
+                                            <StackLayout Grid.Row="1" Grid.Column="2">
+                                                <u:CustomRatingBar
+                                                    x:Name="customRatingBar"
+                                                    HorizontalOptions="Center"
+                                                    IsReadonly="True"
+                                                    IsSmallStyle="True"
+                                                    MaxStars="5"
+                                                    Rating="{Binding rating}"
+                                                    RatingChanged="OnRatingChanged" />
+                                            </StackLayout>
+                                            <Label
+                                                x:Name="textMaxLine"
+                                                Grid.Row="5"
+                                                Grid.Column="0"
+                                                Grid.ColumnSpan="3"
+                                                FontSize="16"
+                                                HorizontalOptions="FillAndExpand"
+                                                LineBreakMode="TailTruncation"
+                                                MaxLines="6"
+                                                Text="{Binding text}"
+                                                TextColor="Black" />
+                                            <Button
+                                                x:Name="btnReadMore"
+                                                Grid.Row="6"
+                                                Grid.Column="1"
+                                                Padding="0"
+                                                BackgroundColor="White"
+                                                Clicked="ReadMoreClick"
+                                                FontSize="10"
+                                                HorizontalOptions="Start"
+                                                Text="Read more"
+                                                TextColor="Gray" />
+                                            <Image
+                                                Grid.Row="7"
+                                                Grid.Column="0"
+                                                Grid.ColumnSpan="3"
+                                                Source="{Binding image_url}" />
+                                        </Grid>
+                                    </Frame>
+                                </DataTemplate>
+                            </controls:RepeaterView.ItemTemplate>
+                        </controls:RepeaterView>
+                        <controls:RepeaterView
+                            x:Name="ReviewLayer_full"
+                            Margin="5,0,5,0"
+                            HorizontalOptions="FillAndExpand"
+                            Spacing="5">
+                            <controls:RepeaterView.ItemTemplate>
+                                <DataTemplate>
+                                    <Frame
+                                        Padding="0"
+                                        BackgroundColor="White"
+                                        BorderColor="#DDDDDD"
+                                        CornerRadius="0"
+                                        HasShadow="False">
+                                        <Grid Padding="5" RowSpacing="2">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="80" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="80" />
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="20" />
+                                                <RowDefinition Height="20" />
+                                                <RowDefinition Height="20" />
+                                                <RowDefinition Height="20" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="5" />
+                                            </Grid.RowDefinitions>
+                                            <forms:CachedImage
+                                                Grid.Row="0"
+                                                Grid.RowSpan="4"
+                                                Grid.Column="0"
+                                                HeightRequest="120"
+                                                HorizontalOptions="FillAndExpand"
+                                                Source="{Binding image_medium, Converter={StaticResource Base64StringToImageSourceConverter}}"
+                                                VerticalOptions="CenterAndExpand" />
+                                            <Label
+                                                Grid.Row="0"
+                                                Grid.Column="1"
+                                                FontSize="16"
+                                                LineBreakMode="TailTruncation"
+                                                Text="{Binding traveller_partner_id}"
+                                                TextColor="Black" />
+                                            <Label
+                                                Grid.Row="1"
+                                                Grid.Column="1"
+                                                FontSize="12"
+                                                LineBreakMode="TailTruncation"
+                                                Text="{Binding dateDisplay}"
+                                                TextColor="#949494" />
+                                            <Label
+                                                Grid.Row="2"
+                                                Grid.Column="1"
+                                                FontSize="10"
+                                                LineBreakMode="TailTruncation"
+                                                Text="{Binding total_visits, StringFormat='Visited {0} places'}"
+                                                TextColor="#949494" />
+                                            <StackLayout Grid.Row="1" Grid.Column="2">
+                                                <u:CustomRatingBar
+                                                    x:Name="customRatingBar"
+                                                    HorizontalOptions="Center"
+                                                    IsReadonly="True"
+                                                    IsSmallStyle="True"
+                                                    MaxStars="5"
+                                                    Rating="{Binding rating}"
+                                                    RatingChanged="OnRatingChanged" />
+                                            </StackLayout>
+                                            <Label
+                                                x:Name="textNoneMaxLine"
+                                                Grid.Row="5"
+                                                Grid.Column="0"
+                                                Grid.ColumnSpan="3"
+                                                FontSize="16"
+                                                HorizontalOptions="FillAndExpand"
+                                                Text="{Binding text}"
+                                                TextColor="Black" />
+                                            <Image
+                                                Grid.Row="7"
+                                                Grid.Column="0"
+                                                Grid.ColumnSpan="3"
+                                                Source="{Binding image_url}" />
+                                        </Grid>
+                                    </Frame>
+                                </DataTemplate>
+                            </controls:RepeaterView.ItemTemplate>
+                        </controls:RepeaterView>
+                        <StackLayout
+                            HeightRequest="10"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="End" />
+                    </StackLayout>
+                </ScrollView>
+            </StackLayout>
+            <Frame
+                x:Name="frCheckOut"
+                Padding="1"
+                AbsoluteLayout.LayoutBounds="1,1,1,AutoSize"
+                AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
+                BackgroundColor="#FCC84C"
+                BorderColor="#DDDDDD"
+                CornerRadius="0"
+                HasShadow="False"
+                HeightRequest="150"
+                IsVisible="False"
+                Opacity="0.9">
+                <ScrollView>
+                    <StackLayout>
+                        <controls:RepeaterView
+                            x:Name="listBookedRooms"
+                            HorizontalOptions="FillAndExpand"
+                            IsVisible="True"
+                            Spacing="5">
+                            <controls:RepeaterView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackLayout>
+                                        <Grid Padding="5" RowSpacing="0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="100" />
+                                                <ColumnDefinition Width="10" />
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <Label
+                                                Grid.Row="0"
+                                                Grid.Column="0"
+                                                Text="{Binding selected_room_type}"
+                                                TextColor="White" />
+                                            <Label
+                                                Grid.Row="0"
+                                                Grid.Column="1"
+                                                HorizontalTextAlignment="Start"
+                                                Text="ZAR"
+                                                TextColor="White" />
+                                            <Label
+                                                Grid.Row="0"
+                                                Grid.Column="1"
+                                                HorizontalTextAlignment="End"
+                                                Text="{Binding totalPrice}"
+                                                TextColor="White" />
+                                            <forms:CachedImage
+                                                Grid.Row="0"
+                                                Grid.Column="2"
+                                                HeightRequest="20"
+                                                HorizontalOptions="EndAndExpand"
+                                                Source="cancel_red">
+                                                <forms:CachedImage.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="OnCancelItemClick" />
+                                                </forms:CachedImage.GestureRecognizers>
+                                            </forms:CachedImage>
+                                        </Grid>
+                                    </StackLayout>
+                                </DataTemplate>
+                            </controls:RepeaterView.ItemTemplate>
+                        </controls:RepeaterView>
+                        <StackLayout>
+                            <Grid Padding="5" RowSpacing="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="100" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    FontAttributes="Bold"
+                                    FontSize="Medium"
+                                    Text="Total"
+                                    TextColor="White" />
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="2"
+                                    FontAttributes="Bold"
+                                    FontSize="Medium"
+                                    HorizontalTextAlignment="Start"
+                                    Text="ZAR"
+                                    TextColor="White" />
+                                <Label
+                                    x:Name="total_pay"
+                                    Grid.Row="0"
+                                    Grid.Column="2"
+                                    FontAttributes="Bold"
+                                    FontSize="Medium"
+                                    HorizontalOptions="EndAndExpand"
+                                    HorizontalTextAlignment="End"
+                                    TextColor="White" />
+                                <Button
+                                    Grid.Row="2"
+                                    Grid.Column="2"
+                                    Padding="0"
+                                    BackgroundColor="#52B499"
+                                    Clicked="createBookingRooms"
+                                    CornerRadius="20"
+                                    FontSize="Medium"
+                                    HeightRequest="35"
+                                    Text="Check Out"
+                                    TextColor="White" />
+                            </Grid>
+                        </StackLayout>
+                    </StackLayout>
+                </ScrollView>
+            </Frame>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

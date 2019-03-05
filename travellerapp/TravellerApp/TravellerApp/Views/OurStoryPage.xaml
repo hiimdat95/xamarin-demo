@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="TravellerApp.Views.OurStoryPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Xamarin.Forms.Controls"
+    Title="Our Story">
+    <ContentPage.Content>
+        <ScrollView
+            HorizontalOptions="FillAndExpand"
+            Orientation="Vertical"
+            VerticalOptions="FillAndExpand"
+            VerticalScrollBarVisibility="Never">
+            <StackLayout
+                BackgroundColor="White"
+                HorizontalOptions="FillAndExpand"
+                Spacing="0"
+                VerticalOptions="Start">
+                <Image
+                    HorizontalOptions="FillAndExpand"
+                    Source="logo_kamooni"
+                    VerticalOptions="Start" />
+                <controls:RepeaterView
+                    x:Name="timeLine"
+                    Padding="10,0,10,0"
+                    HorizontalOptions="FillAndExpand"
+                    Spacing="0"
+                    VerticalOptions="Start">
+                    <controls:RepeaterView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid HorizontalOptions="FillAndExpand">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="28" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <StackLayout
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    HorizontalOptions="FillAndExpand"
+                                    Spacing="0">
+                                    <BoxView
+                                        HorizontalOptions="Center"
+                                        VerticalOptions="FillAndExpand"
+                                        WidthRequest="2"
+                                        Color="LightGray" />
+                                    <Frame
+                                        Padding="0"
+                                        BackgroundColor="{StaticResource Color_Accent}"
+                                        BorderColor="LightGray"
+                                        CornerRadius="10"
+                                        HasShadow="False"
+                                        HeightRequest="20"
+                                        HorizontalOptions="Center"
+                                        VerticalOptions="Center"
+                                        WidthRequest="20" />
+                                    <BoxView
+                                        HorizontalOptions="Center"
+                                        VerticalOptions="FillAndExpand"
+                                        WidthRequest="2"
+                                        Color="LightGray" />
+                                </StackLayout>
+                                <Frame
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    Padding="5"
+                                    BorderColor="LightGray"
+                                    CornerRadius="5"
+                                    HasShadow="False"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="Center">
+                                    <StackLayout Spacing="0">
+                                        <Label
+                                            FontSize="12"
+                                            HorizontalOptions="Center"
+                                            Text="{Binding Name}"
+                                            TextColor="Gray" />
+                                        <Label
+                                            FontSize="12"
+                                            Text="{Binding Text}"
+                                            TextColor="Gray" />
+                                    </StackLayout>
+                                </Frame>
+                            </Grid>
+                        </DataTemplate>
+                    </controls:RepeaterView.ItemTemplate>
+                </controls:RepeaterView>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

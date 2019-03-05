@@ -1,0 +1,1610 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage
+    x:Class="TravellerApp.Views.MyBookingsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:circle="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+    xmlns:controls="clr-namespace:Xamarin.Forms.Controls"
+    xmlns:converters="clr-namespace:Xamarin.Forms.Converters"
+    xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
+    android:TabbedPage.BarItemColor="#666666"
+    android:TabbedPage.BarSelectedItemColor="Black"
+    android:TabbedPage.IsSmoothScrollEnabled="True"
+    android:TabbedPage.IsSwipePagingEnabled="True"
+    BarBackgroundColor="White">
+    <ContentPage
+        Title="UPCOMING"
+        Padding="5"
+        BackgroundColor="White">
+        <ContentPage.Content>
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <ScrollView
+                    Padding="0"
+                    HorizontalOptions="FillAndExpand"
+                    Orientation="Vertical"
+                    VerticalOptions="FillAndExpand"
+                    VerticalScrollBarVisibility="Never">
+                    <controls:RepeaterView x:Name="listUpcomingBookings" Spacing="5">
+                        <controls:RepeaterView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame Padding="0" BackgroundColor="White">
+                                    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Grid HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="100" />
+                                                <ColumnDefinition Width="1" />
+                                                <ColumnDefinition Width="100" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="60" />
+                                                <RowDefinition Height="60" />
+                                                <RowDefinition Height="60" />
+                                                <RowDefinition Height="*" />
+                                            </Grid.RowDefinitions>
+
+                                            <forms:CachedImage
+                                                Grid.Row="0"
+                                                Grid.RowSpan="2"
+                                                Grid.Column="0"
+                                                Grid.ColumnSpan="4"
+                                                Aspect="AspectFill"
+                                                HorizontalOptions="FillAndExpand"
+                                                InputTransparent="True"
+                                                Source="{Binding image_url}"
+                                                VerticalOptions="FillAndExpand" />
+                                            <Label
+                                                Grid.Row="2"
+                                                Grid.Column="0"
+                                                Margin="10,0,0,0"
+                                                FontSize="Medium"
+                                                Text="{Binding host_city}"
+                                                TextColor="White" />
+
+                                            <Label
+                                                Grid.Row="2"
+                                                Grid.Column="0"
+                                                Grid.ColumnSpan="3"
+                                                Margin="10,25,0,0"
+                                                FontSize="Small"
+                                                Text="{Binding host_state[1]}"
+                                                TextColor="White" />
+
+                                            <Label
+                                                Grid.Row="2"
+                                                Grid.Column="3"
+                                                Margin="0,10,20,0"
+                                                FontAttributes="Bold"
+                                                FontSize="Large"
+                                                HorizontalOptions="End"
+                                                LineBreakMode="WordWrap"
+                                                Text="{Binding arrive_dates, StringFormat='{0:dd MMM}'}"
+                                                TextColor="White"
+                                                VerticalOptions="FillAndExpand" />
+
+                                            <Image
+                                                Grid.Row="0"
+                                                Grid.Column="0"
+                                                Margin="0,10,0,0"
+                                                IsVisible="{Binding isVisibleExpired}"
+                                                Source="Expiring" />
+                                            <Label
+                                                Grid.Row="0"
+                                                Grid.Column="1"
+                                                Grid.ColumnSpan="3"
+                                                Margin="0,20,0,0"
+                                                FontAttributes="Bold"
+                                                FontSize="Large"
+                                                IsVisible="{Binding isVisibleExpired}"
+                                                Text="Expiring Soon"
+                                                TextColor="White" />
+                                        </Grid>
+                                        <Grid
+                                            Margin="10,0,0,0"
+                                            Padding="0"
+                                            RowSpacing="0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="100" />
+                                                <ColumnDefinition Width="1" />
+                                                <ColumnDefinition Width="100" />
+                                                <ColumnDefinition Width="120" />
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="30" />
+                                                <RowDefinition Height="30" />
+                                                <RowDefinition Height="35" />
+                                                <RowDefinition Height="*" />
+                                                <RowDefinition Height="10" />
+                                            </Grid.RowDefinitions>
+                                            <!--  check in  -->
+                                            <Label
+                                                Grid.Row="0"
+                                                Grid.Column="0"
+                                                FontSize="Medium"
+                                                HorizontalOptions="CenterAndExpand"
+                                                LineBreakMode="WordWrap"
+                                                Text="Arrive"
+                                                TextColor="Gray"
+                                                VerticalOptions="FillAndExpand" />
+                                            <Label
+                                                Grid.Row="1"
+                                                Grid.Column="0"
+                                                FontAttributes="Bold"
+                                                FontSize="Large"
+                                                HorizontalOptions="CenterAndExpand"
+                                                LineBreakMode="WordWrap"
+                                                Text="{Binding arrive_dates, StringFormat='{0:dd}'}"
+                                                TextColor="#515151"
+                                                VerticalOptions="FillAndExpand" />
+                                            <Label
+                                                Grid.Row="2"
+                                                Grid.Column="0"
+                                                FontAttributes="Bold"
+                                                FontSize="Medium"
+                                                HorizontalOptions="CenterAndExpand"
+                                                LineBreakMode="WordWrap"
+                                                Text="{Binding arrive_dates, StringFormat='{0:MMMM}'}"
+                                                TextColor="#515151"
+                                                VerticalOptions="FillAndExpand" />
+                                            <!--<Label
+                                                Grid.Row="3"
+                                                Grid.Column="0"
+                                                FontAttributes="Bold"
+                                                FontSize="Medium"
+                                                HorizontalOptions="CenterAndExpand"
+                                                LineBreakMode="WordWrap"
+                                                Text="{Binding arrive_dates, StringFormat='{0:ddd}'}"
+                                                TextColor="Gray"
+                                                VerticalOptions="FillAndExpand" />-->
+                                            <BoxView
+                                                Grid.Row="0"
+                                                Grid.Column="1"
+                                                Opacity="1"
+                                                VerticalOptions="FillAndExpand"
+                                                WidthRequest="1"
+                                                Color="LightGray" />
+                                            <BoxView
+                                                Grid.Row="1"
+                                                Grid.Column="1"
+                                                Opacity="1"
+                                                VerticalOptions="FillAndExpand"
+                                                WidthRequest="1"
+                                                Color="LightGray" />
+                                            <BoxView
+                                                Grid.Row="2"
+                                                Grid.Column="1"
+                                                Opacity="1"
+                                                VerticalOptions="FillAndExpand"
+                                                WidthRequest="1"
+                                                Color="LightGray" />
+                                            <!--<BoxView
+                                                Grid.Row="3"
+                                                Grid.Column="1"
+                                                Opacity="1"
+                                                VerticalOptions="FillAndExpand"
+                                                WidthRequest="1"
+                                                Color="LightGray" />-->
+                                            <!--  check out  -->
+                                            <Label
+                                                Grid.Row="0"
+                                                Grid.Column="2"
+                                                FontSize="Medium"
+                                                HorizontalOptions="CenterAndExpand"
+                                                LineBreakMode="WordWrap"
+                                                Text="Depart"
+                                                TextColor="Gray"
+                                                VerticalOptions="FillAndExpand" />
+                                            <Label
+                                                Grid.Row="1"
+                                                Grid.Column="2"
+                                                FontAttributes="Bold"
+                                                FontSize="Large"
+                                                HorizontalOptions="CenterAndExpand"
+                                                LineBreakMode="WordWrap"
+                                                Text="{Binding depart_dates, StringFormat='{0:dd}'}"
+                                                TextColor="#515151"
+                                                VerticalOptions="FillAndExpand" />
+                                            <Label
+                                                Grid.Row="2"
+                                                Grid.Column="2"
+                                                FontAttributes="Bold"
+                                                FontSize="Medium"
+                                                HorizontalOptions="CenterAndExpand"
+                                                LineBreakMode="WordWrap"
+                                                Text="{Binding depart_dates, StringFormat='{0:MMMM}'}"
+                                                TextColor="#515151"
+                                                VerticalOptions="FillAndExpand" />
+
+                                            <zxing:ZXingBarcodeImageView
+                                                Grid.Row="0"
+                                                Grid.RowSpan="3"
+                                                Grid.Column="3"
+                                                Grid.ColumnSpan="2"
+                                                Aspect="Fill"
+                                                BarcodeFormat="QR_CODE"
+                                                BarcodeValue="{Binding booking_token}">
+                                                <zxing:ZXingBarcodeImageView.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="OnQrCode_Tapped" />
+                                                </zxing:ZXingBarcodeImageView.GestureRecognizers>
+                                            </zxing:ZXingBarcodeImageView>
+
+                                            <Button
+                                                Grid.Row="3"
+                                                Grid.Column="0"
+                                                Grid.ColumnSpan="5"
+                                                Margin="20,10,20,0"
+                                                BackgroundColor="#FA2A00"
+                                                BorderRadius="10"
+                                                Clicked="buttonConfirm_UpComing_Clicked"
+                                                FontSize="Large"
+                                                Text="Confirm Booking"
+                                                TextColor="#FEF9F8" />
+                                            <!--<Label
+                                                Grid.Row="3"
+                                                Grid.Column="2"
+                                                FontAttributes="Bold"
+                                                FontSize="Medium"
+                                                HorizontalOptions="CenterAndExpand"
+                                                LineBreakMode="WordWrap"
+                                                Text="{Binding depart_dates, StringFormat='{0:ddd}'}"
+                                                TextColor="Gray"
+                                                VerticalOptions="FillAndExpand" />-->
+
+                                            <!--<Label
+                                                Grid.Row="2"
+                                                Grid.Column="3"
+                                                FontAttributes="Italic"
+                                                FontSize="Medium"
+                                                HorizontalOptions="CenterAndExpand"
+                                                LineBreakMode="WordWrap"
+                                                Text="{Binding states}"
+                                                TextColor="Black"
+                                                VerticalOptions="FillAndExpand" />-->
+                                        </Grid>
+                                        <!--<Grid HorizontalOptions="Center" VerticalOptions="Center">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="100" />
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <Label
+                                                Grid.Row="0"
+                                                Grid.Column="0"
+                                                Margin="10,10,10,0"
+                                                FontSize="Large"
+                                                LineBreakMode="WordWrap"
+                                                Text="{Binding host_partner_id[1]}"
+                                                TextColor="Black"
+                                                VerticalOptions="Center" />
+                                            <Label
+                                                Grid.Row="1"
+                                                Grid.Column="0"
+                                                Margin="10,0,0,0"
+                                                LineBreakMode="WordWrap"
+                                                VerticalOptions="Center">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span
+                                                            FontSize="Small"
+                                                            Text="{Binding host_state[1]}"
+                                                            TextColor="Gray" />
+                                                        <Span
+                                                            FontSize="Small"
+                                                            Text=" - "
+                                                            TextColor="Gray" />
+                                                        <Span
+                                                            FontSize="Small"
+                                                            Text="{Binding host_city}"
+                                                            TextColor="Gray" />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                            <zxing:ZXingBarcodeImageView
+                                                Grid.Row="0"
+                                                Grid.RowSpan="2"
+                                                Grid.Column="1"
+                                                BarcodeFormat="QR_CODE"
+                                                BarcodeValue="{Binding booking_token}"
+                                                HeightRequest="75"
+                                                WidthRequest="75">
+                                                <zxing:ZXingBarcodeImageView.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="OnQrCode_Tapped" />
+                                                </zxing:ZXingBarcodeImageView.GestureRecognizers>
+                                            </zxing:ZXingBarcodeImageView>
+                                        </Grid>-->
+                                        <!--<forms:CachedImage
+                                            Aspect="AspectFill"
+                                            HorizontalOptions="FillAndExpand"
+                                            InputTransparent="True"
+                                            Source="{Binding image_url}"
+                                            VerticalOptions="StartAndExpand" />-->
+                                        <!--<Button
+                                            Margin="10,0,10,0"
+                                            BackgroundColor="#F9C948"
+                                            Clicked="buttonConfirm_UpComing_Clicked"
+                                            FontSize="Large"
+                                            IsVisible="{Binding isVisibleButton}"
+                                            Text="{Binding buttonConfirm}"
+                                            TextColor="Gray" />-->
+                                        <Label
+                                            AbsoluteLayout.LayoutBounds="1,1,1,AutoSize"
+                                            AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
+                                            BackgroundColor="#45C1F7"
+                                            HeightRequest="40"
+                                            HorizontalTextAlignment="Center"
+                                            IsVisible="{Binding isVisibleExpired}"
+                                            Text="{Binding will_expire_date}"
+                                            TextColor="White"
+                                            VerticalTextAlignment="Center"
+                                            WidthRequest="250" />
+
+                                        <!--<StackLayout Padding="0,5,0,10">
+                                            <Button
+                                                Margin="50,0,50,0"
+                                                BackgroundColor="Gray"
+                                                FontSize="Large"
+                                                Text="Book Again"
+                                                TextColor="Black" />
+                                        </StackLayout>-->
+                                    </StackLayout>
+                                </Frame>
+                            </DataTemplate>
+                        </controls:RepeaterView.ItemTemplate>
+                    </controls:RepeaterView>
+                </ScrollView>
+            </StackLayout>
+        </ContentPage.Content>
+    </ContentPage>
+    <ContentPage
+        Title="CURRENT"
+        Padding="5"
+        BackgroundColor="White">
+        <ContentPage.Content>
+            <ContentView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <AbsoluteLayout>
+                    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <ScrollView
+                            Padding="0"
+                            HorizontalOptions="FillAndExpand"
+                            Orientation="Vertical"
+                            VerticalOptions="FillAndExpand"
+                            VerticalScrollBarVisibility="Never">
+                            <controls:RepeaterView x:Name="listCurrentBookings" Spacing="5">
+                                <controls:RepeaterView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Frame Padding="0" BackgroundColor="White">
+                                            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                <Grid HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="100" />
+                                                        <ColumnDefinition Width="1" />
+                                                        <ColumnDefinition Width="100" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="60" />
+                                                        <RowDefinition Height="60" />
+                                                        <RowDefinition Height="60" />
+                                                        <RowDefinition Height="*" />
+                                                    </Grid.RowDefinitions>
+
+                                                    <forms:CachedImage
+                                                        Grid.Row="0"
+                                                        Grid.RowSpan="2"
+                                                        Grid.Column="0"
+                                                        Grid.ColumnSpan="4"
+                                                        Aspect="AspectFill"
+                                                        HorizontalOptions="FillAndExpand"
+                                                        InputTransparent="True"
+                                                        Source="{Binding image_url}"
+                                                        VerticalOptions="FillAndExpand" />
+                                                    <Label
+                                                        Grid.Row="2"
+                                                        Grid.Column="0"
+                                                        Margin="10,0,0,0"
+                                                        FontSize="Medium"
+                                                        Text="{Binding host_city}"
+                                                        TextColor="White" />
+
+                                                    <Label
+                                                        Grid.Row="2"
+                                                        Grid.Column="0"
+                                                        Grid.ColumnSpan="3"
+                                                        Margin="10,25,0,0"
+                                                        FontSize="Small"
+                                                        Text="{Binding host_state[1]}"
+                                                        TextColor="White" />
+
+                                                    <Label
+                                                        Grid.Row="2"
+                                                        Grid.Column="3"
+                                                        Margin="0,10,20,0"
+                                                        FontAttributes="Bold"
+                                                        FontSize="Large"
+                                                        HorizontalOptions="End"
+                                                        LineBreakMode="WordWrap"
+                                                        Text="{Binding arrive_dates, StringFormat='{0:dd MMM}'}"
+                                                        TextColor="White"
+                                                        VerticalOptions="FillAndExpand" />
+
+                                                    <Image
+                                                        Grid.Row="0"
+                                                        Grid.Column="0"
+                                                        Margin="0,10,0,0"
+                                                        IsVisible="{Binding isVisibleExpired}"
+                                                        Source="Expiring" />
+                                                    <Label
+                                                        Grid.Row="0"
+                                                        Grid.Column="1"
+                                                        Grid.ColumnSpan="3"
+                                                        Margin="0,20,0,0"
+                                                        FontAttributes="Bold"
+                                                        FontSize="Large"
+                                                        IsVisible="{Binding isVisibleExpired}"
+                                                        Text="Expiring Soon"
+                                                        TextColor="White" />
+                                                </Grid>
+                                                <Grid
+                                                    Margin="10,0,0,0"
+                                                    Padding="0"
+                                                    RowSpacing="0">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="100" />
+                                                        <ColumnDefinition Width="1" />
+                                                        <ColumnDefinition Width="100" />
+                                                        <ColumnDefinition Width="120" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="30" />
+                                                        <RowDefinition Height="30" />
+                                                        <RowDefinition Height="35" />
+                                                        <RowDefinition Height="*" />
+                                                        <RowDefinition Height="10" />
+                                                    </Grid.RowDefinitions>
+                                                    <!--  check in  -->
+                                                    <Label
+                                                        Grid.Row="0"
+                                                        Grid.Column="0"
+                                                        FontSize="Medium"
+                                                        HorizontalOptions="CenterAndExpand"
+                                                        LineBreakMode="WordWrap"
+                                                        Text="Arrive"
+                                                        TextColor="Gray"
+                                                        VerticalOptions="FillAndExpand" />
+                                                    <Label
+                                                        Grid.Row="1"
+                                                        Grid.Column="0"
+                                                        FontAttributes="Bold"
+                                                        FontSize="Large"
+                                                        HorizontalOptions="CenterAndExpand"
+                                                        LineBreakMode="WordWrap"
+                                                        Text="{Binding arrive_dates, StringFormat='{0:dd}'}"
+                                                        TextColor="#515151"
+                                                        VerticalOptions="FillAndExpand" />
+                                                    <Label
+                                                        Grid.Row="2"
+                                                        Grid.Column="0"
+                                                        FontAttributes="Bold"
+                                                        FontSize="Medium"
+                                                        HorizontalOptions="CenterAndExpand"
+                                                        LineBreakMode="WordWrap"
+                                                        Text="{Binding arrive_dates, StringFormat='{0:MMMM}'}"
+                                                        TextColor="#515151"
+                                                        VerticalOptions="FillAndExpand" />
+                                                    <!--<Label
+                                                Grid.Row="3"
+                                                Grid.Column="0"
+                                                FontAttributes="Bold"
+                                                FontSize="Medium"
+                                                HorizontalOptions="CenterAndExpand"
+                                                LineBreakMode="WordWrap"
+                                                Text="{Binding arrive_dates, StringFormat='{0:ddd}'}"
+                                                TextColor="Gray"
+                                                VerticalOptions="FillAndExpand" />-->
+                                                    <BoxView
+                                                        Grid.Row="0"
+                                                        Grid.Column="1"
+                                                        Opacity="1"
+                                                        VerticalOptions="FillAndExpand"
+                                                        WidthRequest="1"
+                                                        Color="LightGray" />
+                                                    <BoxView
+                                                        Grid.Row="1"
+                                                        Grid.Column="1"
+                                                        Opacity="1"
+                                                        VerticalOptions="FillAndExpand"
+                                                        WidthRequest="1"
+                                                        Color="LightGray" />
+                                                    <BoxView
+                                                        Grid.Row="2"
+                                                        Grid.Column="1"
+                                                        Opacity="1"
+                                                        VerticalOptions="FillAndExpand"
+                                                        WidthRequest="1"
+                                                        Color="LightGray" />
+                                                    <!--<BoxView
+                                                Grid.Row="3"
+                                                Grid.Column="1"
+                                                Opacity="1"
+                                                VerticalOptions="FillAndExpand"
+                                                WidthRequest="1"
+                                                Color="LightGray" />-->
+                                                    <!--  check out  -->
+                                                    <Label
+                                                        Grid.Row="0"
+                                                        Grid.Column="2"
+                                                        FontSize="Medium"
+                                                        HorizontalOptions="CenterAndExpand"
+                                                        LineBreakMode="WordWrap"
+                                                        Text="Depart"
+                                                        TextColor="Gray"
+                                                        VerticalOptions="FillAndExpand" />
+                                                    <Label
+                                                        Grid.Row="1"
+                                                        Grid.Column="2"
+                                                        FontAttributes="Bold"
+                                                        FontSize="Large"
+                                                        HorizontalOptions="CenterAndExpand"
+                                                        LineBreakMode="WordWrap"
+                                                        Text="{Binding depart_dates, StringFormat='{0:dd}'}"
+                                                        TextColor="#515151"
+                                                        VerticalOptions="FillAndExpand" />
+                                                    <Label
+                                                        Grid.Row="2"
+                                                        Grid.Column="2"
+                                                        FontAttributes="Bold"
+                                                        FontSize="Medium"
+                                                        HorizontalOptions="CenterAndExpand"
+                                                        LineBreakMode="WordWrap"
+                                                        Text="{Binding depart_dates, StringFormat='{0:MMMM}'}"
+                                                        TextColor="#515151"
+                                                        VerticalOptions="FillAndExpand" />
+
+                                                    <zxing:ZXingBarcodeImageView
+                                                        Grid.Row="0"
+                                                        Grid.RowSpan="3"
+                                                        Grid.Column="3"
+                                                        Grid.ColumnSpan="2"
+                                                        Aspect="Fill"
+                                                        BarcodeFormat="QR_CODE"
+                                                        BarcodeValue="{Binding booking_token}">
+                                                        <zxing:ZXingBarcodeImageView.GestureRecognizers>
+                                                            <TapGestureRecognizer Tapped="OnQrCode_Tapped" />
+                                                        </zxing:ZXingBarcodeImageView.GestureRecognizers>
+                                                    </zxing:ZXingBarcodeImageView>
+
+                                                    <Button
+                                                        Grid.Row="3"
+                                                        Grid.Column="0"
+                                                        Grid.ColumnSpan="5"
+                                                        Margin="20,10,20,0"
+                                                        BackgroundColor="#FA2A00"
+                                                        BorderRadius="10"
+                                                        Clicked="Open_Booking_Clicked"
+                                                        FontSize="Large"
+                                                        Text="Open Booking"
+                                                        TextColor="#FEF9F8" />
+                                                    <!--<Label
+                                                Grid.Row="3"
+                                                Grid.Column="2"
+                                                FontAttributes="Bold"
+                                                FontSize="Medium"
+                                                HorizontalOptions="CenterAndExpand"
+                                                LineBreakMode="WordWrap"
+                                                Text="{Binding depart_dates, StringFormat='{0:ddd}'}"
+                                                TextColor="Gray"
+                                                VerticalOptions="FillAndExpand" />-->
+
+                                                    <!--<Label
+                                                Grid.Row="2"
+                                                Grid.Column="3"
+                                                FontAttributes="Italic"
+                                                FontSize="Medium"
+                                                HorizontalOptions="CenterAndExpand"
+                                                LineBreakMode="WordWrap"
+                                                Text="{Binding states}"
+                                                TextColor="Black"
+                                                VerticalOptions="FillAndExpand" />-->
+                                                </Grid>
+                                                <!--<Grid HorizontalOptions="Center" VerticalOptions="Center">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="100" />
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <Label
+                                                Grid.Row="0"
+                                                Grid.Column="0"
+                                                Margin="10,10,10,0"
+                                                FontSize="Large"
+                                                LineBreakMode="WordWrap"
+                                                Text="{Binding host_partner_id[1]}"
+                                                TextColor="Black"
+                                                VerticalOptions="Center" />
+                                            <Label
+                                                Grid.Row="1"
+                                                Grid.Column="0"
+                                                Margin="10,0,0,0"
+                                                LineBreakMode="WordWrap"
+                                                VerticalOptions="Center">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span
+                                                            FontSize="Small"
+                                                            Text="{Binding host_state[1]}"
+                                                            TextColor="Gray" />
+                                                        <Span
+                                                            FontSize="Small"
+                                                            Text=" - "
+                                                            TextColor="Gray" />
+                                                        <Span
+                                                            FontSize="Small"
+                                                            Text="{Binding host_city}"
+                                                            TextColor="Gray" />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                            <zxing:ZXingBarcodeImageView
+                                                Grid.Row="0"
+                                                Grid.RowSpan="2"
+                                                Grid.Column="1"
+                                                BarcodeFormat="QR_CODE"
+                                                BarcodeValue="{Binding booking_token}"
+                                                HeightRequest="75"
+                                                WidthRequest="75">
+                                                <zxing:ZXingBarcodeImageView.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="OnQrCode_Tapped" />
+                                                </zxing:ZXingBarcodeImageView.GestureRecognizers>
+                                            </zxing:ZXingBarcodeImageView>
+                                        </Grid>-->
+                                                <!--<forms:CachedImage
+                                            Aspect="AspectFill"
+                                            HorizontalOptions="FillAndExpand"
+                                            InputTransparent="True"
+                                            Source="{Binding image_url}"
+                                            VerticalOptions="StartAndExpand" />-->
+                                                <!--<Button
+                                            Margin="10,0,10,0"
+                                            BackgroundColor="#F9C948"
+                                            Clicked="buttonConfirm_UpComing_Clicked"
+                                            FontSize="Large"
+                                            IsVisible="{Binding isVisibleButton}"
+                                            Text="{Binding buttonConfirm}"
+                                            TextColor="Gray" />-->
+                                                <Label
+                                                    AbsoluteLayout.LayoutBounds="1,1,1,AutoSize"
+                                                    AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
+                                                    BackgroundColor="#45C1F7"
+                                                    HeightRequest="40"
+                                                    HorizontalTextAlignment="Center"
+                                                    IsVisible="{Binding isVisibleExpired}"
+                                                    Text="{Binding will_expire_date}"
+                                                    TextColor="White"
+                                                    VerticalTextAlignment="Center"
+                                                    WidthRequest="250" />
+
+                                                <!--<StackLayout Padding="0,5,0,10">
+                                            <Button
+                                                Margin="50,0,50,0"
+                                                BackgroundColor="Gray"
+                                                FontSize="Large"
+                                                Text="Book Again"
+                                                TextColor="Black" />
+                                        </StackLayout>-->
+                                            </StackLayout>
+                                        </Frame>
+                                    </DataTemplate>
+                                </controls:RepeaterView.ItemTemplate>
+                            </controls:RepeaterView>
+                        </ScrollView>
+                    </StackLayout>
+                    <AbsoluteLayout
+                        x:Name="OpenCurrentAt"
+                        AbsoluteLayout.LayoutBounds="0,0,1,1"
+                        AbsoluteLayout.LayoutFlags="All"
+                        IsVisible="False">
+                        <ContentView
+                            AbsoluteLayout.LayoutBounds="0,0,1,1"
+                            AbsoluteLayout.LayoutFlags="All"
+                            BackgroundColor="Black"
+                            Opacity=".6" />
+                        <Frame
+                            Padding="0"
+                            AbsoluteLayout.LayoutBounds=".5,.5,.9,.9"
+                            AbsoluteLayout.LayoutFlags="All"
+                            BackgroundColor="White"
+                            BorderColor="{StaticResource sunflower}"
+                            CornerRadius="10"
+                            HasShadow="False">
+                            <StackLayout>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="70" />
+                                        <RowDefinition Height="20" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <Label
+                                        Grid.Row="1"
+                                        Grid.Column="0"
+                                        HorizontalOptions="CenterAndExpand"
+                                        Text="You are currently at"
+                                        TextColor="Gray" />
+                                    <Label
+                                        x:Name="lbName"
+                                        Grid.Row="2"
+                                        Grid.Column="0"
+                                        Margin="20,0,20,0"
+                                        FontSize="16"
+                                        HorizontalOptions="CenterAndExpand"
+                                        LineBreakMode="TailTruncation"
+                                        TextColor="Black"
+                                        VerticalOptions="Start" />
+                                </Grid>
+
+                            </StackLayout>
+                        </Frame>
+                    </AbsoluteLayout>
+                    <AbsoluteLayout
+                        x:Name="profile_img_popup"
+                        AbsoluteLayout.LayoutBounds="0,0,1,1"
+                        AbsoluteLayout.LayoutFlags="All"
+                        IsVisible="False">
+                        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <circle:CircleImage
+                                x:Name="profilePicture"
+                                Margin="160,0,0,0"
+                                Aspect="AspectFill"
+                                BorderColor="WhiteSmoke"
+                                BorderThickness="2"
+                                HeightRequest="90"
+                                HorizontalOptions="Center"
+                                Source="account_circle_gray"
+                                VerticalOptions="Center"
+                                WidthRequest="90" />
+                        </StackLayout>
+                    </AbsoluteLayout>
+                    <StackLayout
+                        x:Name="button_img_popup"
+                        Margin="0,200,0,0"
+                        Padding="10"
+                        IsVisible="False">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="65" />
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="5" />
+                            </Grid.RowDefinitions>
+                            <Button
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Margin="20,10,10,0"
+                                BackgroundColor="#FA2A00"
+                                BorderRadius="10"
+                                Clicked="VIEW_BILL_POPUP_CLICK"
+                                FontSize="Large"
+                                Text="View Bill"
+                                TextColor="#FEF9F8" />
+
+                            <Button
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Margin="10,10,20,0"
+                                BackgroundColor="#FCC84C"
+                                BorderRadius="10"
+                                Clicked="REVIEW_POPUP_CLICK"
+                                FontSize="Large"
+                                Text="Review"
+                                TextColor="#FEF9F8" />
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="2"
+                                Margin="20,10,20,0"
+                                FontSize="16"
+                                HorizontalOptions="CenterAndExpand"
+                                LineBreakMode="TailTruncation"
+                                Text="Things to do here"
+                                TextColor="Gray"
+                                VerticalOptions="Start" />
+                            <forms:CachedImage
+                                x:Name="image_url_popup"
+                                Grid.Row="2"
+                                Grid.RowSpan="2"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="2"
+                                Margin="20,0,20,0"
+                                Aspect="Fill"
+                                HeightRequest="200"
+                                HorizontalOptions="FillAndExpand"
+                                InputTransparent="True"
+                                VerticalOptions="FillAndExpand" />
+                        </Grid>
+                        <!--<Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition Width="1" />
+                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="20" />
+                                <RowDefinition Height="20" />
+                                <RowDefinition Height="20" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
+                            <forms:CachedImage
+                                x:Name="image_url_popup"
+                                Grid.Row="0"
+                                Grid.RowSpan="2"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="4"
+                                Aspect="AspectFill"
+                                HorizontalOptions="FillAndExpand"
+                                InputTransparent="True"
+                                VerticalOptions="FillAndExpand" />
+                        </Grid>-->
+                    </StackLayout>
+                    <StackLayout x:Name="delete_button_popup" IsVisible="False">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Image
+                                x:Name="imgDelete"
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Margin="0,5,25,0"
+                                Aspect="AspectFill"
+                                HeightRequest="20"
+                                HorizontalOptions="End"
+                                IsVisible="true"
+                                Source="ic_close_grey_400"
+                                VerticalOptions="End">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnDeleteImageTapped" />
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </Grid>
+                    </StackLayout>
+                </AbsoluteLayout>
+            </ContentView>
+
+        </ContentPage.Content>
+    </ContentPage>
+    <ContentPage
+        Title="PAST"
+        Padding="5"
+        BackgroundColor="White">
+        <ContentPage.Content>
+            <ContentView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <AbsoluteLayout>
+                    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <ScrollView
+                            Padding="0"
+                            HorizontalOptions="FillAndExpand"
+                            Orientation="Vertical"
+                            VerticalOptions="FillAndExpand"
+                            VerticalScrollBarVisibility="Never">
+                            <controls:RepeaterView x:Name="listPastBookings" Spacing="5">
+                                <controls:RepeaterView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Frame Padding="0" BackgroundColor="White">
+                                            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                <Grid HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="100" />
+                                                        <ColumnDefinition Width="1" />
+                                                        <ColumnDefinition Width="100" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="60" />
+                                                        <RowDefinition Height="60" />
+                                                        <RowDefinition Height="60" />
+                                                        <RowDefinition Height="*" />
+                                                    </Grid.RowDefinitions>
+
+                                                    <forms:CachedImage
+                                                        Grid.Row="0"
+                                                        Grid.RowSpan="2"
+                                                        Grid.Column="0"
+                                                        Grid.ColumnSpan="4"
+                                                        Aspect="AspectFill"
+                                                        HorizontalOptions="FillAndExpand"
+                                                        InputTransparent="True"
+                                                        Source="{Binding image_url}"
+                                                        VerticalOptions="FillAndExpand" />
+                                                    <Label
+                                                        Grid.Row="2"
+                                                        Grid.Column="0"
+                                                        Margin="10,0,0,0"
+                                                        FontSize="Medium"
+                                                        Text="{Binding host_city}"
+                                                        TextColor="White" />
+
+                                                    <Label
+                                                        Grid.Row="2"
+                                                        Grid.Column="0"
+                                                        Grid.ColumnSpan="3"
+                                                        Margin="10,25,0,0"
+                                                        FontSize="Small"
+                                                        Text="{Binding host_state[1]}"
+                                                        TextColor="White" />
+
+                                                    <Label
+                                                        Grid.Row="2"
+                                                        Grid.Column="3"
+                                                        Margin="0,10,20,0"
+                                                        FontAttributes="Bold"
+                                                        FontSize="Large"
+                                                        HorizontalOptions="End"
+                                                        LineBreakMode="WordWrap"
+                                                        Text="{Binding arrive_dates, StringFormat='{0:dd MMM}'}"
+                                                        TextColor="White"
+                                                        VerticalOptions="FillAndExpand" />
+                                                </Grid>
+                                                <Grid
+                                                    Margin="10,0,0,0"
+                                                    Padding="0"
+                                                    RowSpacing="0">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="100" />
+                                                        <ColumnDefinition Width="1" />
+                                                        <ColumnDefinition Width="100" />
+                                                        <ColumnDefinition Width="120" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="30" />
+                                                        <RowDefinition Height="30" />
+                                                        <RowDefinition Height="35" />
+                                                        <RowDefinition Height="*" />
+                                                        <RowDefinition Height="10" />
+                                                    </Grid.RowDefinitions>
+                                                    <!--  check in  -->
+                                                    <Label
+                                                        Grid.Row="0"
+                                                        Grid.Column="0"
+                                                        FontSize="Medium"
+                                                        HorizontalOptions="CenterAndExpand"
+                                                        LineBreakMode="WordWrap"
+                                                        Text="Arrive"
+                                                        TextColor="Gray"
+                                                        VerticalOptions="FillAndExpand" />
+                                                    <Label
+                                                        Grid.Row="1"
+                                                        Grid.Column="0"
+                                                        FontAttributes="Bold"
+                                                        FontSize="Large"
+                                                        HorizontalOptions="CenterAndExpand"
+                                                        LineBreakMode="WordWrap"
+                                                        Text="{Binding arrive_dates, StringFormat='{0:dd}'}"
+                                                        TextColor="#515151"
+                                                        VerticalOptions="FillAndExpand" />
+                                                    <Label
+                                                        Grid.Row="2"
+                                                        Grid.Column="0"
+                                                        FontAttributes="Bold"
+                                                        FontSize="Medium"
+                                                        HorizontalOptions="CenterAndExpand"
+                                                        LineBreakMode="WordWrap"
+                                                        Text="{Binding arrive_dates, StringFormat='{0:MMMM}'}"
+                                                        TextColor="#515151"
+                                                        VerticalOptions="FillAndExpand" />
+                                                    <!--<Label
+                                                Grid.Row="3"
+                                                Grid.Column="0"
+                                                FontAttributes="Bold"
+                                                FontSize="Medium"
+                                                HorizontalOptions="CenterAndExpand"
+                                                LineBreakMode="WordWrap"
+                                                Text="{Binding arrive_dates, StringFormat='{0:ddd}'}"
+                                                TextColor="Gray"
+                                                VerticalOptions="FillAndExpand" />-->
+                                                    <BoxView
+                                                        Grid.Row="0"
+                                                        Grid.Column="1"
+                                                        Opacity="1"
+                                                        VerticalOptions="FillAndExpand"
+                                                        WidthRequest="1"
+                                                        Color="LightGray" />
+                                                    <BoxView
+                                                        Grid.Row="1"
+                                                        Grid.Column="1"
+                                                        Opacity="1"
+                                                        VerticalOptions="FillAndExpand"
+                                                        WidthRequest="1"
+                                                        Color="LightGray" />
+                                                    <BoxView
+                                                        Grid.Row="2"
+                                                        Grid.Column="1"
+                                                        Opacity="1"
+                                                        VerticalOptions="FillAndExpand"
+                                                        WidthRequest="1"
+                                                        Color="LightGray" />
+                                                    <!--<BoxView
+                                                Grid.Row="3"
+                                                Grid.Column="1"
+                                                Opacity="1"
+                                                VerticalOptions="FillAndExpand"
+                                                WidthRequest="1"
+                                                Color="LightGray" />-->
+                                                    <!--  check out  -->
+                                                    <Label
+                                                        Grid.Row="0"
+                                                        Grid.Column="2"
+                                                        FontSize="Medium"
+                                                        HorizontalOptions="CenterAndExpand"
+                                                        LineBreakMode="WordWrap"
+                                                        Text="Depart"
+                                                        TextColor="Gray"
+                                                        VerticalOptions="FillAndExpand" />
+                                                    <Label
+                                                        Grid.Row="1"
+                                                        Grid.Column="2"
+                                                        FontAttributes="Bold"
+                                                        FontSize="Large"
+                                                        HorizontalOptions="CenterAndExpand"
+                                                        LineBreakMode="WordWrap"
+                                                        Text="{Binding depart_dates, StringFormat='{0:dd}'}"
+                                                        TextColor="#515151"
+                                                        VerticalOptions="FillAndExpand" />
+                                                    <Label
+                                                        Grid.Row="2"
+                                                        Grid.Column="2"
+                                                        FontAttributes="Bold"
+                                                        FontSize="Medium"
+                                                        HorizontalOptions="CenterAndExpand"
+                                                        LineBreakMode="WordWrap"
+                                                        Text="{Binding depart_dates, StringFormat='{0:MMMM}'}"
+                                                        TextColor="#515151"
+                                                        VerticalOptions="FillAndExpand" />
+
+                                                    <zxing:ZXingBarcodeImageView
+                                                        Grid.Row="0"
+                                                        Grid.RowSpan="3"
+                                                        Grid.Column="3"
+                                                        Grid.ColumnSpan="2"
+                                                        Aspect="Fill"
+                                                        BarcodeFormat="QR_CODE"
+                                                        BarcodeValue="{Binding booking_token}">
+                                                        <zxing:ZXingBarcodeImageView.GestureRecognizers>
+                                                            <TapGestureRecognizer Tapped="OnQrCode_Tapped" />
+                                                        </zxing:ZXingBarcodeImageView.GestureRecognizers>
+                                                    </zxing:ZXingBarcodeImageView>
+
+
+
+                                                </Grid>
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="*" />
+                                                        <RowDefinition Height="5" />
+                                                    </Grid.RowDefinitions>
+                                                    <Button
+                                                        Grid.Row="0"
+                                                        Grid.Column="0"
+                                                        Margin="20,10,10,0"
+                                                        BackgroundColor="#FA2A00"
+                                                        BorderRadius="10"
+                                                        Clicked="VIEW_BILL_CLICK"
+                                                        FontSize="Large"
+                                                        IsVisible="{Binding isVisibleButton}"
+                                                        Text="View Bill"
+                                                        TextColor="#FEF9F8" />
+
+                                                    <Button
+                                                        Grid.Row="0"
+                                                        Grid.Column="1"
+                                                        Margin="10,10,20,0"
+                                                        BackgroundColor="#FCC84C"
+                                                        BorderRadius="10"
+                                                        Clicked="REVIEW_CLICK"
+                                                        FontSize="Large"
+                                                        IsVisible="{Binding isVisibleButton}"
+                                                        Text="Review"
+                                                        TextColor="#FEF9F8" />
+                                                </Grid>
+
+                                                <Label
+                                                    AbsoluteLayout.LayoutBounds="1,1,1,AutoSize"
+                                                    AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
+                                                    BackgroundColor="#45C1F7"
+                                                    HeightRequest="40"
+                                                    HorizontalTextAlignment="Center"
+                                                    IsVisible="{Binding isVisibleExpired}"
+                                                    Text="{Binding will_expire_date}"
+                                                    TextColor="White"
+                                                    VerticalTextAlignment="Center"
+                                                    WidthRequest="250" />
+
+
+                                            </StackLayout>
+                                        </Frame>
+                                    </DataTemplate>
+                                </controls:RepeaterView.ItemTemplate>
+                            </controls:RepeaterView>
+                        </ScrollView>
+                    </StackLayout>
+                    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <AbsoluteLayout
+                            x:Name="viewBillPopup"
+                            AbsoluteLayout.LayoutBounds="0,0,1,1"
+                            AbsoluteLayout.LayoutFlags="All"
+                            IsVisible="False">
+                            <ContentView
+                                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                                AbsoluteLayout.LayoutFlags="All"
+                                BackgroundColor="Black"
+                                Opacity=".6" />
+                            <Frame
+                                Padding="0"
+                                AbsoluteLayout.LayoutBounds=".5,.5,.9,.9"
+                                AbsoluteLayout.LayoutFlags="All"
+                                BackgroundColor="White"
+                                BorderColor="{StaticResource sunflower}"
+                                CornerRadius="10"
+                                HasShadow="False">
+                                <StackLayout Spacing="0">
+                                    <StackLayout
+                                        HeightRequest="40"
+                                        HorizontalOptions="FillAndExpand"
+                                        Orientation="Horizontal"
+                                        Spacing="0"
+                                        VerticalOptions="Start">
+                                        <Label
+                                            Margin="30,0,0,0"
+                                            FontSize="20"
+                                            HorizontalOptions="FillAndExpand"
+                                            HorizontalTextAlignment="Center"
+                                            Text="Your Bill"
+                                            TextColor="DimGray"
+                                            VerticalOptions="Center" />
+                                        <Image
+                                            HeightRequest="30"
+                                            HorizontalOptions="End"
+                                            Opacity=".8"
+                                            Source="ic_close_grey_400"
+                                            VerticalOptions="Center"
+                                            WidthRequest="30">
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="ViewBillClose_Tapped" />
+                                            </Image.GestureRecognizers>
+                                        </Image>
+                                    </StackLayout>
+                                    <ScrollView
+                                        HorizontalOptions="FillAndExpand"
+                                        Orientation="Vertical"
+                                        VerticalOptions="FillAndExpand"
+                                        VerticalScrollBarVisibility="Never">
+                                        <controls:RepeaterView
+                                            x:Name="GroupedBillLinesView"
+                                            Padding="10,0,10,0"
+                                            HorizontalOptions="FillAndExpand"
+                                            Spacing="10">
+                                            <controls:RepeaterView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Grid HorizontalOptions="FillAndExpand">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="100" />
+                                                        </Grid.ColumnDefinitions>
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="Auto" />
+                                                            <RowDefinition Height="Auto" />
+                                                        </Grid.RowDefinitions>
+                                                        <Label
+                                                            Grid.Row="0"
+                                                            Grid.Column="0"
+                                                            Margin="8,0,0,0"
+                                                            FontSize="18"
+                                                            Text="{Binding CategId}"
+                                                            TextColor="{StaticResource sunflower}"
+                                                            VerticalOptions="Center" />
+                                                        <Label
+                                                            Grid.Row="0"
+                                                            Grid.Column="1"
+                                                            Margin="0,0,8,0"
+                                                            FontSize="16"
+                                                            HorizontalOptions="End"
+                                                            Text="{Binding Total, StringFormat='R{0:N2}'}"
+                                                            TextColor="{StaticResource sunflower}"
+                                                            VerticalOptions="Center" />
+                                                        <controls:RepeaterView
+                                                            Grid.Row="1"
+                                                            Grid.Column="0"
+                                                            Grid.ColumnSpan="2"
+                                                            HorizontalOptions="FillAndExpand"
+                                                            ItemsSource="{Binding BillLines}"
+                                                            Spacing="5">
+                                                            <controls:RepeaterView.ItemTemplate>
+                                                                <DataTemplate>
+                                                                    <controls:ExpandableView
+                                                                        BorderColor="LightGray"
+                                                                        ContentHeight="100"
+                                                                        CornerRadius="10"
+                                                                        HasShadow="False"
+                                                                        HeaderHeight="40"
+                                                                        HorizontalOptions="FillAndExpand">
+                                                                        <controls:ExpandableView.HeaderTemplate>
+                                                                            <DataTemplate>
+                                                                                <Grid
+                                                                                    Padding="10,0,10,0"
+                                                                                    HorizontalOptions="FillAndExpand"
+                                                                                    VerticalOptions="Center">
+                                                                                    <Grid.ColumnDefinitions>
+                                                                                        <ColumnDefinition Width="*" />
+                                                                                        <ColumnDefinition Width="65" />
+                                                                                        <ColumnDefinition Width="35" />
+                                                                                        <ColumnDefinition Width="100" />
+                                                                                    </Grid.ColumnDefinitions>
+                                                                                    <Grid.RowDefinitions>
+                                                                                        <RowDefinition Height="40" />
+                                                                                    </Grid.RowDefinitions>
+                                                                                    <Label
+                                                                                        Grid.Row="0"
+                                                                                        Grid.Column="0"
+                                                                                        Grid.ColumnSpan="3"
+                                                                                        FontSize="15"
+                                                                                        Text="{Binding ProductId}"
+                                                                                        TextColor="{StaticResource Color_SoftBlue}"
+                                                                                        VerticalOptions="Center" />
+                                                                                    <!-- <Label
+                                                                                Grid.Row="0"
+                                                                                Grid.Column="1"
+                                                                                FontSize="14"
+                                                                                HorizontalOptions="End"
+                                                                                Text="{Binding Amount}"
+                                                                                TextColor="{StaticResource Color_SoftBlue}"
+                                                                                VerticalOptions="Center" />
+                                                                            <Label
+                                                                                Grid.Row="0"
+                                                                                Grid.Column="2"
+                                                                                FontSize="14"
+                                                                                HorizontalOptions="End"
+                                                                                Text="{Binding Unit}"
+                                                                                TextColor="{StaticResource Color_SoftBlue}"
+                                                                                VerticalOptions="Center" />-->
+                                                                                    <Label
+                                                                                        Grid.Row="0"
+                                                                                        Grid.Column="3"
+                                                                                        FontSize="14"
+                                                                                        HorizontalOptions="End"
+                                                                                        Text="{Binding Total, StringFormat='R{0:N2}'}"
+                                                                                        TextColor="{StaticResource Color_SoftBlue}"
+                                                                                        VerticalOptions="Center" />
+                                                                                </Grid>
+                                                                            </DataTemplate>
+                                                                        </controls:ExpandableView.HeaderTemplate>
+                                                                        <controls:ExpandableView.ContentTemplate>
+                                                                            <DataTemplate>
+                                                                                <Grid
+                                                                                    Padding="10,0,10,0"
+                                                                                    HorizontalOptions="FillAndExpand"
+                                                                                    VerticalOptions="Center">
+                                                                                    <Grid.ColumnDefinitions>
+                                                                                        <ColumnDefinition Width="*" />
+                                                                                        <ColumnDefinition Width="*" />
+                                                                                    </Grid.ColumnDefinitions>
+                                                                                    <Grid.RowDefinitions>
+                                                                                        <RowDefinition Height="20" />
+                                                                                        <RowDefinition Height="20" />
+                                                                                        <RowDefinition Height="20" />
+                                                                                        <RowDefinition Height="20" />
+                                                                                    </Grid.RowDefinitions>
+
+                                                                                    <Label
+                                                                                        Grid.Row="0"
+                                                                                        Grid.Column="0"
+                                                                                        FontSize="14"
+                                                                                        HorizontalTextAlignment="Start"
+                                                                                        Text="Unit(s)"
+                                                                                        TextColor="Gray"
+                                                                                        VerticalOptions="Center" />
+                                                                                    <Label
+                                                                                        Grid.Row="0"
+                                                                                        Grid.Column="1"
+                                                                                        FontSize="14"
+                                                                                        HorizontalTextAlignment="End"
+                                                                                        Text="{Binding Unit, StringFormat='{0:N2}'}"
+                                                                                        TextColor="Gray"
+                                                                                        VerticalOptions="Center" />
+                                                                                    <Label
+                                                                                        Grid.Row="1"
+                                                                                        Grid.Column="0"
+                                                                                        FontSize="14"
+                                                                                        HorizontalTextAlignment="Start"
+                                                                                        Text="Price"
+                                                                                        TextColor="Gray"
+                                                                                        VerticalOptions="Center" />
+                                                                                    <Label
+                                                                                        Grid.Row="1"
+                                                                                        Grid.Column="1"
+                                                                                        FontSize="14"
+                                                                                        HorizontalTextAlignment="End"
+                                                                                        Text="{Binding Amount, StringFormat='R{0:N2}'}"
+                                                                                        TextColor="Gray"
+                                                                                        VerticalOptions="Center" />
+                                                                                    <Label
+                                                                                        Grid.Row="2"
+                                                                                        Grid.Column="0"
+                                                                                        FontSize="14"
+                                                                                        HorizontalTextAlignment="Start"
+                                                                                        Text="Discount"
+                                                                                        TextColor="Gray"
+                                                                                        VerticalOptions="Center" />
+                                                                                    <Label
+                                                                                        Grid.Row="2"
+                                                                                        Grid.Column="1"
+                                                                                        FontSize="14"
+                                                                                        HorizontalTextAlignment="End"
+                                                                                        Text="{Binding DiscountAmount,, StringFormat='R{N2}'}"
+                                                                                        TextColor="Gray"
+                                                                                        VerticalOptions="Center" />
+                                                                                    <Label
+                                                                                        Grid.Row="3"
+                                                                                        Grid.Column="0"
+                                                                                        FontSize="14"
+                                                                                        HorizontalTextAlignment="Start"
+                                                                                        Text="Date &amp; Time"
+                                                                                        TextColor="Gray"
+                                                                                        VerticalOptions="Center" />
+                                                                                    <Label
+                                                                                        Grid.Row="3"
+                                                                                        Grid.Column="1"
+                                                                                        FontSize="14"
+                                                                                        HorizontalTextAlignment="End"
+                                                                                        Text="{Binding DateTimeCreate}"
+                                                                                        TextColor="Gray"
+                                                                                        VerticalOptions="Center" />
+
+
+                                                                                </Grid>
+                                                                            </DataTemplate>
+                                                                        </controls:ExpandableView.ContentTemplate>
+                                                                    </controls:ExpandableView>
+                                                                </DataTemplate>
+                                                            </controls:RepeaterView.ItemTemplate>
+                                                        </controls:RepeaterView>
+                                                    </Grid>
+                                                </DataTemplate>
+                                            </controls:RepeaterView.ItemTemplate>
+                                        </controls:RepeaterView>
+                                    </ScrollView>
+                                    <BoxView
+                                        HeightRequest="1"
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="End"
+                                        Color="{StaticResource sunflower}" />
+                                    <Grid
+                                        Padding="20,5,20,5"
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="End">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="120" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Label
+                                            Grid.Row="0"
+                                            Grid.Column="0"
+                                            FontSize="18"
+                                            Text="Total"
+                                            TextColor="DimGray" />
+                                        <Label
+                                            x:Name="BillResultTotal"
+                                            Grid.Row="0"
+                                            Grid.Column="1"
+                                            FontSize="18"
+                                            HorizontalOptions="End"
+                                            TextColor="DimGray" />
+                                        <Label
+                                            Grid.Row="1"
+                                            Grid.Column="0"
+                                            FontSize="18"
+                                            Text="Paid"
+                                            TextColor="DimGray" />
+                                        <Label
+                                            x:Name="BillResultPaid"
+                                            Grid.Row="1"
+                                            Grid.Column="1"
+                                            FontSize="18"
+                                            HorizontalOptions="End"
+                                            TextColor="DimGray" />
+                                        <BoxView
+                                            Grid.Row="2"
+                                            Grid.Column="0"
+                                            Grid.ColumnSpan="2"
+                                            HeightRequest="1"
+                                            HorizontalOptions="FillAndExpand"
+                                            VerticalOptions="End"
+                                            Color="{StaticResource sunflower}" />
+                                        <Label
+                                            Grid.Row="3"
+                                            Grid.Column="0"
+                                            FontSize="18"
+                                            Text="Balance"
+                                            TextColor="DimGray" />
+                                        <Label
+                                            x:Name="BillResultBalance"
+                                            Grid.Row="3"
+                                            Grid.Column="1"
+                                            FontSize="18"
+                                            HorizontalOptions="End"
+                                            TextColor="DimGray" />
+                                    </Grid>
+                                    <Button
+                                        Margin="10,5,10,10"
+                                        Padding="10,10,10,10"
+                                        BackgroundColor="{StaticResource sunflower}"
+                                        Clicked="ViewBillPayNow_Clicked"
+                                        CornerRadius="15"
+                                        FontSize="26"
+                                        Text="Pay Now"
+                                        TextColor="White"
+                                        VerticalOptions="Center" />
+                                </StackLayout>
+                            </Frame>
+                        </AbsoluteLayout>
+                        <AbsoluteLayout
+                            x:Name="yourBillPopup"
+                            AbsoluteLayout.LayoutBounds="0,0,1,1"
+                            AbsoluteLayout.LayoutFlags="All"
+                            IsVisible="False">
+                            <ContentView
+                                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                                AbsoluteLayout.LayoutFlags="All"
+                                BackgroundColor="Black"
+                                Opacity=".6" />
+                            <Frame
+                                Padding="0"
+                                AbsoluteLayout.LayoutBounds=".5,.5,.9,AutoSize"
+                                AbsoluteLayout.LayoutFlags="PositionProportional, WidthProportional"
+                                BackgroundColor="White"
+                                BorderColor="{StaticResource sunflower}"
+                                CornerRadius="10"
+                                HasShadow="False">
+                                <StackLayout Spacing="0">
+                                    <StackLayout
+                                        HeightRequest="40"
+                                        HorizontalOptions="FillAndExpand"
+                                        Orientation="Horizontal"
+                                        Spacing="0"
+                                        VerticalOptions="Start">
+                                        <Label
+                                            Margin="30,0,0,0"
+                                            FontSize="20"
+                                            HorizontalOptions="FillAndExpand"
+                                            HorizontalTextAlignment="Center"
+                                            Text="Your Bill"
+                                            TextColor="DimGray"
+                                            VerticalOptions="Center" />
+                                        <Image
+                                            HeightRequest="30"
+                                            HorizontalOptions="End"
+                                            Opacity=".8"
+                                            Source="ic_close_grey_400"
+                                            VerticalOptions="Center"
+                                            WidthRequest="30">
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="YourBillClose_Tapped" />
+                                            </Image.GestureRecognizers>
+                                        </Image>
+                                    </StackLayout>
+                                    <BoxView
+                                        HeightRequest="1"
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="End"
+                                        Color="{StaticResource sunflower}" />
+                                    <Grid
+                                        Padding="20,5,20,5"
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="End">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="120" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Label
+                                            Grid.Row="0"
+                                            Grid.Column="0"
+                                            FontSize="18"
+                                            Text="Total"
+                                            TextColor="DimGray" />
+                                        <Label
+                                            x:Name="YourBillResultTotal"
+                                            Grid.Row="0"
+                                            Grid.Column="1"
+                                            FontSize="18"
+                                            HorizontalOptions="End"
+                                            TextColor="DimGray" />
+                                        <Label
+                                            Grid.Row="1"
+                                            Grid.Column="0"
+                                            FontSize="18"
+                                            Text="Paid"
+                                            TextColor="DimGray" />
+                                        <Label
+                                            x:Name="YourBillResultPaid"
+                                            Grid.Row="1"
+                                            Grid.Column="1"
+                                            FontSize="18"
+                                            HorizontalOptions="End"
+                                            TextColor="DimGray" />
+                                        <BoxView
+                                            Grid.Row="2"
+                                            Grid.Column="0"
+                                            Grid.ColumnSpan="2"
+                                            HeightRequest="1"
+                                            HorizontalOptions="FillAndExpand"
+                                            VerticalOptions="End"
+                                            Color="{StaticResource sunflower}" />
+                                        <Label
+                                            Grid.Row="3"
+                                            Grid.Column="0"
+                                            FontSize="18"
+                                            Text="Balance"
+                                            TextColor="DimGray" />
+                                        <Label
+                                            x:Name="YourBillResultBalance"
+                                            Grid.Row="3"
+                                            Grid.Column="1"
+                                            FontSize="18"
+                                            HorizontalOptions="End"
+                                            TextColor="DimGray" />
+                                    </Grid>
+                                    <Button
+                                        Margin="10,5,10,10"
+                                        Padding="10,10,10,10"
+                                        BackgroundColor="{StaticResource Color_SoftBlue}"
+                                        Clicked="YourBillPay_Clicked"
+                                        CornerRadius="15"
+                                        FontSize="26"
+                                        Text="Pay"
+                                        TextColor="White"
+                                        VerticalOptions="Center" />
+                                </StackLayout>
+                            </Frame>
+                        </AbsoluteLayout>
+
+                    </StackLayout>
+
+                </AbsoluteLayout>
+            </ContentView>
+        </ContentPage.Content>
+    </ContentPage>
+
+</TabbedPage>

@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="KamooniHost.Views.ExtraAddPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Xamarin.Forms.Controls"
+    xmlns:ex="clr-namespace:Xamarin.Forms.Extensions"
+    xmlns:popup="clr-namespace:KamooniHost.Views.Popup"
+    x:Name="this"
+    Title="{Binding Title}">
+    <ContentPage.Content>
+        <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <StackLayout
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                BackgroundColor="White"
+                Spacing="0">
+                <ScrollView
+                    HorizontalOptions="FillAndExpand"
+                    Orientation="Horizontal"
+                    VerticalOptions="Start">
+                    <controls:RepeaterView
+                        Padding="5"
+                        ItemsSource="{Binding ExtraItemsByGroup}"
+                        Orientation="Horizontal"
+                        Spacing="5">
+                        <controls:RepeaterView.ItemTemplate>
+                            <DataTemplate>
+                                <Button
+                                    BackgroundColor="{Binding Button.BackgroundColor}"
+                                    BorderColor="{Binding Button.BorderColor}"
+                                    BorderWidth="1"
+                                    Command="{Binding BindingContext.CategorySelectedCommand, Source={x:Reference this}}"
+                                    CommandParameter="{Binding .}"
+                                    CornerRadius="5"
+                                    HeightRequest="35"
+                                    Text="{Binding Key}"
+                                    TextColor="{Binding Button.TextColor}" />
+                            </DataTemplate>
+                        </controls:RepeaterView.ItemTemplate>
+                    </controls:RepeaterView>
+                </ScrollView>
+                <ListView
+                    CachingStrategy="RecycleElement"
+                    HasUnevenRows="True"
+                    HorizontalOptions="FillAndExpand"
+                    ItemsSource="{Binding ExtraItemsDisplay}"
+                    SelectionMode="None"
+                    VerticalOptions="FillAndExpand">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Padding="8,2,4,2">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="75" />
+                                        <ColumnDefinition Width="75" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        FontAttributes="Bold"
+                                        FontSize="15"
+                                        Text="{Binding Name}"
+                                        TextColor="{StaticResource colorAccent}"
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        FontSize="15"
+                                        HorizontalOptions="End"
+                                        Text="{Binding UnitPrice, StringFormat='R{0:###,###,###,##0.##}'}"
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="2"
+                                        FontAttributes="Bold"
+                                        FontSize="15"
+                                        HorizontalOptions="End"
+                                        Text="{Binding Total, StringFormat='R{0:###,###,###,##0.##}'}"
+                                        TextColor="{StaticResource colorAccent}"
+                                        VerticalOptions="Center" />
+                                    <StackLayout
+                                        Grid.Row="0"
+                                        Grid.Column="3"
+                                        Orientation="Horizontal"
+                                        Spacing="1">
+                                        <Image
+                                            HeightRequest="30"
+                                            Source="{ex:ImageResource Key=ic_btn_minus.png}"
+                                            VerticalOptions="Center"
+                                            WidthRequest="30">
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer
+                                                    Command="{Binding BindingContext.DecreaseQuantityCommand, Source={x:Reference this}}"
+                                                    CommandParameter="{Binding .}"
+                                                    NumberOfTapsRequired="1" />
+                                            </Image.GestureRecognizers>
+                                        </Image>
+                                        <Label
+                                            BackgroundColor="{StaticResource colorAccent}"
+                                            FontAttributes="Bold"
+                                            HeightRequest="30"
+                                            HorizontalTextAlignment="Center"
+                                            Text="{Binding Quantity}"
+                                            TextColor="White"
+                                            VerticalOptions="Center"
+                                            VerticalTextAlignment="Center"
+                                            WidthRequest="30" />
+                                        <Image
+                                            HeightRequest="30"
+                                            Source="{ex:ImageResource Key=ic_btn_add.png}"
+                                            VerticalOptions="Center"
+                                            WidthRequest="30">
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer
+                                                    Command="{Binding BindingContext.IncreaseQuantityCommand, Source={x:Reference this}}"
+                                                    CommandParameter="{Binding .}"
+                                                    NumberOfTapsRequired="1" />
+                                            </Image.GestureRecognizers>
+                                        </Image>
+                                    </StackLayout>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <StackLayout
+                    BackgroundColor="{StaticResource colorPrimary}"
+                    HorizontalOptions="FillAndExpand"
+                    Orientation="Horizontal"
+                    VerticalOptions="End">
+                    <Label
+                        Margin="16,0,0,0"
+                        FontAttributes="Bold"
+                        FontSize="16"
+                        HorizontalOptions="Start"
+                        Text="{ex:Translate Key=subheading_total_2}"
+                        TextColor="{StaticResource colorAccent}"
+                        VerticalOptions="Center" />
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="16"
+                        HorizontalOptions="StartAndExpand"
+                        Text="{Binding TotalPayment, StringFormat='R{0:###,###,###,##0.##}'}"
+                        TextColor="White"
+                        VerticalOptions="Center" />
+                    <controls:FloatingActionButton
+                        Command="{Binding ExtrasPaymentCommand}"
+                        HorizontalOptions="End"
+                        ImageSource="ic_shopping_cart_white.png"
+                        IsVisible="{Binding CanPayment}"
+                        NormalColor="{StaticResource colorAccent}"
+                        VerticalOptions="Center" />
+                </StackLayout>
+            </StackLayout>
+            <popup:LoadingScreen
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                IsVisible="{Binding IsBusy}" />
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="KamooniHost.MenuPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviors="clr-namespace:Xamarin.Forms.Behaviors"
+    Title="Menu">
+    <ListView
+        BackgroundColor="{StaticResource colorPrimary}"
+        CachingStrategy="RecycleElement"
+        HasUnevenRows="true"
+        ItemsSource="{Binding MenuItems}"
+        SelectedItem="{Binding SelectedItem}"
+        SelectionMode="Single"
+        SeparatorVisibility="None">
+        <ListView.Header>
+            <StackLayout
+                Padding="0,8,0,8"
+                BackgroundColor="{StaticResource colorPrimaryDark}"
+                HorizontalOptions="FillAndExpand"
+                Spacing="0">
+                <Image
+                    Margin="0,0,0,8"
+                    HeightRequest="80"
+                    HorizontalOptions="Center"
+                    Source="main_logo_white" />
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="Medium"
+                    HorizontalOptions="CenterAndExpand"
+                    HorizontalTextAlignment="Center"
+                    Text="{Binding Host.Name}"
+                    TextColor="White" />
+                <Label
+                    FontSize="Small"
+                    HorizontalOptions="CenterAndExpand"
+                    HorizontalTextAlignment="Center"
+                    Text="{Binding Host.Url}"
+                    TextColor="White" />
+            </StackLayout>
+        </ListView.Header>
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <StackLayout
+                        Padding="10"
+                        BackgroundColor="{Binding BackgroundColor}"
+                        HorizontalOptions="FillAndExpand"
+                        Orientation="Horizontal">
+                        <Image
+                            HeightRequest="35"
+                            HorizontalOptions="Start"
+                            Source="{Binding Icon}"
+                            VerticalOptions="Center"
+                            WidthRequest="50" />
+                        <Label
+                            FontSize="Large"
+                            Text="{Binding Title}"
+                            TextColor="{Binding TextColor}"
+                            VerticalOptions="Center" />
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+        <ListView.Behaviors>
+            <behaviors:EventToCommandBehavior
+                Command="{Binding MenuItemSelectedCommand}"
+                EventArgsConverter="{StaticResource SelectedItemConverter}"
+                EventName="ItemSelected" />
+        </ListView.Behaviors>
+    </ListView>
+</ContentPage>

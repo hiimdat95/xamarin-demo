@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="TravellerApp.Views.SignUpPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:TravellerApp">
+
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS" Value="40, 60, 40, 40" />
+            <On Platform="Android, UWP" Value="40, 0, 40, 0" />
+        </OnPlatform>
+    </ContentPage.Padding>
+
+    <ContentPage.Content>
+        <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <StackLayout VerticalOptions="CenterAndExpand">
+
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="32"
+                    HorizontalOptions="Center"
+                    Text="Sign Up" />
+
+                <Entry
+                    x:Name="emailForm"
+                    Margin="0,20,0,0"
+                    IsSpellCheckEnabled="False"
+                    IsTextPredictionEnabled="False"
+                    Keyboard="Email"
+                    Placeholder="Email"
+                    ReturnType="Next" />
+
+                <Entry
+                    x:Name="firstNameForm"
+                    Placeholder="First Name"
+                    ReturnType="Next" />
+
+                <Entry
+                    x:Name="lastNameForm"
+                    Placeholder="Last Name"
+                    ReturnType="Done" />
+
+                <Button
+                    x:Name="signUpButton"
+                    Margin="0,20,0,0"
+                    Clicked="OnSignUpButton"
+                    Text="SIGN UP" />
+
+                <StackLayout
+                    Margin="0,10,0,0"
+                    HorizontalOptions="Center"
+                    Orientation="Horizontal">
+
+                    <Label Font="{x:Static local:VisualConstants.StandardFont}" Text="Already have an account?" />
+
+                    <Label
+                        x:Name="loginText"
+                        Font="{x:Static local:VisualConstants.StandardFont}"
+                        FontAttributes="Bold"
+                        Text="Log In"
+                        TextColor="{StaticResource Color_Accent}" />
+                </StackLayout>
+
+                <Label
+                    x:Name="validationError"
+                    Margin="0,10,0,0"
+                    Font="{x:Static local:VisualConstants.StandardFont}"
+                    HorizontalOptions="Center"
+                    TextColor="{StaticResource Color_SoftRed}" />
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

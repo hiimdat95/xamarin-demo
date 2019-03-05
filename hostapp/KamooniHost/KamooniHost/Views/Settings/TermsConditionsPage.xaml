@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="KamooniHost.Views.TermsConditionsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:effects="clr-namespace:KamooniHost.Effects"
+    xmlns:ex="clr-namespace:Xamarin.Forms.Extensions"
+    Title="{ex:Translate Key=title_activity_terms_conditions}">
+    <ContentPage.Content>
+        <ScrollView
+            HorizontalOptions="FillAndExpand"
+            Orientation="Vertical"
+            VerticalOptions="FillAndExpand"
+            VerticalScrollBarVisibility="Never">
+            <StackLayout
+                Padding="20,20,20,20"
+                BackgroundColor="WhiteSmoke"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand">
+                <Label
+                    FontSize="14"
+                    Text="Terms and Conditions"
+                    TextColor="Black" />
+                <Editor
+                    x:Name="TAndC"
+                    AutoSize="TextChanges"
+                    FontSize="16"
+                    HorizontalOptions="FillAndExpand"
+                    InputTransparent="True"
+                    IsSpellCheckEnabled="False"
+                    TextColor="Black"
+                    Text="{Binding Host.Terms}">
+                    <Editor.Effects>
+                        <effects:RoundedEffect />
+                    </Editor.Effects>
+                </Editor>
+                <Label
+                    FontSize="14"
+                    Text="URL to full terms"
+                    TextColor="Black" />
+                <Editor
+                    x:Name="URLTerm"
+                    AutoSize="TextChanges"
+                    FontSize="16"
+                    Text="{Binding Host.UrlTerms}"
+                    HorizontalOptions="FillAndExpand"
+                    InputTransparent="True"
+                    IsSpellCheckEnabled="False"
+                    TextColor="Black">
+                    <Editor.Effects>
+                        <effects:RoundedEffect />
+                    </Editor.Effects>
+                </Editor>
+                <Button
+                    x:Name="enableChangeNewTerm"
+                    Clicked="ChangeTerm"
+                    Text="CHANGE"/>
+                <Button
+                    x:Name="saveNewTerm"
+                    Command="{Binding SaveNewTermCommand}"
+                    IsVisible="False"
+                    Text="SAVE"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

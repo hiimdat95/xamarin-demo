@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="KamooniHost.Views.Popup.TermsAndConditions"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <ContentView.Content>
+        <AbsoluteLayout AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+            <ContentView
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                BackgroundColor="Black"
+                Opacity="0.4" />
+            <Frame
+                Padding="0"
+                AbsoluteLayout.LayoutBounds=".5,.5,.9,.9"
+                AbsoluteLayout.LayoutFlags="All"
+                BackgroundColor="White"
+                CornerRadius="5">
+                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Label
+                        Margin="0,8,0,0"
+                        FontAttributes="Bold"
+                        FontSize="16"
+                        HorizontalOptions="CenterAndExpand"
+                        Text="Terms and Conditions"
+                        TextColor="{StaticResource colorPrimary}"
+                        VerticalOptions="Start" />
+                    <Frame
+                        Margin="10,0,10,0"
+                        Padding="5"
+                        BackgroundColor="White"
+                        BorderColor="Gray"
+                        CornerRadius="0"
+                        HasShadow="False"
+                        HorizontalOptions="FillAndExpand"
+                        MinimumHeightRequest="200"
+                        VerticalOptions="FillAndExpand">
+                        <ScrollView
+                            HorizontalOptions="FillAndExpand"
+                            Orientation="Vertical"
+                            VerticalOptions="FillAndExpand">
+                            <WebView
+                                x:Name="LblTerms"
+                                />
+                        </ScrollView>
+                    </Frame>
+                    <Label HorizontalOptions="CenterAndExpand">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <FormattedString.Spans>
+                                    <Span FontSize="14" Text="Click" />
+                                    <Span
+                                        x:Name="LblClickHere"
+                                        FontSize="14"
+                                        Text=" Here "
+                                        TextColor="Blue" />
+                                    <Span FontSize="14" Text=" to go to full Terms and Conditions" />
+                                </FormattedString.Spans>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Button
+                        x:Name="BtnAgree"
+                        Margin="0,0,0,8"
+                        BackgroundColor="{StaticResource colorAccent}"
+                        BorderColor="{StaticResource colorAccentDark}"
+                        CornerRadius="5"
+                        FontAttributes="Bold"
+                        FontSize="16"
+                        HeightRequest="40"
+                        HorizontalOptions="CenterAndExpand"
+                        Text="Agree"
+                        TextColor="White"
+                        VerticalOptions="End"
+                        WidthRequest="120" />
+                </StackLayout>
+            </Frame>
+        </AbsoluteLayout>
+    </ContentView.Content>
+</ContentView>

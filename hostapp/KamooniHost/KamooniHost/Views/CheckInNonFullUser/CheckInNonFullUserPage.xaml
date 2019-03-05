@@ -1,0 +1,437 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="KamooniHost.Views.CheckInNonFullUserPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:abstractions="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+    xmlns:c="clr-namespace:Xamarin.Forms.Controls"
+    xmlns:ex="clr-namespace:Xamarin.Forms.Extensions"
+    xmlns:popup="clr-namespace:KamooniHost.Views.Popup"
+    x:Name="this"
+    Title="{ex:Translate Key=title_activity_check_in}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding ScanGuestCommand}" Icon="ic_scan_qr_white.png" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Image
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                Aspect="AspectFill"
+                Source="{ex:ImageResource Key=check_in_background.png}" />
+            <StackLayout
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                Spacing="0">
+                <ScrollView
+                    HorizontalOptions="FillAndExpand"
+                    Orientation="Vertical"
+                    VerticalOptions="FillAndExpand"
+                    VerticalScrollBarVisibility="Never">
+                    <StackLayout Spacing="0">
+                        <Grid
+                            Margin="8,8,8,0"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="Start">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <c:RoundedEntry
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                FontSize="14"
+                                HorizontalOptions="FillAndExpand"
+                                Placeholder="{ex:Translate Key=hint_full_name}"
+                                ReturnType="Next"
+                                Text="{Binding GuestCheckIn.Name}" />
+                            <c:RoundedEntry
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                FontSize="14"
+                                HorizontalOptions="FillAndExpand"
+                                Keyboard="Email"
+                                Placeholder="{ex:Translate Key=hint_email}"
+                                ReturnType="Next"
+                                Text="{Binding GuestCheckIn.Email}" />
+                            <c:RoundedEntry
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                FontSize="14"
+                                HorizontalOptions="FillAndExpand"
+                                Keyboard="Telephone"
+                                Placeholder="{ex:Translate Key=hint_mobile_number}"
+                                ReturnType="Next"
+                                Text="{Binding GuestCheckIn.Mobile}" />
+                            <c:RoundedEntry
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                FontSize="14"
+                                HorizontalOptions="FillAndExpand"
+                                Placeholder="{ex:Translate Key=hint_passport_id}"
+                                Text="{Binding GuestCheckIn.Passport}" />
+                        </Grid>
+                        <BoxView
+                            Margin="36,10,36,0"
+                            BackgroundColor="{StaticResource grayShade_1}"
+                            HeightRequest="1"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="Start" />
+                        <StackLayout
+                            Margin="24,8,24,0"
+                            Orientation="Horizontal"
+                            Spacing="10"
+                            VerticalOptions="Start">
+                            <Button
+                                BackgroundColor="{StaticResource colorAccent}"
+                                Command="{Binding SelectNationalityCommand}"
+                                CornerRadius="5"
+                                HeightRequest="40"
+                                HorizontalOptions="StartAndExpand"
+                                Text="{ex:Translate Key=button_select_nationality}"
+                                TextColor="White"
+                                VerticalOptions="Center"
+                                WidthRequest="120" />
+                            <Label
+                                FontSize="16"
+                                HorizontalOptions="FillAndExpand"
+                                Text="{Binding GuestCheckIn.CountryName}"
+                                TextColor="{StaticResource grayShade_2}"
+                                VerticalOptions="Center" />
+                            <Image
+                                HeightRequest="40"
+                                HorizontalOptions="EndAndExpand"
+                                Source="{Binding GuestCheckIn.CountryFlagImage}"
+                                VerticalOptions="Center"
+                                WidthRequest="40" />
+                        </StackLayout>
+                        <BoxView
+                            Margin="36,10,36,0"
+                            BackgroundColor="{StaticResource grayShade_1}"
+                            HeightRequest="1"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="Start" />
+                        <StackLayout Margin="16,8,16,0" Orientation="Horizontal">
+                            <Label
+                                FontSize="18"
+                                HorizontalOptions="StartAndExpand"
+                                Text="Passport"
+                                VerticalOptions="Center" />
+                            <Image
+                                HeightRequest="35"
+                                HorizontalOptions="End"
+                                Source="ic_camera_black.png"
+                                WidthRequest="35">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding TakePassportImageCommand}" />
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </StackLayout>
+                        <Frame
+                            Margin="16,8,16,0"
+                            Padding="0"
+                            BackgroundColor="White"
+                            CornerRadius="5"
+                            HeightRequest="200">
+                            <AbsoluteLayout>
+                                <Image
+                                    AbsoluteLayout.LayoutBounds="0,0,1,1"
+                                    AbsoluteLayout.LayoutFlags="All"
+                                    IsVisible="{Binding IsPassportImageTaked}"
+                                    Source="{Binding GuestCheckIn.PassportImage, Converter={StaticResource Base64StringToImageSourceConverter}}" />
+                                <Label
+                                    Margin="32,0,32,0"
+                                    AbsoluteLayout.LayoutBounds=".5,.5,AutoSize,AutoSize"
+                                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                                    FontSize="18"
+                                    HorizontalTextAlignment="Center"
+                                    IsVisible="{Binding IsPassportImageTaked, Converter={StaticResource ReverseBoolConverter}}"
+                                    Text="Please take a clear picture of your passport" />
+                            </AbsoluteLayout>
+                        </Frame>
+                    </StackLayout>
+                </ScrollView>
+                <Button
+                    BackgroundColor="{StaticResource colorAccent}"
+                    Command="{Binding ConfirmCheckInCommand}"
+                    HeightRequest="50"
+                    HorizontalOptions="FillAndExpand"
+                    IsVisible="{Binding IsUserValidated}"
+                    Text="{ex:Translate Key=button_confirm_check_in}"
+                    TextColor="White"
+                    VerticalOptions="End" />
+            </StackLayout>
+            <popup:CountrySelector
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                CountrySelectedCommand="{Binding NationalitySelectedCommand}"
+                IsVisible="{Binding NationalitySelectVisible, Mode=TwoWay}" />
+            <ScrollView
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                IsVisible="{Binding ShowScannedGuestProfile}"
+                Orientation="Vertical"
+                VerticalScrollBarVisibility="Never">
+                <StackLayout
+                    BackgroundColor="WhiteSmoke"
+                    HorizontalOptions="FillAndExpand"
+                    Spacing="0"
+                    VerticalOptions="FillAndExpand">
+                    <StackLayout
+                        BackgroundColor="{StaticResource Yellow}"
+                        HeightRequest="50"
+                        HorizontalOptions="FillAndExpand"
+                        IsVisible="{Binding GuestScanResult.IsVerified, Converter={StaticResource ReverseBoolConverter}}"
+                        Orientation="Horizontal"
+                        VerticalOptions="End">
+                        <Label
+                            Margin="10,0,0,0"
+                            FontAttributes="Bold"
+                            FontSize="16"
+                            HorizontalOptions="FillAndExpand"
+                            Text="Unverified Details"
+                            TextColor="White"
+                            VerticalOptions="Center" />
+                        <Image
+                            HeightRequest="40"
+                            HorizontalOptions="End"
+                            Source="{ex:ImageResource Key=ic_like.png}"
+                            VerticalOptions="Center"
+                            WidthRequest="40">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding UpVoteGuestCommand}" NumberOfTapsRequired="1" />
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Image
+                            HeightRequest="40"
+                            HorizontalOptions="End"
+                            Source="{ex:ImageResource Key=ic_dislike.png}"
+                            VerticalOptions="Center"
+                            WidthRequest="40">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding DownVoteGuestCommand}" NumberOfTapsRequired="1" />
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </StackLayout>
+                    <Frame
+                        Margin="16,10,16,0"
+                        Padding="0"
+                        BackgroundColor="{StaticResource colorAccent}"
+                        CornerRadius="5">
+                        <StackLayout Spacing="0">
+                            <StackLayout
+                                Padding="8,0,8,0"
+                                HeightRequest="45"
+                                Orientation="Horizontal">
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="18"
+                                    HorizontalOptions="FillAndExpand"
+                                    Text="Guest ID"
+                                    TextColor="White"
+                                    VerticalOptions="Center" />
+                                <Image
+                                    HeightRequest="40"
+                                    HorizontalOptions="End"
+                                    Source="main_logo_white.png"
+                                    WidthRequest="40" />
+                            </StackLayout>
+                            <c:Separator BackgroundColor="White" Orientation="Horizontal" />
+                            <Grid
+                                Padding="8"
+                                ColumnSpacing="10"
+                                RowSpacing="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="135" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="25" />
+                                    <RowDefinition Height="25" />
+                                    <RowDefinition Height="25" />
+                                    <RowDefinition Height="25" />
+                                    <RowDefinition Height="25" />
+                                </Grid.RowDefinitions>
+                                <AbsoluteLayout
+                                    Grid.Row="0"
+                                    Grid.RowSpan="5"
+                                    Grid.Column="0">
+                                    <abstractions:CircleImage
+                                        AbsoluteLayout.LayoutBounds="0,0,1,1"
+                                        AbsoluteLayout.LayoutFlags="All"
+                                        FillColor="Transparent"
+                                        Source="{Binding GuestScanResult.Image, Converter={StaticResource Base64StringToImageSourceConverter}}" />
+                                    <Image
+                                        AbsoluteLayout.LayoutBounds="1,1,AutoSize,AutoSize"
+                                        AbsoluteLayout.LayoutFlags="PositionProportional"
+                                        HeightRequest="35"
+                                        Source="{Binding GuestScanResult.CountryFlag}"
+                                        WidthRequest="35" />
+                                </AbsoluteLayout>
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    FontSize="14"
+                                    Text="{Binding GuestScanResult.GuestName}"
+                                    TextColor="White"
+                                    VerticalOptions="Center" />
+                                <Label
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    FontSize="14"
+                                    Text="{Binding GuestScanResult.PassportId}"
+                                    TextColor="White"
+                                    VerticalOptions="Center" />
+                                <Label
+                                    Grid.Row="2"
+                                    Grid.Column="1"
+                                    FontSize="14"
+                                    Text="{Binding GuestScanResult.Email}"
+                                    TextColor="White"
+                                    VerticalOptions="Center" />
+                                <Label
+                                    Grid.Row="3"
+                                    Grid.Column="1"
+                                    FontSize="14"
+                                    Text="{Binding GuestScanResult.Mobile}"
+                                    TextColor="White"
+                                    VerticalOptions="Center" />
+                                <Label
+                                    Grid.Row="4"
+                                    Grid.Column="1"
+                                    FontSize="14"
+                                    Text="{Binding GuestScanResult.TotalVisits, StringFormat='Total Visits: {0}'}"
+                                    TextColor="White"
+                                    VerticalOptions="Center" />
+                            </Grid>
+                        </StackLayout>
+                    </Frame>
+                    <Label
+                        Margin="0,8,0,0"
+                        FontSize="18"
+                        HorizontalOptions="Center"
+                        Text="Guest Passport" />
+                    <Frame
+                        Margin="16,8,16,0"
+                        Padding="0"
+                        BackgroundColor="White"
+                        CornerRadius="5">
+                        <Image
+                            HeightRequest="200"
+                            HorizontalOptions="FillAndExpand"
+                            Source="{Binding GuestScanResult.PassportImage, Converter={StaticResource Base64StringToImageSourceConverter}}"
+                            VerticalOptions="Center" />
+                    </Frame>
+                    <StackLayout
+                        Margin="0,8,0,0"
+                        HorizontalOptions="FillAndExpand"
+                        Orientation="Horizontal">
+                        <Button
+                            BackgroundColor="{StaticResource colorAccent}"
+                            BorderColor="{StaticResource colorAccentDark}"
+                            BorderWidth="2"
+                            Command="{Binding GoHomeCommand}"
+                            CornerRadius="16"
+                            FontSize="16"
+                            HeightRequest="40"
+                            HorizontalOptions="CenterAndExpand"
+                            Text="Go Home"
+                            TextColor="White"
+                            WidthRequest="110" />
+                        <Button
+                            BackgroundColor="{StaticResource colorPrimary}"
+                            BorderColor="{StaticResource colorPrimaryDark}"
+                            BorderWidth="2"
+                            Command="{Binding ContinueCheckInCommand}"
+                            CornerRadius="16"
+                            FontSize="16"
+                            HeightRequest="40"
+                            HorizontalOptions="CenterAndExpand"
+                            Text="Continue"
+                            TextColor="White"
+                            WidthRequest="110" />
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+            <AbsoluteLayout
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                IsVisible="{Binding VoteNoteVisible}">
+                <ContentView
+                    AbsoluteLayout.LayoutBounds="0,0,1,1"
+                    AbsoluteLayout.LayoutFlags="All"
+                    BackgroundColor="Black"
+                    Opacity=".4" />
+                <Frame
+                    Margin="0,0,0,50"
+                    Padding="0"
+                    AbsoluteLayout.LayoutBounds=".5,.5,.9,.9"
+                    AbsoluteLayout.LayoutFlags="All"
+                    CornerRadius="5"
+                    HasShadow="False">
+                    <StackLayout
+                        HorizontalOptions="FillAndExpand"
+                        Spacing="0"
+                        VerticalOptions="FillAndExpand">
+                        <StackLayout
+                            HeightRequest="45"
+                            HorizontalOptions="FillAndExpand"
+                            Orientation="Horizontal"
+                            VerticalOptions="Start">
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="18"
+                                HorizontalOptions="CenterAndExpand"
+                                Text="Down Vote Confirm"
+                                TextColor="{StaticResource colorAccent}"
+                                VerticalOptions="Center" />
+                            <Image
+                                HeightRequest="40"
+                                HorizontalOptions="End"
+                                Source="ic_close_grey_400.png"
+                                VerticalOptions="Center"
+                                WidthRequest="40">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding CloseVoteNoteCommand}" NumberOfTapsRequired="1" />
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </StackLayout>
+                        <c:Separator BackgroundColor="LightGray" Orientation="Horizontal" />
+                        <c:RoundedEditor
+                            Margin="8"
+                            AutoSize="TextChanges"
+                            FontSize="16"
+                            HorizontalOptions="FillAndExpand"
+                            Placeholder="Vote Note"
+                            Text="{Binding VoteNote}"
+                            TextColor="Black"
+                            VerticalOptions="FillAndExpand" />
+                        <Button
+                            Margin="8,0,8,8"
+                            BackgroundColor="{StaticResource colorPrimary}"
+                            Command="{Binding DownVoteGuestConfirmCommand}"
+                            CornerRadius="0"
+                            FontSize="16"
+                            HeightRequest="50"
+                            HorizontalOptions="FillAndExpand"
+                            Text="Confirm Report"
+                            TextColor="White"
+                            VerticalOptions="End" />
+                    </StackLayout>
+                </Frame>
+            </AbsoluteLayout>
+            <popup:LoadingScreenDimmed
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                IsVisible="{Binding IsBusy}" />
+            <popup:TermsAndConditions
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                IsVisible="{Binding TermsVisible, Mode=TwoWay}" />
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

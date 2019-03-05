@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="KamooniHost.Views.HostVerificationPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:b="clr-namespace:Xamarin.Forms.Behaviors"
+    xmlns:c="clr-namespace:Xamarin.Forms.Controls"
+    xmlns:ex="clr-namespace:Xamarin.Forms.Extensions"
+    xmlns:popup="clr-namespace:KamooniHost.Views.Popup"
+    x:Name="this"
+    Title="Final Steps">
+    <ContentPage.Content>
+        <AbsoluteLayout
+            BackgroundColor="White"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+            <StackLayout
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                Spacing="0">
+                <Label
+                    Margin="16,8,16,0"
+                    HorizontalTextAlignment="Center"
+                    Text="{ex:Translate Key=content_verification_description}" />
+                <Label
+                    Margin="16,10,0,0"
+                    FontAttributes="Bold"
+                    FontSize="16"
+                    Text="{ex:Translate Key=subheading_type}"
+                    TextColor="{StaticResource colorPrimary}" />
+                <ScrollView HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                    <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
+                        <Button
+                            Margin="0,8,0,0"
+                            BackgroundColor="{Binding AccommodationButton.BackgroundColor}"
+                            BorderColor="{Binding AccommodationButton.BorderColor}"
+                            BorderRadius="10"
+                            BorderWidth="1"
+                            Command="{Binding AccommodationSelectedCommand}"
+                            HorizontalOptions="FillAndExpand"
+                            Text="{ex:Translate Key=button_accommodation}"
+                            TextColor="{Binding AccommodationButton.TextColor}" />
+                        <Button
+                            Margin="4,8,0,0"
+                            BackgroundColor="{Binding ActivityButton.BackgroundColor}"
+                            BorderColor="{Binding ActivityButton.BorderColor}"
+                            BorderRadius="10"
+                            BorderWidth="1"
+                            Command="{Binding ActivitySelectedCommand}"
+                            HorizontalOptions="FillAndExpand"
+                            Text="{ex:Translate Key=button_activity}"
+                            TextColor="{Binding ActivityButton.TextColor}" />
+                        <Button
+                            Margin="4,8,0,0"
+                            BackgroundColor="{Binding TransportButton.BackgroundColor}"
+                            BorderColor="{Binding TransportButton.BorderColor}"
+                            BorderRadius="10"
+                            BorderWidth="1"
+                            Command="{Binding TransportSelectedCommand}"
+                            HorizontalOptions="FillAndExpand"
+                            Text="{ex:Translate Key=button_transport}"
+                            TextColor="{Binding TransportButton.TextColor}" />
+                    </StackLayout>
+                </ScrollView>
+                <Label
+                    Margin="16,10,0,0"
+                    FontAttributes="Bold"
+                    FontSize="16"
+                    Text="{ex:Translate Key=subheading_mobile}"
+                    TextColor="{StaticResource colorPrimary}" />
+                <c:RoundedEntry
+                    x:Name="MobileEntry"
+                    Margin="32,4,32,0"
+                    HorizontalOptions="FillAndExpand"
+                    Keyboard="Keyboard.Telephone"
+                    Placeholder="Mobile Number"
+                    ReturnType="Next">
+                    <c:RoundedEntry.Behaviors>
+                        <b:EventToCommandBehavior
+                            Command="{Binding MobileUnfocusedCommand}"
+                            CommandParameter="{Binding ., Source={x:Reference MobileEntry}}"
+                            EventName="Unfocused" />
+                    </c:RoundedEntry.Behaviors>
+                </c:RoundedEntry>
+                <StackLayout
+                    Margin="16,10,0,0"
+                    HorizontalOptions="FillAndExpand"
+                    Orientation="Horizontal"
+                    Spacing="0">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="16"
+                        Text="{ex:Translate Key=subheading_bank}"
+                        TextColor="{StaticResource colorPrimary}" />
+                    <Switch Margin="8,0,0,0">
+                        <Switch.Behaviors>
+                            <b:EventToCommandBehavior Command="{Binding BankLaterToggleCommand}" EventName="Toggled" />
+                        </Switch.Behaviors>
+                    </Switch>
+                    <Label Text="Do this later" VerticalOptions="Center" />
+                </StackLayout>
+                <StackLayout
+                    Margin="32,4,32,0"
+                    HorizontalOptions="FillAndExpand"
+                    Orientation="Horizontal">
+                    <c:RoundedEntry
+                        x:Name="BankNumberEntry"
+                        HorizontalOptions="FillAndExpand"
+                        Keyboard="Keyboard.Numeric"
+                        Placeholder="Account Number"
+                        ReturnType="Next">
+                        <c:RoundedEntry.Behaviors>
+                            <b:EventToCommandBehavior
+                                Command="{Binding BankNumberUnfocusedCommand}"
+                                CommandParameter="{Binding ., Source={x:Reference BankNumberEntry}}"
+                                EventName="Unfocused" />
+                        </c:RoundedEntry.Behaviors>
+                    </c:RoundedEntry>
+                    <c:RoundedEntry
+                        x:Name="BankCodeEntry"
+                        HorizontalOptions="FillAndExpand"
+                        Keyboard="Keyboard.Numeric"
+                        Placeholder="Branch Code"
+                        ReturnType="Done">
+                        <c:RoundedEntry.Behaviors>
+                            <b:EventToCommandBehavior
+                                Command="{Binding BankCodeUnfocusedCommand}"
+                                CommandParameter="{Binding ., Source={x:Reference BankCodeEntry}}"
+                                EventName="Unfocused" />
+                        </c:RoundedEntry.Behaviors>
+                    </c:RoundedEntry>
+                </StackLayout>
+                <StackLayout
+                    Margin="16,10,0,0"
+                    HorizontalOptions="FillAndExpand"
+                    Orientation="Horizontal"
+                    Spacing="0">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="16"
+                        Text="{ex:Translate Key=subheading_logo}"
+                        TextColor="{StaticResource colorPrimary}" />
+                    <Switch Margin="8,0,0,0">
+                        <Switch.Behaviors>
+                            <b:EventToCommandBehavior Command="{Binding LogoLaterToggleCommand}" EventName="Toggled" />
+                        </Switch.Behaviors>
+                    </Switch>
+                    <Label Text="Do this later" VerticalOptions="Center" />
+                </StackLayout>
+                <StackLayout
+                    HorizontalOptions="FillAndExpand"
+                    Orientation="Horizontal"
+                    VerticalOptions="CenterAndExpand">
+                    <Button
+                        Margin="16,16,0,0"
+                        BackgroundColor="{StaticResource colorAccent}"
+                        Command="{Binding SelectLogoCommand}"
+                        CornerRadius="5"
+                        FontSize="18"
+                        Text="{ex:Translate Key=button_select}"
+                        TextColor="White" />
+                </StackLayout>
+                <!--<Label
+                    x:Name="ValidationError"
+                    Margin="0, 10, 0, 0"
+                    Text="{Binding ValidationError}"
+                    TextColor="Red"
+                    HorizontalOptions="Center" />-->
+                <AbsoluteLayout
+                    HeightRequest="55"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="EndAndExpand">
+                    <Button
+                        AbsoluteLayout.LayoutBounds="0,0,1,1"
+                        AbsoluteLayout.LayoutFlags="All"
+                        BackgroundColor="{StaticResource colorAccent}"
+                        Command="{Binding SubmitCommand}"
+                        Text="{ex:Translate Key=button_submit}"
+                        TextColor="White" />
+                </AbsoluteLayout>
+            </StackLayout>
+            <popup:LoadingScreen
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                IsVisible="{Binding IsBusy}" />
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

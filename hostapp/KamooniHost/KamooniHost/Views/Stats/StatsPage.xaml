@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="KamooniHost.Views.StatsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:charts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
+    xmlns:ex="clr-namespace:Xamarin.Forms.Extensions"
+    xmlns:popup="clr-namespace:KamooniHost.Views.Popup"
+    Title="Revenue - This Month">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <StackLayout
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                BackgroundColor="White">
+                <StackLayout
+                    Margin="20,20,20,10"
+                    HorizontalOptions="Center"
+                    Orientation="Horizontal"
+                    VerticalOptions="Start">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        Text="{ex:Translate Key=subheading_total_2}"
+                        TextColor="{StaticResource colorPrimary}" />
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        Text="{Binding Revenue.Total, StringFormat='R{0:###,###,###,##0.##}'}"
+                        TextColor="DarkGray" />
+                </StackLayout>
+                <charts:ChartView
+                    Chart="{Binding RevenuewDonutChart}"
+                    HeightRequest="220"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="Start" />
+            </StackLayout>
+            <popup:LoadingScreen
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                IsVisible="{Binding IsBusy}" />
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

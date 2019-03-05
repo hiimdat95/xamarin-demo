@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!-- Primary Theme -->
+  <color name="launcher_background">#FCC84C</color>
+  <color name="colorPrimary">#FCC84C</color>
+  <color name="colorPrimaryDark">#efba3e</color>
+  <color name="colorAccent">#73C33A</color>
+  <color name="colorAccentDark">#67b530</color>
+
+  <color name="sunflower">#FCC84C</color>
+  
+  <!-- Native -->
+  <color name="black">#000000</color>
+  <color name="white">#FFFFFF</color>
+  <color name="grey">#D8D8D8</color>
+
+  <!-- EDIT TEXT BORDER -->
+  <color name="EditText_border_red">#FFB70000</color>
+  <color name="EditText_border_green">#FF669900</color>
+  
+</resources>

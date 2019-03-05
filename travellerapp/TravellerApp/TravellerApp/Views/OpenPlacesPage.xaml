@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="TravellerApp.Views.OpenPlacesPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Xamarin.Forms.Controls"
+    xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:u="clr-namespace:TravellerApp.Controls"
+    Title="Place">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Clicked="SubmitReview_Clicked" Text="Publish" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <AbsoluteLayout
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                BackgroundColor="WhiteSmoke">
+                <StackLayout>
+                    <Frame
+                        Padding="0"
+                        BackgroundColor="White"
+                        BorderColor="#DDDDDD"
+                        CornerRadius="0"
+                        HasShadow="False" />
+                    <Grid Padding="5" RowSpacing="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="120" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="5" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="10" />
+                            <RowDefinition Height="50" />
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="100" />
+                        </Grid.RowDefinitions>
+                        <forms:CachedImage
+                            x:Name="img_header_place"
+                            Grid.Row="0"
+                            Grid.RowSpan="4"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="3"
+                            Aspect="Fill"
+                            HeightRequest="200"
+                            HorizontalOptions="FillAndExpand"
+                            InputTransparent="True"
+                            VerticalOptions="StartAndExpand" />
+                        <StackLayout
+                            Grid.Row="0"
+                            Grid.RowSpan="2"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="3"
+                            Padding="0"
+                            BackgroundColor="Black"
+                            Opacity=".47" />
+                        <Label
+                            x:Name="name_header_place"
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            Margin="10,0,0,0"
+                            FontSize="Large"
+                            HorizontalOptions="FillAndExpand"
+                            LineBreakMode="TailTruncation"
+                            TextColor="#FFFFFF"
+                            VerticalOptions="FillAndExpand" />
+                    </Grid>
+                </StackLayout>
+                <StackLayout Margin="0,180,0,0" Padding="5,0,5,0">
+                    <Frame
+                        Padding="0"
+                        BackgroundColor="White"
+                        BorderColor="#DDDDDD"
+                        CornerRadius="0"
+                        HasShadow="False">
+                        <Grid Padding="5" RowSpacing="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50" />
+                                <ColumnDefinition Width="30" />
+                                <ColumnDefinition Width="30" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="120" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="20" />
+                                <RowDefinition Height="20" />
+                                <RowDefinition Height="20" />
+                                <RowDefinition Height="20" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="5" />
+                            </Grid.RowDefinitions>
+                            <forms:CachedImage
+                                x:Name="image_medium_first"
+                                Grid.Row="0"
+                                Grid.RowSpan="4"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="2"
+                                HeightRequest="120"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="CenterAndExpand" />
+                            <Label
+                                x:Name="traveller_partner_id_first"
+                                Grid.Row="0"
+                                Grid.Column="2"
+                                Grid.ColumnSpan="3"
+                                FontSize="16"
+                                LineBreakMode="TailTruncation"
+                                TextColor="Black" />
+                            <Label
+                                x:Name="dateDisplay_first"
+                                Grid.Row="1"
+                                Grid.Column="2"
+                                Grid.ColumnSpan="3"
+                                FontSize="12"
+                                LineBreakMode="TailTruncation"
+                                TextColor="#949494" />
+                            <Label
+                                x:Name="total_visits_first"
+                                Grid.Row="2"
+                                Grid.Column="2"
+                                Grid.ColumnSpan="3"
+                                FontSize="10"
+                                LineBreakMode="TailTruncation"
+                                TextColor="#949494" />
+                            <StackLayout
+                                Grid.Row="3"
+                                Grid.Column="1"
+                                Grid.ColumnSpan="2">
+                                <Button
+                                    Padding="1"
+                                    BackgroundColor="{StaticResource colorPrimaryDark}"
+                                    FontSize="Small"
+                                    Text="Founder"
+                                    TextColor="#FFFFFF"
+                                    HeightRequest="25"
+                                    />
+                            </StackLayout>
+                            <StackLayout
+                                Grid.Row="0"
+                                Grid.RowSpan="4"
+                                Grid.Column="4">
+                                <Image Source="Pins_Google_Maps" />
+                                <Label
+                                    Margin="20,0,0,0"
+                                    Text="Open in maps"
+                                    TextColor="Gray"
+                                    FontSize="13"   
+                                />
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="Pins_Google_Maps_Tapped" />
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                            <Label
+                                x:Name="text_first"
+                                Grid.Row="5"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="5"
+                                FontSize="16"
+                                HorizontalOptions="FillAndExpand"
+                                LineBreakMode="TailTruncation"
+                                TextColor="Black" />
+                            <Editor
+                                x:Name="txtContent"
+                                Grid.Row="8"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="5"
+                                HeightRequest="200"
+                                HorizontalOptions="FillAndExpand"
+                                Placeholder="What do you think?"
+                                PlaceholderColor="LightGray"
+                                VerticalOptions="FillAndExpand" />
+                            <controls:RatingView
+                                x:Name="rating"
+                                Grid.Row="8"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="5"
+                                Margin="0,0,5,5"
+                                HorizontalOptions="Start"
+                                MaxStars="5"
+                                Rating="5"
+                                StarSize="40"
+                                VerticalOptions="End" />
+                            <Image
+                                Grid.Row="8"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="5"
+                                Margin="0,0,5,5"
+                                HeightRequest="30"
+                                HorizontalOptions="End"
+                                Source="icon_camera"
+                                VerticalOptions="End"
+                                WidthRequest="30">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnCameraTapped" />
+                                </Image.GestureRecognizers>
+                            </Image>
+                            <RelativeLayout  
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand"
+                                Grid.Row="9"  
+                                Grid.Column="0"
+                                Grid.ColumnSpan="5">
+
+                                <controls:ImageWithLongPressGesture x:Name="image"/>
+
+                                <Image
+                                    x:Name="imgDelete"
+                                    HeightRequest="40"
+                                    IsVisible="false"
+                                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                                      Property=Height,
+                                                                                      Factor=0.88,
+                                                                                      Constant=0}"
+                                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                                      Property=Height,
+                                                                                      Factor=0,
+                                                                                      Constant=0}"
+                                    Source="icon_delete.png"
+                                    WidthRequest="40">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnDeleteImageTapped" />
+                                    </Image.GestureRecognizers>
+                                </Image>
+                            </RelativeLayout>
+                        </Grid>
+                    </Frame>
+                </StackLayout>
+                <StackLayout Margin="0,520,0,0" Padding="5,0,5,0">
+                    <controls:RepeaterView
+                        x:Name="OpenPlaces"
+                        Margin="5,0,5,0"
+                        HorizontalOptions="FillAndExpand"
+                        Spacing="5">
+                        <controls:RepeaterView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame
+                                    Padding="0"
+                                    BackgroundColor="White"
+                                    BorderColor="#DDDDDD"
+                                    CornerRadius="0"
+                                    HasShadow="False">
+                                    <Grid Padding="5" RowSpacing="2">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="50" />
+                                            <ColumnDefinition Width="30" />
+                                            <ColumnDefinition Width="30" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="120" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="20" />
+                                            <RowDefinition Height="20" />
+                                            <RowDefinition Height="20" />
+                                            <RowDefinition Height="20" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="5" />
+                                        </Grid.RowDefinitions>
+                                        <forms:CachedImage
+                                            Grid.Row="0"
+                                            Grid.RowSpan="4"
+                                            Grid.Column="0"
+                                            Grid.ColumnSpan="2"
+                                            HeightRequest="120"
+                                            HorizontalOptions="FillAndExpand"
+                                            Source="{Binding image_medium, Converter={StaticResource Base64StringToImageSourceConverter}}"
+                                            VerticalOptions="CenterAndExpand" />
+                                        <Label
+                                            Grid.Row="0"
+                                            Grid.Column="2"
+                                            Grid.ColumnSpan="3"
+                                            FontSize="16"
+                                            LineBreakMode="TailTruncation"
+                                            Text="{Binding traveller_partner_id}"
+                                            TextColor="Black" />
+                                        <Label
+                                            Grid.Row="1"
+                                            Grid.Column="2"
+                                            Grid.ColumnSpan="3"
+                                            FontSize="12"
+                                            LineBreakMode="TailTruncation"
+                                            Text="{Binding dateDisplay}"
+                                            TextColor="#949494" />
+                                        <Label
+                                            Grid.Row="2"
+                                            Grid.Column="2"
+                                            Grid.ColumnSpan="3"
+                                            FontSize="10"
+                                            LineBreakMode="TailTruncation"
+                                            Text="{Binding total_visits, StringFormat='Visited {0} places'}"
+                                            TextColor="#949494" />
+                                        <!--<StackLayout
+                                            Grid.Row="3"
+                                            Grid.Column="1"
+                                            Grid.ColumnSpan="2">
+                                            <u:CustomRatingBar
+                                                x:Name="customRatingBar"
+                                                HorizontalOptions="Center"
+                                                IsReadonly="True"
+                                                IsSmallStyle="True"
+                                                MaxStars="5"
+                                                Rating="{Binding rating}"
+                                                RatingChanged="OnRatingChanged" />
+                                        -->
+                                        <!--<Button
+                                                Padding="1"
+                                                BackgroundColor="{StaticResource colorPrimaryDark}"
+                                                FontSize="Small"
+                                                Text="Founder"
+                                                TextColor="#FFFFFF" />-->
+                                        <!--
+                                        </StackLayout>-->
+                                        <StackLayout
+                                            Grid.Row="1"
+                                            Grid.RowSpan="4"
+                                            Grid.Column="4">
+                                            <!--<Image Source="Pins_Google_Maps" />
+                                            <Label
+                                                Margin="20,0,0,0"
+                                                Text="Open in maps"
+                                                TextColor="Gray" />-->
+                                            <u:CustomRatingBar
+                                                x:Name="customRatingBar"
+                                                HorizontalOptions="Center"
+                                                IsReadonly="True"
+                                                IsSmallStyle="True"
+                                                MaxStars="5"
+                                                Rating="{Binding rating}"
+                                                RatingChanged="OnRatingChanged" />
+                                            <StackLayout.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="Pins_Google_Maps_Tapped" />
+                                            </StackLayout.GestureRecognizers>
+                                        </StackLayout>
+                                        <Label
+                                            x:Name="textMaxLine"
+                                            Grid.Row="5"
+                                            Grid.Column="0"
+                                            Grid.ColumnSpan="5"
+                                            FontSize="16"
+                                            HorizontalOptions="FillAndExpand"
+                                            LineBreakMode="TailTruncation"
+                                            Text="{Binding text}"
+                                            TextColor="Black" />
+                                        <!--<Button
+                                            x:Name="btnReadMore"
+                                            Grid.Row="6"
+                                            Grid.Column="1"
+                                            Padding="0"
+                                            BackgroundColor="White"
+                                            Clicked="ReadMoreClick"
+                                            FontSize="10"
+                                            HorizontalOptions="Start"
+                                            Text="Read more"
+                                            TextColor="Gray" />-->
+                                        <!--<Image
+                                        Grid.Row="7"
+                                        Grid.Column="0"
+                                        Grid.ColumnSpan="3"
+                                        HeightRequest="200"
+                                        IsVisible="{Binding visibleImage}"
+                                        Source="{Binding image_url}" />-->
+                                        <!--<Button
+                                        Grid.Row="8"
+                                        Grid.Column="0"
+                                        Grid.ColumnSpan="3"
+                                        Padding="0"
+                                        BackgroundColor="white"
+                                        FontSize="16"
+                                        Text="Open in maps"
+                                        TextColor="green"
+                                        VerticalOptions="StartAndExpand" />-->
+                                        <!--<Button
+                                        Grid.Row="9"
+                                        Grid.Column="0"
+                                        Grid.ColumnSpan="3"
+                                        Padding="0"
+                                        BackgroundColor="white"
+                                        FontSize="16"
+                                        Text="Write Post"
+                                        TextColor="green"
+                                        VerticalOptions="EndAndExpand" />-->
+                                    </Grid>
+                                </Frame>
+                            </DataTemplate>
+                        </controls:RepeaterView.ItemTemplate>
+                    </controls:RepeaterView>
+                </StackLayout>
+            </AbsoluteLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

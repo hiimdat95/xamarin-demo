@@ -1,0 +1,609 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<popup:PopupPage
+    x:Class="TravellerApp.Views.PopupPage.RecommendedPlacesPopup"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:carousel="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
+    xmlns:controls="clr-namespace:Xamarin.Forms.Controls"
+    xmlns:controlsPopup="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+    xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    CloseWhenBackgroundIsClicked="True">
+    <ContentPage.Content>
+        <ContentView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <AbsoluteLayout>
+                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <!--<RowDefinition Height="60" />
+                            <RowDefinition Height="60" />
+                            <RowDefinition Height="60" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="60" />-->
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="50" />
+                            <RowDefinition Height="50" />
+                            <RowDefinition Height="5*" />
+                        </Grid.RowDefinitions>
+                        <Frame
+                            Grid.Row="2"
+                            Grid.RowSpan="2"
+                            Margin="40,0,40,0"
+                            BackgroundColor="White"
+                            CornerRadius="10"
+                            HasShadow="False">
+                            <StackLayout Margin="0,50,0,0">
+                                <Label
+                                    HorizontalOptions="Center"
+                                    Text="You are currently at"
+                                    TextColor="Gray" />
+                                <Label
+                                    HorizontalOptions="Center"
+                                    Text="Buccaneers Lodge and Backpackers"
+                                    TextColor="Black" />
+
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Button
+                                        BackgroundColor="Red"
+                                        BorderRadius="10"
+                                        Clicked="Button_Clicked"
+                                        HeightRequest="40"
+                                        Text="View Bill"
+                                        TextColor="White" />
+                                    <Button
+                                        Grid.Column="1"
+                                        BackgroundColor="Yellow"
+                                        BorderRadius="10"
+                                        Clicked="REVIEW_POPUP_CLICK"
+                                        HeightRequest="40"
+                                        Text="Review"
+                                        TextColor="White" />
+                                </Grid>
+
+                                <Label
+                                    Margin="0,50,0,50"
+                                    HorizontalOptions="Center"
+                                    Text="Things to do here"
+                                    TextColor="Gray">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="ThingsToDoTapped" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+
+                                <ScrollView HeightRequest="160" Orientation="Horizontal">
+                                    <controls:DynamicStackLayout
+                                        x:Name="listThings"
+                                        Orientation="Horizontal"
+                                        Spacing="12">
+                                        <controls:DynamicStackLayout.ItemTemplate>
+                                            <DataTemplate>
+                                                <Frame
+                                                    Grid.Row="1"
+                                                    Padding="0"
+                                                    CornerRadius="8"
+                                                    HasShadow="true"
+                                                    IsClippedToBounds="True"
+                                                    OutlineColor="Gray"
+                                                    VerticalOptions="FillAndExpand"
+                                                    WidthRequest="320">
+                                                    <Grid>
+                                                        <forms:CachedImage Aspect="AspectFill" Source="{Binding image_url}" />
+                                                        <StackLayout
+                                                            Margin="8,0,0,8"
+                                                            HorizontalOptions="Start"
+                                                            VerticalOptions="End">
+                                                            <Label
+                                                                FontSize="13"
+                                                                Text="{Binding name}"
+                                                                TextColor="White" />
+                                                            <Label
+                                                                FontSize="10"
+                                                                Text="{Binding Display_host_info}"
+                                                                TextColor="White"
+                                                                VerticalTextAlignment="Start" />
+                                                        </StackLayout>
+                                                    </Grid>
+                                                </Frame>
+                                            </DataTemplate>
+                                        </controls:DynamicStackLayout.ItemTemplate>
+                                    </controls:DynamicStackLayout>
+                                </ScrollView>
+                            </StackLayout>
+                        </Frame>
+                        <StackLayout
+                            Grid.Row="1"
+                            Grid.RowSpan="2"
+                            HorizontalOptions="Center"
+                            Orientation="Horizontal"
+                            VerticalOptions="Center">
+
+                            <AbsoluteLayout>
+
+                                <controlsPopup:CircleImage
+                                    x:Name="ProfilePicture"
+                                    Aspect="AspectFit"
+                                    BorderColor="White"
+                                    BorderThickness="1"
+                                    HeightRequest="90"
+                                    Source="account_circle_gray"
+                                    WidthRequest="90" />
+
+                                <controlsPopup:CircleImage
+                                    x:Name="FlagImage"
+                                    AbsoluteLayout.LayoutBounds="1, 0, 32, 32"
+                                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                                    Aspect="AspectFit" />
+                            </AbsoluteLayout>
+                        </StackLayout>
+                        <ImageButton
+                            Grid.Row="1"
+                            Margin="0,0,40,0"
+                            BackgroundColor="Transparent"
+                            Clicked="ImageButton_Clicked"
+                            HeightRequest="20"
+                            HorizontalOptions="End"
+                            Source="icon_delete.png"
+                            WidthRequest="20" />
+                    </Grid>
+                </StackLayout>
+                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <AbsoluteLayout
+                        x:Name="viewBillPopup"
+                        AbsoluteLayout.LayoutBounds="0,0,1,1"
+                        AbsoluteLayout.LayoutFlags="All"
+                        IsVisible="False">
+                        <ContentView
+                            AbsoluteLayout.LayoutBounds="0,0,1,1"
+                            AbsoluteLayout.LayoutFlags="All"
+                            BackgroundColor="Black"
+                            Opacity=".6" />
+                        <Frame
+                            Padding="0"
+                            AbsoluteLayout.LayoutBounds=".5,.5,.9,.9"
+                            AbsoluteLayout.LayoutFlags="All"
+                            BackgroundColor="White"
+                            BorderColor="{StaticResource sunflower}"
+                            CornerRadius="10"
+                            HasShadow="False">
+                            <StackLayout Spacing="0">
+                                <StackLayout
+                                    HeightRequest="40"
+                                    HorizontalOptions="FillAndExpand"
+                                    Orientation="Horizontal"
+                                    Spacing="0"
+                                    VerticalOptions="Start">
+                                    <Label
+                                        Margin="30,0,0,0"
+                                        FontSize="20"
+                                        HorizontalOptions="FillAndExpand"
+                                        HorizontalTextAlignment="Center"
+                                        Text="Your Bill"
+                                        TextColor="DimGray"
+                                        VerticalOptions="Center" />
+                                    <Image
+                                        HeightRequest="30"
+                                        HorizontalOptions="End"
+                                        Opacity=".8"
+                                        Source="ic_close_grey_400"
+                                        VerticalOptions="Center"
+                                        WidthRequest="30">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="ViewBillClose_Tapped" />
+                                        </Image.GestureRecognizers>
+                                    </Image>
+                                </StackLayout>
+                                <ScrollView
+                                    HorizontalOptions="FillAndExpand"
+                                    Orientation="Vertical"
+                                    VerticalOptions="FillAndExpand"
+                                    VerticalScrollBarVisibility="Never">
+                                    <controls:RepeaterView
+                                        x:Name="GroupedBillLinesView"
+                                        Padding="10,0,10,0"
+                                        HorizontalOptions="FillAndExpand"
+                                        Spacing="10">
+                                        <controls:RepeaterView.ItemTemplate>
+                                            <DataTemplate>
+                                                <Grid HorizontalOptions="FillAndExpand">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*" />
+                                                        <ColumnDefinition Width="100" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                    </Grid.RowDefinitions>
+                                                    <Label
+                                                        Grid.Row="0"
+                                                        Grid.Column="0"
+                                                        Margin="8,0,0,0"
+                                                        FontSize="18"
+                                                        Text="{Binding CategId}"
+                                                        TextColor="{StaticResource sunflower}"
+                                                        VerticalOptions="Center" />
+                                                    <Label
+                                                        Grid.Row="0"
+                                                        Grid.Column="1"
+                                                        Margin="0,0,8,0"
+                                                        FontSize="16"
+                                                        HorizontalOptions="End"
+                                                        Text="{Binding Total, StringFormat='R{0:N2}'}"
+                                                        TextColor="{StaticResource sunflower}"
+                                                        VerticalOptions="Center" />
+                                                    <controls:RepeaterView
+                                                        Grid.Row="1"
+                                                        Grid.Column="0"
+                                                        Grid.ColumnSpan="2"
+                                                        HorizontalOptions="FillAndExpand"
+                                                        ItemsSource="{Binding BillLines}"
+                                                        Spacing="5">
+                                                        <controls:RepeaterView.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <controls:ExpandableView
+                                                                    BorderColor="LightGray"
+                                                                    ContentHeight="100"
+                                                                    CornerRadius="10"
+                                                                    HasShadow="False"
+                                                                    HeaderHeight="40"
+                                                                    HorizontalOptions="FillAndExpand">
+                                                                    <controls:ExpandableView.HeaderTemplate>
+                                                                        <DataTemplate>
+                                                                            <Grid
+                                                                                Padding="10,0,10,0"
+                                                                                HorizontalOptions="FillAndExpand"
+                                                                                VerticalOptions="Center">
+                                                                                <Grid.ColumnDefinitions>
+                                                                                    <ColumnDefinition Width="*" />
+                                                                                    <ColumnDefinition Width="65" />
+                                                                                    <ColumnDefinition Width="35" />
+                                                                                    <ColumnDefinition Width="100" />
+                                                                                </Grid.ColumnDefinitions>
+                                                                                <Grid.RowDefinitions>
+                                                                                    <RowDefinition Height="40" />
+                                                                                </Grid.RowDefinitions>
+                                                                                <Label
+                                                                                    Grid.Row="0"
+                                                                                    Grid.Column="0"
+                                                                                    Grid.ColumnSpan="3"
+                                                                                    FontSize="15"
+                                                                                    Text="{Binding ProductId}"
+                                                                                    TextColor="{StaticResource Color_SoftBlue}"
+                                                                                    VerticalOptions="Center" />
+                                                                                <!-- <Label
+                                                                                Grid.Row="0"
+                                                                                Grid.Column="1"
+                                                                                FontSize="14"
+                                                                                HorizontalOptions="End"
+                                                                                Text="{Binding Amount}"
+                                                                                TextColor="{StaticResource Color_SoftBlue}"
+                                                                                VerticalOptions="Center" />
+                                                                            <Label
+                                                                                Grid.Row="0"
+                                                                                Grid.Column="2"
+                                                                                FontSize="14"
+                                                                                HorizontalOptions="End"
+                                                                                Text="{Binding Unit}"
+                                                                                TextColor="{StaticResource Color_SoftBlue}"
+                                                                                VerticalOptions="Center" />-->
+                                                                                <Label
+                                                                                    Grid.Row="0"
+                                                                                    Grid.Column="3"
+                                                                                    FontSize="14"
+                                                                                    HorizontalOptions="End"
+                                                                                    Text="{Binding Total, StringFormat='R{0:N2}'}"
+                                                                                    TextColor="{StaticResource Color_SoftBlue}"
+                                                                                    VerticalOptions="Center" />
+                                                                            </Grid>
+                                                                        </DataTemplate>
+                                                                    </controls:ExpandableView.HeaderTemplate>
+                                                                    <controls:ExpandableView.ContentTemplate>
+                                                                        <DataTemplate>
+                                                                            <Grid
+                                                                                Padding="10,0,10,0"
+                                                                                HorizontalOptions="FillAndExpand"
+                                                                                VerticalOptions="Center">
+                                                                                <Grid.ColumnDefinitions>
+                                                                                    <ColumnDefinition Width="*" />
+                                                                                    <ColumnDefinition Width="*" />
+                                                                                </Grid.ColumnDefinitions>
+                                                                                <Grid.RowDefinitions>
+                                                                                    <RowDefinition Height="20" />
+                                                                                    <RowDefinition Height="20" />
+                                                                                    <RowDefinition Height="20" />
+                                                                                    <RowDefinition Height="20" />
+                                                                                </Grid.RowDefinitions>
+
+                                                                                <Label
+                                                                                    Grid.Row="0"
+                                                                                    Grid.Column="0"
+                                                                                    FontSize="14"
+                                                                                    HorizontalTextAlignment="Start"
+                                                                                    Text="Unit(s)"
+                                                                                    TextColor="Gray"
+                                                                                    VerticalOptions="Center" />
+                                                                                <Label
+                                                                                    Grid.Row="0"
+                                                                                    Grid.Column="1"
+                                                                                    FontSize="14"
+                                                                                    HorizontalTextAlignment="End"
+                                                                                    Text="{Binding Unit, StringFormat='{0:N2}'}"
+                                                                                    TextColor="Gray"
+                                                                                    VerticalOptions="Center" />
+                                                                                <Label
+                                                                                    Grid.Row="1"
+                                                                                    Grid.Column="0"
+                                                                                    FontSize="14"
+                                                                                    HorizontalTextAlignment="Start"
+                                                                                    Text="Price"
+                                                                                    TextColor="Gray"
+                                                                                    VerticalOptions="Center" />
+                                                                                <Label
+                                                                                    Grid.Row="1"
+                                                                                    Grid.Column="1"
+                                                                                    FontSize="14"
+                                                                                    HorizontalTextAlignment="End"
+                                                                                    Text="{Binding Amount, StringFormat='R{0:N2}'}"
+                                                                                    TextColor="Gray"
+                                                                                    VerticalOptions="Center" />
+                                                                                <Label
+                                                                                    Grid.Row="2"
+                                                                                    Grid.Column="0"
+                                                                                    FontSize="14"
+                                                                                    HorizontalTextAlignment="Start"
+                                                                                    Text="Discount"
+                                                                                    TextColor="Gray"
+                                                                                    VerticalOptions="Center" />
+                                                                                <Label
+                                                                                    Grid.Row="2"
+                                                                                    Grid.Column="1"
+                                                                                    FontSize="14"
+                                                                                    HorizontalTextAlignment="End"
+                                                                                    Text="{Binding DiscountAmount,, StringFormat='R{N2}'}"
+                                                                                    TextColor="Gray"
+                                                                                    VerticalOptions="Center" />
+                                                                                <Label
+                                                                                    Grid.Row="3"
+                                                                                    Grid.Column="0"
+                                                                                    FontSize="14"
+                                                                                    HorizontalTextAlignment="Start"
+                                                                                    Text="Date &amp; Time"
+                                                                                    TextColor="Gray"
+                                                                                    VerticalOptions="Center" />
+                                                                                <Label
+                                                                                    Grid.Row="3"
+                                                                                    Grid.Column="1"
+                                                                                    FontSize="14"
+                                                                                    HorizontalTextAlignment="End"
+                                                                                    Text="{Binding DateTimeCreate}"
+                                                                                    TextColor="Gray"
+                                                                                    VerticalOptions="Center" />
+
+
+                                                                            </Grid>
+                                                                        </DataTemplate>
+                                                                    </controls:ExpandableView.ContentTemplate>
+                                                                </controls:ExpandableView>
+                                                            </DataTemplate>
+                                                        </controls:RepeaterView.ItemTemplate>
+                                                    </controls:RepeaterView>
+                                                </Grid>
+                                            </DataTemplate>
+                                        </controls:RepeaterView.ItemTemplate>
+                                    </controls:RepeaterView>
+                                </ScrollView>
+                                <BoxView
+                                    HeightRequest="1"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="End"
+                                    Color="{StaticResource sunflower}" />
+                                <Grid
+                                    Padding="20,5,20,5"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="End">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="120" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        FontSize="18"
+                                        Text="Total"
+                                        TextColor="DimGray" />
+                                    <Label
+                                        x:Name="BillResultTotal"
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        FontSize="18"
+                                        HorizontalOptions="End"
+                                        TextColor="DimGray" />
+                                    <Label
+                                        Grid.Row="1"
+                                        Grid.Column="0"
+                                        FontSize="18"
+                                        Text="Paid"
+                                        TextColor="DimGray" />
+                                    <Label
+                                        x:Name="BillResultPaid"
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        FontSize="18"
+                                        HorizontalOptions="End"
+                                        TextColor="DimGray" />
+                                    <BoxView
+                                        Grid.Row="2"
+                                        Grid.Column="0"
+                                        Grid.ColumnSpan="2"
+                                        HeightRequest="1"
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="End"
+                                        Color="{StaticResource sunflower}" />
+                                    <Label
+                                        Grid.Row="3"
+                                        Grid.Column="0"
+                                        FontSize="18"
+                                        Text="Balance"
+                                        TextColor="DimGray" />
+                                    <Label
+                                        x:Name="BillResultBalance"
+                                        Grid.Row="3"
+                                        Grid.Column="1"
+                                        FontSize="18"
+                                        HorizontalOptions="End"
+                                        TextColor="DimGray" />
+                                </Grid>
+                                <Button
+                                    Margin="10,5,10,10"
+                                    Padding="10,10,10,10"
+                                    BackgroundColor="{StaticResource sunflower}"
+                                    Clicked="ViewBillPayNow_Clicked"
+                                    CornerRadius="15"
+                                    FontSize="26"
+                                    Text="Pay Now"
+                                    TextColor="White"
+                                    VerticalOptions="Center" />
+                            </StackLayout>
+                        </Frame>
+                    </AbsoluteLayout>
+                    <AbsoluteLayout
+                        x:Name="yourBillPopup"
+                        AbsoluteLayout.LayoutBounds="0,0,1,1"
+                        AbsoluteLayout.LayoutFlags="All"
+                        IsVisible="False">
+                        <ContentView
+                            AbsoluteLayout.LayoutBounds="0,0,1,1"
+                            AbsoluteLayout.LayoutFlags="All"
+                            BackgroundColor="Black"
+                            Opacity=".6" />
+                        <Frame
+                            Padding="0"
+                            AbsoluteLayout.LayoutBounds=".5,.5,.9,AutoSize"
+                            AbsoluteLayout.LayoutFlags="PositionProportional, WidthProportional"
+                            BackgroundColor="White"
+                            BorderColor="{StaticResource sunflower}"
+                            CornerRadius="10"
+                            HasShadow="False">
+                            <StackLayout Spacing="0">
+                                <StackLayout
+                                    HeightRequest="40"
+                                    HorizontalOptions="FillAndExpand"
+                                    Orientation="Horizontal"
+                                    Spacing="0"
+                                    VerticalOptions="Start">
+                                    <Label
+                                        Margin="30,0,0,0"
+                                        FontSize="20"
+                                        HorizontalOptions="FillAndExpand"
+                                        HorizontalTextAlignment="Center"
+                                        Text="Your Bill"
+                                        TextColor="DimGray"
+                                        VerticalOptions="Center" />
+                                    <Image
+                                        HeightRequest="30"
+                                        HorizontalOptions="End"
+                                        Opacity=".8"
+                                        Source="ic_close_grey_400"
+                                        VerticalOptions="Center"
+                                        WidthRequest="30">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="YourBillClose_Tapped" />
+                                        </Image.GestureRecognizers>
+                                    </Image>
+                                </StackLayout>
+                                <BoxView
+                                    HeightRequest="1"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="End"
+                                    Color="{StaticResource sunflower}" />
+                                <Grid
+                                    Padding="20,5,20,5"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="End">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="120" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        FontSize="18"
+                                        Text="Total"
+                                        TextColor="DimGray" />
+                                    <Label
+                                        x:Name="YourBillResultTotal"
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        FontSize="18"
+                                        HorizontalOptions="End"
+                                        TextColor="DimGray" />
+                                    <Label
+                                        Grid.Row="1"
+                                        Grid.Column="0"
+                                        FontSize="18"
+                                        Text="Paid"
+                                        TextColor="DimGray" />
+                                    <Label
+                                        x:Name="YourBillResultPaid"
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        FontSize="18"
+                                        HorizontalOptions="End"
+                                        TextColor="DimGray" />
+                                    <BoxView
+                                        Grid.Row="2"
+                                        Grid.Column="0"
+                                        Grid.ColumnSpan="2"
+                                        HeightRequest="1"
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="End"
+                                        Color="{StaticResource sunflower}" />
+                                    <Label
+                                        Grid.Row="3"
+                                        Grid.Column="0"
+                                        FontSize="18"
+                                        Text="Balance"
+                                        TextColor="DimGray" />
+                                    <Label
+                                        x:Name="YourBillResultBalance"
+                                        Grid.Row="3"
+                                        Grid.Column="1"
+                                        FontSize="18"
+                                        HorizontalOptions="End"
+                                        TextColor="DimGray" />
+                                </Grid>
+                                <Button
+                                    Margin="10,5,10,10"
+                                    Padding="10,10,10,10"
+                                    BackgroundColor="{StaticResource Color_SoftBlue}"
+                                    Clicked="YourBillPay_Clicked"
+                                    CornerRadius="15"
+                                    FontSize="26"
+                                    Text="Pay"
+                                    TextColor="White"
+                                    VerticalOptions="Center" />
+                            </StackLayout>
+                        </Frame>
+                    </AbsoluteLayout>
+
+                </StackLayout>
+            </AbsoluteLayout>
+        </ContentView>
+
+    </ContentPage.Content>
+</popup:PopupPage>

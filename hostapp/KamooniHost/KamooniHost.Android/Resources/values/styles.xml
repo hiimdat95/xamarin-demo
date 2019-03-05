@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+  
+  <style name="MainTheme" parent="MainTheme.Base">
+  </style>
+  <!-- Base theme applied no matter what API -->
+  <style name="MainTheme.Base" parent="Theme.AppCompat.Light">
+    <!--If you are using revision 22.1 please use just windowNoTitle. Without android:-->
+    <item name="windowNoTitle">true</item>
+    <!--We will be using the toolbar so no need to show ActionBar-->
+    <item name="windowActionBar">false</item>
+    <!-- Set theme colors from http://www.google.com/design/spec/style/color.html#color-color-palette -->
+    <!-- colorPrimary is used for the default action bar background -->
+    <item name="colorPrimary">@color/colorPrimary</item>
+    <!-- colorPrimaryDark is used for the status bar -->
+    <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+    <!-- colorAccent is used as the default value for colorControlActivated
+         which is used to tint widgets -->
+    <item name="colorAccent">@color/colorAccent</item>
+    <!-- You can also set colorControlNormal, colorControlActivated
+         colorControlHighlight and colorSwitchThumbNormal. -->
+    <item name="windowActionModeOverlay">true</item>
+
+    <item name="android:datePickerDialogTheme">@style/AppCompatDialogStyle</item>
+    
+    <!--<item name="actionOverflowMenuStyle">@style/ActionBarOptionsMenu</item>-->
+
+    <!--<item name="android:colorActivatedHighlight">@android:color/transparent</item>-->
+  </style>
+
+  <style name="MyTheme.Launch" parent="MainTheme">
+    <item name="android:windowBackground">@drawable/launch_background</item>
+  </style>
+
+  <style name="AppCompatDialogStyle" parent="Theme.AppCompat.Light.Dialog">
+    <item name="colorAccent">@color/colorAccent</item>
+  </style>
+
+  <!--<style name="ActionBarOptionsMenu" parent="Widget.AppCompat.PopupMenu.Overflow">
+     <item name="android:popupBackground">@color/white</item>
+     <item name="android:textColor">@color/colorGray</item>
+  </style>-->
+
+  <!-- Style action background and colors for app startup -->
+  <!--<style name="actionBarItemBackground" parent="@android:style/Widget.Holo.ActionBar">
+    <item name="android:background">@color/white</item>
+    <item name="android:titleTextStyle">@style/actionBarTextStyle</item>
+  </style>
+  
+  <style name="actionBarTextStyle" parent="@android:style/TextAppearance">
+    <item name="android:textColor">@color/colorGray</item>
+    <item name="android:background">@color/white</item>
+  </style>--> 
+</resources>

@@ -1,0 +1,311 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="KamooniHost.Views.GuestBookPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:abstractions="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+    xmlns:controls="clr-namespace:Xamarin.Forms.Controls"
+    xmlns:converters="clr-namespace:Xamarin.Forms.Converters"
+    xmlns:ex="clr-namespace:Xamarin.Forms.Extensions"
+    xmlns:popup="clr-namespace:KamooniHost.Views.Popup"
+    x:Name="this"
+    Title="{ex:Translate Key=title_activity_guest_book}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:Base64StringToImageSourceConverter x:Key="Base64StringToImageSourceConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <StackLayout
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                Spacing="0">
+                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80" />
+                        <ColumnDefinition Width="80" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40" />
+                    </Grid.RowDefinitions>
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        FontAttributes="Bold"
+                        FontSize="14"
+                        HorizontalOptions="Center"
+                        Text="IN"
+                        TextColor="{StaticResource colorPrimary}"
+                        VerticalOptions="Center" />
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        FontAttributes="Bold"
+                        FontSize="14"
+                        HorizontalOptions="Center"
+                        Text="OUT"
+                        TextColor="{StaticResource colorPrimary}"
+                        VerticalOptions="Center" />
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        FontAttributes="Bold"
+                        FontSize="14"
+                        HorizontalOptions="Center"
+                        Text="NAME"
+                        TextColor="{StaticResource colorPrimary}"
+                        VerticalOptions="Center" />
+                </Grid>
+                <controls:Separator BackgroundColor="{StaticResource colorPrimary}" Orientation="Horizontal" />
+                <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <ScrollView
+                        AbsoluteLayout.LayoutBounds="0,0,1,1"
+                        AbsoluteLayout.LayoutFlags="All"
+                        Orientation="Vertical"
+                        VerticalScrollBarVisibility="Never">
+                        <controls:RepeaterView
+                            BackgroundColor="White"
+                            HorizontalOptions="FillAndExpand"
+                            ItemsSource="{Binding ListGuest}"
+                            VerticalOptions="FillAndExpand">
+                            <controls:RepeaterView.ItemTemplate>
+                                <DataTemplate>
+                                    <controls:ExpandableView
+                                        Margin="8,8,8,0"
+                                        ContentHeight="45"
+                                        HeaderHeight="40">
+                                        <controls:ExpandableView.HeaderTemplate>
+                                            <DataTemplate>
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="80" />
+                                                        <ColumnDefinition Width="80" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="40" />
+                                                    </Grid.RowDefinitions>
+                                                    <Label
+                                                        Grid.Row="0"
+                                                        Grid.Column="0"
+                                                        FontAttributes="Bold"
+                                                        FontSize="13"
+                                                        HorizontalOptions="Center"
+                                                        Text="{Binding Date, StringFormat='{0:dd-MM-yyyy}'}"
+                                                        VerticalOptions="Center" />
+                                                    <Label
+                                                        Grid.Row="0"
+                                                        Grid.Column="1"
+                                                        FontAttributes="Bold"
+                                                        FontSize="13"
+                                                        HorizontalOptions="Center"
+                                                        Text="{Binding DateOut, StringFormat='{0:dd-MM-yyyy}'}"
+                                                        VerticalOptions="Center" />
+                                                    <Label
+                                                        Grid.Row="0"
+                                                        Grid.Column="2"
+                                                        FontAttributes="Bold"
+                                                        FontSize="14"
+                                                        HorizontalOptions="Center"
+                                                        LineBreakMode="TailTruncation"
+                                                        Text="{Binding TravellerName}"
+                                                        VerticalOptions="Center" />
+                                                </Grid>
+                                            </DataTemplate>
+                                        </controls:ExpandableView.HeaderTemplate>
+                                        <controls:ExpandableView.ContentTemplate>
+                                            <DataTemplate>
+                                                <StackLayout Padding="5,0,5,5" Spacing="4">
+                                                    <controls:Separator
+                                                        BackgroundColor="LightGray"
+                                                        HorizontalOptions="FillAndExpand"
+                                                        Orientation="Horizontal" />
+                                                    <StackLayout
+                                                        HorizontalOptions="End"
+                                                        Orientation="Horizontal"
+                                                        VerticalOptions="Center">
+                                                        <ActivityIndicator
+                                                            HeightRequest="35"
+                                                            IsRunning="True"
+                                                            IsVisible="{Binding IsBusy}"
+                                                            Color="{StaticResource colorAccent}" />
+                                                        <Button
+                                                            BackgroundColor="Gray"
+                                                            Command="{Binding BindingContext.ViewProfileCommand, Source={x:Reference this}}"
+                                                            CommandParameter="{Binding .}"
+                                                            CornerRadius="5"
+                                                            FontAttributes="Bold"
+                                                            HeightRequest="35"
+                                                            InputTransparent="{Binding IsBusy}"
+                                                            Text="{ex:Translate Key=button_profile}"
+                                                            TextColor="White" />
+                                                        <Button
+                                                            BackgroundColor="{StaticResource colorPrimary}"
+                                                            Command="{Binding BindingContext.CheckOutCommand, Source={x:Reference this}}"
+                                                            CommandParameter="{Binding .}"
+                                                            CornerRadius="5"
+                                                            FontAttributes="Bold"
+                                                            HeightRequest="35"
+                                                            InputTransparent="{Binding IsBusy}"
+                                                            IsVisible="{Binding CanCheckOut}"
+                                                            Text="{ex:Translate Key=button_check_out}"
+                                                            TextColor="White" />
+                                                    </StackLayout>
+                                                </StackLayout>
+                                            </DataTemplate>
+                                        </controls:ExpandableView.ContentTemplate>
+                                    </controls:ExpandableView>
+                                </DataTemplate>
+                            </controls:RepeaterView.ItemTemplate>
+                        </controls:RepeaterView>
+                    </ScrollView>
+                    <popup:LoadingScreen
+                        AbsoluteLayout.LayoutBounds="0,0,1,1"
+                        AbsoluteLayout.LayoutFlags="All"
+                        IsVisible="{Binding IsBusy}" />
+                </AbsoluteLayout>
+            </StackLayout>
+            <ScrollView
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                IsVisible="{Binding ShowScannedGuestProfile}"
+                Orientation="Vertical"
+                VerticalScrollBarVisibility="Never">
+                <StackLayout
+                    BackgroundColor="WhiteSmoke"
+                    HorizontalOptions="FillAndExpand"
+                    Spacing="0"
+                    VerticalOptions="FillAndExpand">
+                    <Frame
+                        Margin="16,16,16,0"
+                        Padding="0"
+                        BackgroundColor="{StaticResource colorAccent}"
+                        CornerRadius="5">
+                        <StackLayout Spacing="0">
+                            <StackLayout
+                                Padding="8,0,8,0"
+                                HeightRequest="45"
+                                Orientation="Horizontal">
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="18"
+                                    HorizontalOptions="FillAndExpand"
+                                    Text="Guest ID"
+                                    TextColor="White"
+                                    VerticalOptions="Center" />
+                                <Image
+                                    HeightRequest="40"
+                                    HorizontalOptions="End"
+                                    Source="main_logo_white.png"
+                                    WidthRequest="40" />
+                            </StackLayout>
+                            <controls:Separator BackgroundColor="White" Orientation="Horizontal" />
+                            <Grid Padding="8">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="135" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <abstractions:CircleImage
+                                    Grid.Row="0"
+                                    Grid.RowSpan="5"
+                                    Grid.Column="0"
+                                    HorizontalOptions="FillAndExpand"
+                                    Source="{Binding GuestScanResult.Image, Converter={StaticResource Base64StringToImageSourceConverter}}"
+                                    VerticalOptions="Center" />
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    FontSize="14"
+                                    Text="{Binding GuestScanResult.Name}"
+                                    TextColor="White"
+                                    VerticalOptions="Center" />
+                                <Label
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    FontSize="14"
+                                    Text="{Binding GuestScanResult.PassportId}"
+                                    TextColor="White"
+                                    VerticalOptions="Center" />
+                                <Label
+                                    Grid.Row="2"
+                                    Grid.Column="1"
+                                    FontSize="14"
+                                    Text="{Binding GuestScanResult.Country}"
+                                    TextColor="White"
+                                    VerticalOptions="Center" />
+                                <Label
+                                    Grid.Row="3"
+                                    Grid.Column="1"
+                                    FontSize="14"
+                                    Text="{Binding GuestScanResult.TotalVisits, StringFormat='Total Visits:{0}'}"
+                                    TextColor="White"
+                                    VerticalOptions="Center" />
+                                <Label
+                                    Grid.Row="4"
+                                    Grid.Column="1"
+                                    FontSize="14"
+                                    Text="{Binding GuestScanResult.TotalRatings, StringFormat='Total Ratings:{0}'}"
+                                    TextColor="White"
+                                    VerticalOptions="Center" />
+                            </Grid>
+                        </StackLayout>
+                    </Frame>
+                    <Label
+                        Margin="0,8,0,0"
+                        FontSize="18"
+                        HorizontalOptions="Center"
+                        Text="Guest Passport" />
+                    <Frame
+                        Margin="16,8,16,0"
+                        Padding="0"
+                        BackgroundColor="White"
+                        CornerRadius="5">
+                        <Image
+                            HeightRequest="200"
+                            HorizontalOptions="FillAndExpand"
+                            Source="{Binding GuestScanResult.PassportImage, Converter={StaticResource Base64StringToImageSourceConverter}}"
+                            VerticalOptions="Center" />
+                    </Frame>
+                    <StackLayout
+                        Margin="0,8,0,0"
+                        HorizontalOptions="FillAndExpand"
+                        Orientation="Horizontal">
+                        <Button
+                            BackgroundColor="{StaticResource colorAccent}"
+                            BorderColor="{StaticResource colorAccentDark}"
+                            BorderWidth="2"
+                            Command="{Binding ReturnCommand}"
+                            CornerRadius="16"
+                            FontSize="16"
+                            HeightRequest="40"
+                            HorizontalOptions="CenterAndExpand"
+                            Text="Return"
+                            TextColor="White"
+                            WidthRequest="110" />
+                        <Button
+                            BackgroundColor="{StaticResource colorPrimary}"
+                            BorderColor="{StaticResource colorPrimaryDark}"
+                            BorderWidth="2"
+                            Command="{Binding ContinueScanningCommand}"
+                            CornerRadius="16"
+                            FontSize="16"
+                            HeightRequest="40"
+                            HorizontalOptions="CenterAndExpand"
+                            Text="Continue"
+                            TextColor="White"
+                            WidthRequest="110" />
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

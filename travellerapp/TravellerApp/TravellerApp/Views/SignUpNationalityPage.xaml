@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="TravellerApp.Views.SignUpNationalityPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS" Value="0, 40, 0, 0" />
+        </OnPlatform>
+    </ContentPage.Padding>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Label
+                FontAttributes="Bold"
+                FontSize="32"
+                HorizontalOptions="Center"
+                Text="Nationality" />
+
+            <StackLayout
+                Margin="16,8,32,8"
+                HorizontalOptions="FillAndExpand"
+                Orientation="Horizontal">
+
+                <Image HeightRequest="24" Source="icon_search_white.png" />
+                <Entry
+                    x:Name="countrySearchBar"
+                    HorizontalOptions="FillAndExpand"
+                    Placeholder="Search Country" />
+            </StackLayout>
+
+            <ListView x:Name="countryListView">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+
+                                <Image
+                                    Margin="16,0,16,0"
+                                    HeightRequest="40"
+                                    Source="{Binding FlagPath}"
+                                    WidthRequest="40" />
+
+                                <Label
+                                    FontSize="18"
+                                    Text="{Binding Name}"
+                                    TextColor="Blue"
+                                    VerticalOptions="Center" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

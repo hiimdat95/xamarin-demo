@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="TravellerApp.Views.SignUpPassportPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS" Value="40, 60, 40, 20" />
+            <On Platform="Android, UWP" Value="20, 0, 20, 20" />
+        </OnPlatform>
+    </ContentPage.Padding>
+
+    <ContentPage.Content>
+        <StackLayout Margin="16,0,16,0" Spacing="12">
+
+            <Label
+                FontAttributes="Bold"
+                FontSize="32"
+                HorizontalOptions="Center"
+                Text="Passport/ID" />
+
+            <Label
+                FontSize="Medium"
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center"
+                Text="We need a picture of your passport for identification" />
+
+            <Image
+                x:Name="passportPicture"
+                Aspect="AspectFit"
+                HeightRequest="120"
+                HorizontalOptions="Center"
+                Source="passport_placeholder"
+                WidthRequest="180" />
+
+            <Label
+                FontSize="Medium"
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center"
+                Text="If you are a local, your ID is fine" />
+
+            <Label
+                FontSize="Medium"
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center"
+                Text="Please make sure you get a clear readable picture" />
+
+            <StackLayout VerticalOptions="EndAndExpand">
+
+                <Button
+                    x:Name="takePhotoButton"
+                    Clicked="OnTakePhotoButton"
+                    Text="TAKE PHOTO" />
+
+                <Button
+                    x:Name="proceedButton"
+                    Clicked="OnProceedButton"
+                    IsVisible="False"
+                    Text="PROCEED" />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

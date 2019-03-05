@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="TravellerApp.Views.LoginPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:TravellerApp"
+    NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+            <Label
+                FontAttributes="Bold"
+                FontSize="32"
+                HorizontalOptions="Center"
+                Text="Login" />
+            <Entry
+                x:Name="emailForm"
+                Margin="20,0,20,0"
+                IsSpellCheckEnabled="False"
+                IsTextPredictionEnabled="False"
+                Keyboard="Email"
+                Placeholder="Email"
+                ReturnType="Next" />
+            <Entry
+                x:Name="passwordForm"
+                Margin="20,5,20,0"
+                IsPassword="True"
+                Placeholder="Password"
+                ReturnType="Done" />
+            <Button
+                x:Name="loginButton"
+                Margin="20,10,20,0"
+                Clicked="OnLoginButton"
+                Text="LOG IN" />
+            <StackLayout Margin="20,10,20,0" HorizontalOptions="Center" Orientation="Horizontal">
+                <Label Font="{x:Static local:VisualConstants.StandardFont}" Text="Don't have an account?" />
+                <Label
+                    x:Name="signUpText"
+                    Font="{x:Static local:VisualConstants.StandardFont}"
+                    FontAttributes="Bold"
+                    Text="Sign Up"
+                    TextColor="{StaticResource Color_Accent}" />
+            </StackLayout>
+            <Label
+                x:Name="forgotPasswordText"
+                Margin="20,0,20,0"
+                Font="{x:Static local:VisualConstants.StandardFont}"
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
+                Text="Forgot Password"
+                TextColor="{StaticResource Color_Accent}" />
+            <Label
+                x:Name="validationError"
+                Margin="20,10,20,0"
+                Font="{x:Static local:VisualConstants.StandardFont}"
+                HorizontalOptions="Center"
+                TextColor="{StaticResource Color_SoftRed}" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

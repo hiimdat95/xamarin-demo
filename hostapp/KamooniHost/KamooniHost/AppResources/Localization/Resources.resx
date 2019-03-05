@@ -1,0 +1,741 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="heading_select_a_host_server" xml:space="preserve">
+    <value>Select a Host Server:</value>
+  </data>
+  <data name="heading_select_database" xml:space="preserve">
+    <value>Select Database:</value>
+  </data>
+  <data name="navigation_drawer_close" xml:space="preserve">
+    <value>Close navigation drawer</value>
+  </data>
+  <data name="navigation_drawer_open" xml:space="preserve">
+    <value>Open navigation drawer</value>
+  </data>
+  <data name="title_activity_add_server" xml:space="preserve">
+    <value>Add Server</value>
+  </data>
+  <data name="title_activity_booking_calendar" xml:space="preserve">
+    <value>Select Dates</value>
+  </data>
+  <data name="title_activity_booking_customer" xml:space="preserve">
+    <value>Customer Details</value>
+  </data>
+  <data name="title_activity_booking_room" xml:space="preserve">
+    <value>Assign Rooms</value>
+  </data>
+  <data name="title_activity_bookings" xml:space="preserve">
+    <value>Bookings</value>
+  </data>
+  <data name="title_activity_checked_out" xml:space="preserve">
+    <value>Check outs for Today</value>
+  </data>
+  <data name="title_activity_checked_in_booking_detail" xml:space="preserve">
+    <value>Bills</value>
+  </data>
+  <data name="title_activity_check_in" xml:space="preserve">
+    <value>Arrivals</value>
+  </data>
+  <data name="title_activity_extra_summary" xml:space="preserve">
+    <value>Summary</value>
+  </data>
+  <data name="title_activity_guest_details" xml:space="preserve">
+    <value>Guest Details</value>
+  </data>
+  <data name="title_activity_manage_servers" xml:space="preserve">
+    <value>Manage Servers</value>
+  </data>
+  <data name="title_activity_pay_now" xml:space="preserve">
+    <value>Pay Now</value>
+  </data>
+  <data name="title_activity_select_guest" xml:space="preserve">
+    <value>Select Guest</value>
+  </data>
+  <data name="title_activity_sign_in_description" xml:space="preserve">
+    <value>Sign In</value>
+  </data>
+  <data name="title_activity_stats" xml:space="preserve">
+    <value>Statistics</value>
+  </data>
+  <data name="title_activity_view_bills" xml:space="preserve">
+    <value>Bills</value>
+  </data>
+  <data name="heading_currently_selected_server" xml:space="preserve">
+    <value>Currently Selected Server</value>
+  </data>
+  <data name="heading_enter_guest_details" xml:space="preserve">
+    <value>Enter Guest Details:</value>
+  </data>
+  <data name="heading_server" xml:space="preserve">
+    <value>Server</value>
+  </data>
+  <data name="heading_sign_in" xml:space="preserve">
+    <value>Sign In</value>
+  </data>
+  <data name="heading_your_other_servers" xml:space="preserve">
+    <value>Your Other Servers</value>
+  </data>
+  <data name="button_add_server" xml:space="preserve">
+    <value>ADD SERVER</value>
+  </data>
+  <data name="button_scan" xml:space="preserve">
+    <value>SCAN</value>
+  </data>
+  <data name="qr_content_1_TextView" xml:space="preserve">
+    <value>Log into your Kamooni System</value>
+  </data>
+  <data name="qr_content_2_TextView" xml:space="preserve">
+    <value>Go to Bookings</value>
+  </data>
+  <data name="qr_content_3_TextView" xml:space="preserve">
+    <value>Go to Settings &gt; Property Details</value>
+  </data>
+  <data name="qr_content_4_TextView" xml:space="preserve">
+    <value>Under the Kamooni tab</value>
+  </data>
+  <data name="qr_content_5_TextView" xml:space="preserve">
+    <value>Scan the QR Code</value>
+  </data>
+  <data name="subheading_qr_TextView" xml:space="preserve">
+    <value>To access your property:</value>
+  </data>
+  <data name="content_checkin_done_early" xml:space="preserve">
+    <value>There are no expected arrivals for this day</value>
+  </data>
+  <data name="content_checkin_done_no_shows" xml:space="preserve">
+    <value>There are no pending no-shows for this week</value>
+  </data>
+  <data name="content_checkin_done_today" xml:space="preserve">
+    <value>There are no expected arrivals for today</value>
+  </data>
+  <data name="content_delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="content_details_saved" xml:space="preserve">
+    <value>DETAILS SAVED</value>
+  </data>
+  <data name="content_enter_server_url" xml:space="preserve">
+    <value>Please enter your server URL</value>
+  </data>
+  <data name="content_loading" xml:space="preserve">
+    <value>Loading…</value>
+  </data>
+  <data name="content_no_extras" xml:space="preserve">
+    <value>There are no extras added</value>
+  </data>
+  <data name="content_no_extras_to_add" xml:space="preserve">
+    <value>There are no extras to add</value>
+  </data>
+  <data name="content_no_open_bookings" xml:space="preserve">
+    <value>There are currently no open bookings</value>
+  </data>
+  <data name="content_no_past_payments" xml:space="preserve">
+    <value>There are no payments made yet</value>
+  </data>
+  <data name="content_no_payments" xml:space="preserve">
+    <value>All outstanding payments paid</value>
+  </data>
+  <data name="content_no_rooms_available" xml:space="preserve">
+    <value>No room available</value>
+  </data>
+  <data name="content_select_category" xml:space="preserve">
+    <value>Select Category</value>
+  </data>
+  <data name="content_select_guest" xml:space="preserve">
+    <value>Select Guest</value>
+  </data>
+  <data name="content_select_guests" xml:space="preserve">
+    <value>Select the number of guests</value>
+  </data>
+  <data name="hint_amount" xml:space="preserve">
+    <value>Amount</value>
+  </data>
+  <data name="hint_database" xml:space="preserve">
+    <value>Database</value>
+  </data>
+  <data name="hint_discount_optional" xml:space="preserve">
+    <value>Discount (Optional)</value>
+  </data>
+  <data name="hint_document_number" xml:space="preserve">
+    <value>Document Number</value>
+  </data>
+  <data name="hint_email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="hint_full_name" xml:space="preserve">
+    <value>Full Name</value>
+  </data>
+  <data name="hint_mobile_number" xml:space="preserve">
+    <value>Mobile Number</value>
+  </data>
+  <data name="hint_passport_id" xml:space="preserve">
+    <value>Passport/ID</value>
+  </data>
+  <data name="hint_password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="hint_phone_number" xml:space="preserve">
+    <value>Phone Number</value>
+  </data>
+  <data name="hint_search_country" xml:space="preserve">
+    <value>Search Country</value>
+  </data>
+  <data name="hint_search_guest_name" xml:space="preserve">
+    <value>Search Guest Name</value>
+  </data>
+  <data name="hint_search_item_name" xml:space="preserve">
+    <value>Search Item Name</value>
+  </data>
+  <data name="hint_search_room_name" xml:space="preserve">
+    <value>Search Room Name</value>
+  </data>
+  <data name="hint_server_url" xml:space="preserve">
+    <value>Server URL</value>
+  </data>
+  <data name="hint_username" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="button_confirm" xml:space="preserve">
+    <value>CONFIRM</value>
+  </data>
+  <data name="button_proceed" xml:space="preserve">
+    <value>PROCEED</value>
+  </data>
+  <data name="button_submit" xml:space="preserve">
+    <value>SUBMIT</value>
+  </data>
+  <data name="button_tomorrow" xml:space="preserve">
+    <value>TOMORROW</value>
+  </data>
+  <data name="clickable_add_booking" xml:space="preserve">
+    <value>Add Booking</value>
+  </data>
+  <data name="clickable_select_another_server" xml:space="preserve">
+    <value>Select another server</value>
+  </data>
+  <data name="button_2_days" xml:space="preserve">
+    <value>2 DAYS</value>
+  </data>
+  <data name="button_3_days" xml:space="preserve">
+    <value>3 DAYS</value>
+  </data>
+  <data name="button_add_extras" xml:space="preserve">
+    <value>ADD EXTRAS</value>
+  </data>
+  <data name="button_add_new_server" xml:space="preserve">
+    <value>ADD NEW SERVER</value>
+  </data>
+  <data name="button_add_to_bill" xml:space="preserve">
+    <value>ADD TO BILL</value>
+  </data>
+  <data name="button_check_in" xml:space="preserve">
+    <value>CHECK IN</value>
+  </data>
+  <data name="button_check_out" xml:space="preserve">
+    <value>CHECK OUT</value>
+  </data>
+  <data name="button_confirm_check_in" xml:space="preserve">
+    <value>CONFIRM CHECK-IN</value>
+  </data>
+  <data name="button_confirm_no_show" xml:space="preserve">
+    <value>CONFIRM NO-SHOW</value>
+  </data>
+  <data name="button_confirm_payment" xml:space="preserve">
+    <value>CONFIRM PAYMENT</value>
+  </data>
+  <data name="button_create_booking" xml:space="preserve">
+    <value>CREATE BOOKING</value>
+  </data>
+  <data name="button_last_week" xml:space="preserve">
+    <value>LAST WEEK</value>
+  </data>
+  <data name="button_pay_all" xml:space="preserve">
+    <value>PAY ALL</value>
+  </data>
+  <data name="button_pay_and_checkout" xml:space="preserve">
+    <value>PAY AND CHECKOUT</value>
+  </data>
+  <data name="button_pay_now" xml:space="preserve">
+    <value>PAY NOW</value>
+  </data>
+  <data name="button_select_nationality" xml:space="preserve">
+    <value>NATIONALITY</value>
+  </data>
+  <data name="button_select_room" xml:space="preserve">
+    <value>ROOM</value>
+  </data>
+  <data name="button_submit_details" xml:space="preserve">
+    <value>SUBMIT DETAILS</value>
+  </data>
+  <data name="button_this_week" xml:space="preserve">
+    <value>THIS WEEK</value>
+  </data>
+  <data name="button_view_bills" xml:space="preserve">
+    <value>VIEW BILLS</value>
+  </data>
+  <data name="title_activity_log_in" xml:space="preserve">
+    <value>Log In</value>
+  </data>
+  <data name="image_text_add_booking" xml:space="preserve">
+    <value>Add Booking</value>
+  </data>
+  <data name="image_text_check_in" xml:space="preserve">
+    <value>Check In</value>
+  </data>
+  <data name="image_text_open_bookings" xml:space="preserve">
+    <value>Open Bookings</value>
+  </data>
+  <data name="image_text_statistics" xml:space="preserve">
+    <value>Statistics</value>
+  </data>
+  <data name="title_tab_early_arrivals" xml:space="preserve">
+    <value>Early</value>
+  </data>
+  <data name="title_tab_no_shows" xml:space="preserve">
+    <value>No-Shows</value>
+  </data>
+  <data name="title_tab_today" xml:space="preserve">
+    <value>Today</value>
+  </data>
+  <data name="subheading_amount" xml:space="preserve">
+    <value>Amount</value>
+  </data>
+  <data name="subheading_amount_2" xml:space="preserve">
+    <value>Amount:</value>
+  </data>
+  <data name="subheading_balance" xml:space="preserve">
+    <value>Balance</value>
+  </data>
+  <data name="subheading_balance_2" xml:space="preserve">
+    <value>Balance:</value>
+  </data>
+  <data name="subheading_booking_ref" xml:space="preserve">
+    <value>Booking Ref</value>
+  </data>
+  <data name="subheading_date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="subheading_discount" xml:space="preserve">
+    <value>Discount</value>
+  </data>
+  <data name="subheading_discount_2" xml:space="preserve">
+    <value>Discount:</value>
+  </data>
+  <data name="subheading_guest" xml:space="preserve">
+    <value>Guest</value>
+  </data>
+  <data name="subheading_guest_name" xml:space="preserve">
+    <value>Guest Name</value>
+  </data>
+  <data name="subheading_guest_name_2" xml:space="preserve">
+    <value>Guest Name:</value>
+  </data>
+  <data name="subheading_item_name" xml:space="preserve">
+    <value>Item Name</value>
+  </data>
+  <data name="subheading_method" xml:space="preserve">
+    <value>Method</value>
+  </data>
+  <data name="subheading_nights" xml:space="preserve">
+    <value>Nights</value>
+  </data>
+  <data name="subheading_no_of_guests" xml:space="preserve">
+    <value>Number of Guests:</value>
+  </data>
+  <data name="subheading_number_of_adults" xml:space="preserve">
+    <value>Number of Adults</value>
+  </data>
+  <data name="subheading_paid" xml:space="preserve">
+    <value>Paid</value>
+  </data>
+  <data name="subheading_passport_details" xml:space="preserve">
+    <value>Passport Details</value>
+  </data>
+  <data name="subheading_payer" xml:space="preserve">
+    <value>Payer:</value>
+  </data>
+  <data name="subheading_payment_method" xml:space="preserve">
+    <value>Payment Method:</value>
+  </data>
+  <data name="subheading_price" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="subheading_quantity" xml:space="preserve">
+    <value>Quantity</value>
+  </data>
+  <data name="subheading_room" xml:space="preserve">
+    <value>Room</value>
+  </data>
+  <data name="subheading_room_name" xml:space="preserve">
+    <value>Room Name</value>
+  </data>
+  <data name="subheading_room_type_capacity" xml:space="preserve">
+    <value>Room Type Capacity:</value>
+  </data>
+  <data name="subheading_select" xml:space="preserve">
+    <value>Select:</value>
+  </data>
+  <data name="subheading_select_customer" xml:space="preserve">
+    <value>Select Customer</value>
+  </data>
+  <data name="subheading_sleeps" xml:space="preserve">
+    <value>Sleeps</value>
+  </data>
+  <data name="subheading_taxes" xml:space="preserve">
+    <value>Taxes</value>
+  </data>
+  <data name="subheading_total" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="subheading_total_2" xml:space="preserve">
+    <value>Total:</value>
+  </data>
+  <data name="subheading_units_left" xml:space="preserve">
+    <value>Units Left</value>
+  </data>
+  <data name="subheading_unit_price" xml:space="preserve">
+    <value>Unit Price</value>
+  </data>
+  <data name="title_popup_select_room" xml:space="preserve">
+    <value>SELECT ROOM</value>
+  </data>
+  <data name="title_popup_close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="heading_end_day_2" xml:space="preserve">
+    <value>End Date:</value>
+  </data>
+  <data name="heading_select_room_2" xml:space="preserve">
+    <value>Select Room:</value>
+  </data>
+  <data name="heading_start_day_2" xml:space="preserve">
+    <value>Start Date:</value>
+  </data>
+  <data name="title_popup_select_nationality" xml:space="preserve">
+    <value>SELECT NATIONALITY</value>
+  </data>
+  <data name="title_popup_register_payment" xml:space="preserve">
+    <value>Register Payment</value>
+  </data>
+  <data name="heading_dialog_nationality" xml:space="preserve">
+    <value>Nationality</value>
+  </data>
+  <data name="heading_dialog_register_payment" xml:space="preserve">
+    <value>Register Payment</value>
+  </data>
+  <data name="heading_dialog_select_payer" xml:space="preserve">
+    <value>Select Payer</value>
+  </data>
+  <data name="heading_dialog_select_room" xml:space="preserve">
+    <value>Select Room</value>
+  </data>
+  <data name="heading_dialog_summary" xml:space="preserve">
+    <value>Summary</value>
+  </data>
+  <data name="title_activity_guest_book" xml:space="preserve">
+    <value>Guest Book</value>
+  </data>
+  <data name="title_activity_settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="title_activity_terms_conditions" xml:space="preserve">
+    <value>Terms and Conditions</value>
+  </data>
+  <data name="title_activity_guest_profile" xml:space="preserve">
+    <value>Guest Profile</value>
+  </data>
+  <data name="button_sign_up" xml:space="preserve">
+    <value>SIGN UP</value>
+  </data>
+  <data name="hint_search_property" xml:space="preserve">
+    <value>Search Property</value>
+  </data>
+  <data name="button_select" xml:space="preserve">
+    <value>SELECT</value>
+  </data>
+  <data name="title_activity_create_host" xml:space="preserve">
+    <value>Sign Up</value>
+  </data>
+  <data name="title_activity_host_directory" xml:space="preserve">
+    <value>Select Your Property</value>
+  </data>
+  <data name="button_view_profile" xml:space="preserve">
+    <value>View Profile</value>
+  </data>
+  <data name="button_profile" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="button_login" xml:space="preserve">
+    <value>LOGIN</value>
+  </data>
+  <data name="clickable_sign_up" xml:space="preserve">
+    <value>Sign Up</value>
+  </data>
+  <data name="content_dont_have_an_account" xml:space="preserve">
+    <value>Dont have an account?</value>
+  </data>
+  <data name="clickable_forgot_password" xml:space="preserve">
+    <value>Forgot Password</value>
+  </data>
+  <data name="clickable_scan_to_login" xml:space="preserve">
+    <value>Scan to Login</value>
+  </data>
+  <data name="subheading_bank" xml:space="preserve">
+    <value>Bank Details:</value>
+  </data>
+  <data name="subheading_mobile" xml:space="preserve">
+    <value>Mobile Number:</value>
+  </data>
+  <data name="content_verification_description" xml:space="preserve">
+    <value>Please take the time to verify that your information is correct and populate all the empty fields</value>
+  </data>
+  <data name="subheading_type" xml:space="preserve">
+    <value>Type:</value>
+  </data>
+  <data name="button_accommodation" xml:space="preserve">
+    <value>Accommodation</value>
+  </data>
+  <data name="button_activity" xml:space="preserve">
+    <value>Activity</value>
+  </data>
+  <data name="button_transport" xml:space="preserve">
+    <value>Transport</value>
+  </data>
+  <data name="subheading_logo" xml:space="preserve">
+    <value>Logo:</value>
+  </data>
+  <data name="button_select_country" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="button_select_province" xml:space="preserve">
+    <value>Province</value>
+  </data>
+  <data name="page_title_pick_map" xml:space="preserve">
+    <value>Pick Map</value>
+  </data>
+  <data name="page_title_my_profile" xml:space="preserve">
+    <value>My Profile</value>
+  </data>
+  <data name="button_update" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="button_update_profile" xml:space="preserve">
+    <value>Update Profile</value>
+  </data>
+  <data name="dialog_message_acc_empty" xml:space="preserve">
+    <value>User or Password can't be empty</value>
+  </data>
+  <data name="dialog_message_check_in_confirmed" xml:space="preserve">
+    <value>Check-In Confirmed</value>
+  </data>
+  <data name="dialog_message_check_in_failed" xml:space="preserve">
+    <value>Check-In Failed</value>
+  </data>
+  <data name="dialog_message_host_selected" xml:space="preserve">
+    <value>Email link sent to property email.\nPlease set your password at this link.\n\n After this is done, you can log in</value>
+  </data>
+  <data name="dialog_message_logout" xml:space="preserve">
+    <value>Do you really want to log out?</value>
+  </data>
+  <data name="dialog_message_no_internet" xml:space="preserve">
+    <value>An internet connection is required.\nPlease check your internet settings.</value>
+  </data>
+  <data name="dialog_message_no_rooms_available" xml:space="preserve">
+    <value>No rooms available!</value>
+  </data>
+  <data name="dialog_message_room_availability" xml:space="preserve">
+    <value>No room found. Please recheck the room availability.</value>
+  </data>
+  <data name="dialog_message_room_availability_date" xml:space="preserve">
+    <value>No room available on your selected date</value>
+  </data>
+  <data name="dialog_message_room_booking" xml:space="preserve">
+    <value>Room booked successfully</value>
+  </data>
+  <data name="dialog_message_saved_details_1" xml:space="preserve">
+    <value>You have</value>
+  </data>
+  <data name="dialog_message_saved_details_2" xml:space="preserve">
+    <value>pending submissions</value>
+  </data>
+  <data name="dialog_message_saved_details_3" xml:space="preserve">
+    <value>pending submission</value>
+  </data>
+  <data name="dialog_message_server_error" xml:space="preserve">
+    <value>Server error. Try again later in 1 minute.</value>
+  </data>
+  <data name="dialog_title_check_in" xml:space="preserve">
+    <value>Check-In</value>
+  </data>
+  <data name="dialog_title_login" xml:space="preserve">
+    <value>Log In</value>
+  </data>
+  <data name="dialog_title_logout" xml:space="preserve">
+    <value>Log Out</value>
+  </data>
+  <data name="dialog_title_no_internet" xml:space="preserve">
+    <value>No Connection</value>
+  </data>
+  <data name="dialog_title_room_availability" xml:space="preserve">
+    <value>Room Availability</value>
+  </data>
+  <data name="dialog_title_room_booking" xml:space="preserve">
+    <value>Booking</value>
+  </data>
+  <data name="dialog_title_saved_details" xml:space="preserve">
+    <value>Saved Details</value>
+  </data>
+  <data name="dialog_title_select_room" xml:space="preserve">
+    <value>Select Room</value>
+  </data>
+  <data name="dialog_title_sign_up" xml:space="preserve">
+    <value>Sign Up</value>
+  </data>
+  <data name="dialog_title_verification" xml:space="preserve">
+    <value>Verification</value>
+  </data>
+  <data name="no" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="no_database_found" xml:space="preserve">
+    <value>No Database found</value>
+  </data>
+  <data name="ok" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="select_database" xml:space="preserve">
+    <value>Select Database</value>
+  </data>
+  <data name="server_not_found" xml:space="preserve">
+    <value>Server not found</value>
+  </data>
+  <data name="title_activity_guest" xml:space="preserve">
+    <value>Guest</value>
+  </data>
+  <data name="yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="dialog_title_forgot_password" xml:space="preserve">
+    <value>Forgot Password</value>
+  </data>
+</root>

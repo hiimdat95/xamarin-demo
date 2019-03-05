@@ -1,0 +1,348 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage
+    x:Class="KamooniHost.Views.CheckInPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:c="clr-namespace:Xamarin.Forms.Controls"
+    xmlns:ex="clr-namespace:Xamarin.Forms.Extensions"
+    x:Name="this"
+    Title="{ex:Translate Key=title_activity_check_in}"
+    BarBackgroundColor="{StaticResource colorPrimary}"
+    BarTextColor="White">
+    <ContentPage Title="{ex:Translate Key=title_tab_no_shows}">
+        <ContentPage.Icon>
+            <OnPlatform x:TypeArguments="FileImageSource" iOS="ic_location_white.png" />
+        </ContentPage.Icon>
+        <AbsoluteLayout
+            BackgroundColor="White"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+            <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+                <c:RoundedSearchBar
+                    Margin="8,0,8,0"
+                    HorizontalOptions="FillAndExpand"
+                    IsVisible="False"
+                    Placeholder="{ex:Translate Key=hint_search_guest_name}"
+                    SearchCommand="{Binding SearchNoShowsBookingsCommand}"
+                    VerticalOptions="Start" />
+                <c:ExtendedListView
+                    HasUnevenRows="True"
+                    HorizontalOptions="FillAndExpand"
+                    IsPullToRefreshEnabled="True"
+                    IsRefreshing="{Binding IsRefreshing2}"
+                    ItemTappedCommand="{Binding GuestCheckInCommand}"
+                    ItemsSource="{Binding NoShowsBookings}"
+                    RefreshCommand="{Binding GetNoShowsBookingsCommand}"
+                    SelectionMode="None"
+                    SeparatorColor="DimGray"
+                    VerticalOptions="FillAndExpand">
+                    <c:ExtendedListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Padding="16,5,8,5" RowSpacing="2">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="50" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        FontAttributes="Bold"
+                                        FontSize="13"
+                                        Text="{Binding Customer.Name}"
+                                        TextColor="Black"
+                                        VerticalOptions="Center" />
+                                    <StackLayout
+                                        Grid.Row="1"
+                                        Grid.Column="0"
+                                        Orientation="Horizontal">
+                                        <Label
+                                            FontAttributes="Italic"
+                                            FontSize="14"
+                                            HorizontalOptions="Start"
+                                            Text="{Binding BookingRef}"
+                                            TextColor="DimGray"
+                                            VerticalOptions="Center" />
+                                        <Label
+                                            Margin="8,0,0,0"
+                                            FontAttributes="Bold"
+                                            FontSize="12"
+                                            Text="{Binding TotalAdults, StringFormat=' {0} Guests'}"
+                                            TextColor="Green"
+                                            VerticalOptions="Center" />
+                                    </StackLayout>
+                                    <Image
+                                        Grid.Row="0"
+                                        Grid.RowSpan="2"
+                                        Grid.Column="1"
+                                        HeightRequest="45"
+                                        HorizontalOptions="Center"
+                                        Source="ic_arrow_right_green_400.png"
+                                        VerticalOptions="Center"
+                                        WidthRequest="45" />
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </c:ExtendedListView.ItemTemplate>
+                </c:ExtendedListView>
+            </StackLayout>
+            <AbsoluteLayout
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                BackgroundColor="White"
+                IsVisible="{Binding NoBooking2}">
+                <StackLayout AbsoluteLayout.LayoutBounds=".5,.5,AutoSize,AutoSize" AbsoluteLayout.LayoutFlags="PositionProportional">
+                    <Image
+                        HeightRequest="150"
+                        HorizontalOptions="Center"
+                        Source="check_circle"
+                        VerticalOptions="Center" />
+                    <Label
+                        HorizontalOptions="Center"
+                        Text="{ex:Translate Key=content_checkin_done_no_shows}"
+                        VerticalOptions="Center" />
+                    <Label
+                        Margin="0,24,0,0"
+                        FontAttributes="Bold"
+                        FontSize="16"
+                        HorizontalOptions="Center"
+                        Text="{ex:Translate Key=clickable_add_booking}"
+                        TextColor="{StaticResource colorPrimary}"
+                        VerticalOptions="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding AddBookingCommand}" NumberOfTapsRequired="1" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+            </AbsoluteLayout>
+        </AbsoluteLayout>
+    </ContentPage>
+    <ContentPage Title="{ex:Translate Key=title_tab_today}">
+        <ContentPage.Icon>
+            <OnPlatform x:TypeArguments="FileImageSource" iOS="ic_location_white.png" />
+        </ContentPage.Icon>
+        <AbsoluteLayout
+            BackgroundColor="White"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+            <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+                <c:RoundedSearchBar
+                    Margin="8,0,8,0"
+                    HorizontalOptions="FillAndExpand"
+                    IsVisible="False"
+                    Placeholder="{ex:Translate Key=hint_search_guest_name}"
+                    SearchCommand="{Binding SearchToDayBookingsCommand}"
+                    VerticalOptions="Start" />
+                <c:ExtendedListView
+                    HasUnevenRows="True"
+                    HorizontalOptions="FillAndExpand"
+                    IsPullToRefreshEnabled="True"
+                    IsRefreshing="{Binding IsRefreshing1}"
+                    ItemTappedCommand="{Binding GuestCheckInCommand}"
+                    ItemsSource="{Binding ToDayBookings}"
+                    RefreshCommand="{Binding GetToDayBookingsCommand}"
+                    SelectionMode="None"
+                    SeparatorColor="DimGray"
+                    VerticalOptions="FillAndExpand">
+                    <c:ExtendedListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Padding="16,5,8,5" RowSpacing="2">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="50" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        FontAttributes="Bold"
+                                        FontSize="13"
+                                        Text="{Binding Customer.Name}"
+                                        TextColor="Black"
+                                        VerticalOptions="Center" />
+                                    <StackLayout
+                                        Grid.Row="1"
+                                        Grid.Column="0"
+                                        Orientation="Horizontal">
+                                        <Label
+                                            FontAttributes="Italic"
+                                            FontSize="14"
+                                            HorizontalOptions="Start"
+                                            Text="{Binding BookingRef}"
+                                            TextColor="DimGray"
+                                            VerticalOptions="Center" />
+                                        <Label
+                                            Margin="8,0,0,0"
+                                            FontAttributes="Bold"
+                                            FontSize="12"
+                                            Text="{Binding TotalAdults, StringFormat=' {0} Guests'}"
+                                            TextColor="Green"
+                                            VerticalOptions="Center" />
+                                    </StackLayout>
+                                    <Image
+                                        Grid.Row="0"
+                                        Grid.RowSpan="2"
+                                        Grid.Column="1"
+                                        HeightRequest="45"
+                                        HorizontalOptions="Center"
+                                        Source="ic_arrow_right_green_400.png"
+                                        VerticalOptions="Center"
+                                        WidthRequest="45" />
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </c:ExtendedListView.ItemTemplate>
+                </c:ExtendedListView>
+            </StackLayout>
+            <AbsoluteLayout
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                BackgroundColor="White"
+                IsVisible="{Binding NoBooking1}">
+                <StackLayout AbsoluteLayout.LayoutBounds=".5,.5,AutoSize,AutoSize" AbsoluteLayout.LayoutFlags="PositionProportional">
+                    <Image
+                        HeightRequest="150"
+                        HorizontalOptions="Center"
+                        Source="check_circle"
+                        VerticalOptions="Center" />
+                    <Label
+                        HorizontalOptions="Center"
+                        Text="{ex:Translate Key=content_checkin_done_today}"
+                        VerticalOptions="Center" />
+                    <Label
+                        Margin="0,24,0,0"
+                        FontAttributes="Bold"
+                        FontSize="16"
+                        HorizontalOptions="Center"
+                        Text="{ex:Translate Key=clickable_add_booking}"
+                        TextColor="{StaticResource colorPrimary}"
+                        VerticalOptions="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding AddBookingCommand}" NumberOfTapsRequired="1" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+            </AbsoluteLayout>
+        </AbsoluteLayout>
+    </ContentPage>
+    <ContentPage Title="{ex:Translate Key=title_tab_early_arrivals}">
+        <ContentPage.Icon>
+            <OnPlatform x:TypeArguments="FileImageSource" iOS="ic_location_white.png" />
+        </ContentPage.Icon>
+        <AbsoluteLayout
+            BackgroundColor="White"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+            <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+                <c:RoundedSearchBar
+                    Margin="8,0,8,0"
+                    HorizontalOptions="FillAndExpand"
+                    IsVisible="False"
+                    Placeholder="{ex:Translate Key=hint_search_guest_name}"
+                    SearchCommand="{Binding SearchEarlyBookingsCommand}"
+                    VerticalOptions="Start" />
+                <c:ExtendedListView
+                    HasUnevenRows="True"
+                    HorizontalOptions="FillAndExpand"
+                    IsPullToRefreshEnabled="True"
+                    IsRefreshing="{Binding IsRefreshing3}"
+                    ItemTappedCommand="{Binding GuestCheckInCommand}"
+                    ItemsSource="{Binding EarlyBookings}"
+                    RefreshCommand="{Binding GetEarlyBookingsCommand}"
+                    SelectionMode="None"
+                    SeparatorColor="DimGray"
+                    VerticalOptions="FillAndExpand">
+                    <c:ExtendedListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Padding="16,5,8,5" RowSpacing="2">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="50" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        FontAttributes="Bold"
+                                        FontSize="13"
+                                        Text="{Binding Customer.Name}"
+                                        TextColor="Black"
+                                        VerticalOptions="Center" />
+                                    <StackLayout
+                                        Grid.Row="1"
+                                        Grid.Column="0"
+                                        Orientation="Horizontal">
+                                        <Label
+                                            FontAttributes="Italic"
+                                            FontSize="14"
+                                            HorizontalOptions="Start"
+                                            Text="{Binding BookingRef}"
+                                            TextColor="DimGray"
+                                            VerticalOptions="Center" />
+                                        <Label
+                                            Margin="8,0,0,0"
+                                            FontAttributes="Bold"
+                                            FontSize="12"
+                                            Text="{Binding TotalAdults, StringFormat=' {0} Guests'}"
+                                            TextColor="Green"
+                                            VerticalOptions="Center" />
+                                    </StackLayout>
+                                    <Image
+                                        Grid.Row="0"
+                                        Grid.RowSpan="2"
+                                        Grid.Column="1"
+                                        HeightRequest="45"
+                                        HorizontalOptions="Center"
+                                        Source="ic_arrow_right_green_400.png"
+                                        VerticalOptions="Center"
+                                        WidthRequest="45" />
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </c:ExtendedListView.ItemTemplate>
+                </c:ExtendedListView>
+            </StackLayout>
+            <AbsoluteLayout
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                BackgroundColor="White"
+                IsVisible="{Binding NoBooking3}">
+                <StackLayout AbsoluteLayout.LayoutBounds=".5,.5,AutoSize,AutoSize" AbsoluteLayout.LayoutFlags="PositionProportional">
+                    <Image
+                        HeightRequest="150"
+                        HorizontalOptions="Center"
+                        Source="check_circle"
+                        VerticalOptions="Center" />
+                    <Label
+                        HorizontalOptions="Center"
+                        Text="{ex:Translate Key=content_checkin_done_early}"
+                        VerticalOptions="Center" />
+                    <Label
+                        Margin="0,24,0,0"
+                        FontAttributes="Bold"
+                        FontSize="16"
+                        HorizontalOptions="Center"
+                        Text="{ex:Translate Key=clickable_add_booking}"
+                        TextColor="{StaticResource colorPrimary}"
+                        VerticalOptions="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding AddBookingCommand}" NumberOfTapsRequired="1" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+            </AbsoluteLayout>
+        </AbsoluteLayout>
+    </ContentPage>
+</TabbedPage>

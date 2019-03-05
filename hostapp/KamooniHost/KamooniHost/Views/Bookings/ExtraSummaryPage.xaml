@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="KamooniHost.Views.ExtraSummaryPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ex="clr-namespace:Xamarin.Forms.Extensions"
+    xmlns:popup="clr-namespace:KamooniHost.Views.Popup"
+    x:Name="this"
+    Title="{ex:Translate Key=title_activity_extra_summary}">
+    <ContentPage.Content>
+        <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+                <ListView
+                    CachingStrategy="RecycleElement"
+                    HasUnevenRows="True"
+                    HorizontalOptions="FillAndExpand"
+                    ItemsSource="{Binding SelectedExtraItems}"
+                    SelectionMode="None"
+                    VerticalOptions="FillAndExpand">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Padding="8,2,4,2" Orientation="Horizontal">
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="16"
+                                        HorizontalOptions="Start"
+                                        Text="{Binding Name}"
+                                        TextColor="{StaticResource colorAccent}"
+                                        VerticalOptions="Center"
+                                        WidthRequest="125" />
+                                    <Label
+                                        FontSize="16"
+                                        HorizontalOptions="FillAndExpand"
+                                        Text="{Binding UnitPrice, StringFormat='R{0:###,###,###,###.##}'}"
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="16"
+                                        HorizontalOptions="FillAndExpand"
+                                        Text="{Binding Total, StringFormat='R{0:###,###,###,###.##}'}"
+                                        TextColor="{StaticResource colorAccent}"
+                                        VerticalOptions="Center" />
+                                    <StackLayout
+                                        HorizontalOptions="End"
+                                        Orientation="Horizontal"
+                                        Spacing="1">
+                                        <Image
+                                            HeightRequest="30"
+                                            Source="{ex:ImageResource Key=ic_btn_minus.png}"
+                                            VerticalOptions="Center"
+                                            WidthRequest="30">
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer
+                                                    Command="{Binding BindingContext.DecreaseQuantityCommand, Source={x:Reference this}}"
+                                                    CommandParameter="{Binding .}"
+                                                    NumberOfTapsRequired="1" />
+                                            </Image.GestureRecognizers>
+                                        </Image>
+                                        <Label
+                                            BackgroundColor="{StaticResource colorAccent}"
+                                            FontAttributes="Bold"
+                                            HeightRequest="30"
+                                            HorizontalTextAlignment="Center"
+                                            Text="{Binding Quantity}"
+                                            TextColor="White"
+                                            VerticalOptions="Center"
+                                            VerticalTextAlignment="Center"
+                                            WidthRequest="30" />
+                                        <Image
+                                            HeightRequest="32"
+                                            Source="{ex:ImageResource Key=ic_btn_add.png}"
+                                            VerticalOptions="Center"
+                                            WidthRequest="30">
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer
+                                                    Command="{Binding BindingContext.IncreaseQuantityCommand, Source={x:Reference this}}"
+                                                    CommandParameter="{Binding .}"
+                                                    NumberOfTapsRequired="1" />
+                                            </Image.GestureRecognizers>
+                                        </Image>
+                                    </StackLayout>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <StackLayout
+                    BackgroundColor="{StaticResource colorPrimary}"
+                    HeightRequest="55"
+                    HorizontalOptions="FillAndExpand"
+                    Orientation="Horizontal"
+                    VerticalOptions="End">
+                    <Label
+                        Margin="16,0,0,0"
+                        FontAttributes="Bold"
+                        FontSize="16"
+                        HorizontalOptions="Start"
+                        Text="{ex:Translate Key=subheading_total_2}"
+                        TextColor="{StaticResource colorAccent}"
+                        VerticalOptions="Center" />
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="16"
+                        HorizontalOptions="StartAndExpand"
+                        Text="{Binding TotalPayment, StringFormat='R{0:###,###,###,###.##}'}"
+                        TextColor="White"
+                        VerticalOptions="Center" />
+                    <Button
+                        Margin="0,0,8,0"
+                        BackgroundColor="{StaticResource colorAccent}"
+                        Command="{Binding AddToBillsCommand}"
+                        CornerRadius="5"
+                        FontAttributes="Bold"
+                        FontSize="16"
+                        HeightRequest="35"
+                        HorizontalOptions="End"
+                        Text="{ex:Translate Key=button_add_to_bill}"
+                        TextColor="White"
+                        VerticalOptions="Center" />
+                </StackLayout>
+            </StackLayout>
+            <popup:LoadingScreenDimmed
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                IsVisible="{Binding IsBusy}" />
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

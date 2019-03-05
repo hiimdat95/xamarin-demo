@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="TravellerApp.Views.MyProfilePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+    xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:local="clr-namespace:TravellerApp"
+    xmlns:customcontrol="clr-namespace:TravellerApp.Controls"
+    xmlns:effects="clr-namespace:TravellerApp.Effects"
+    Title="My Profile">
+    <!--<ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS" Value="20, 60, 20, 40" />
+            <On Platform="Android, UWP" Value="20" />
+        </OnPlatform>
+    </ContentPage.Padding>-->
+
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="55"></RowDefinition>
+                <RowDefinition Height="35"></RowDefinition>
+                <RowDefinition Height="3*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="2" Grid.RowSpan="3" BackgroundColor="White" Padding="0,40,0,0">
+                <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.RowSpan="4">
+                    <StackLayout HorizontalOptions="FillAndExpand">
+                        <StackLayout HorizontalOptions="FillAndExpand" x:Name="ViewDetailLayout">
+                            <Label HorizontalOptions="Center"
+                                    x:Name="Name"
+                                    FontAttributes="Bold"
+                                    FontSize="Small"
+                                    TextColor="Black" 
+                                    Text="Amanda Rhodes" />
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                            <forms:CachedImage
+                            Grid.Column="0"
+                            HeightRequest="10"
+                            Source="icons_local.png"
+                            VerticalOptions="Center" />
+                        <Label
+                            Grid.Column="1"
+                            HorizontalOptions="Center"
+                            Text="Madrid, Spain"
+                            TextColor="Gray"
+                            VerticalOptions="Center" />
+                        </StackLayout>
+
+                        <BoxView HeightRequest="1" Margin="20,0,20,0" BackgroundColor="Gray"></BoxView>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <StackLayout HorizontalOptions="Center">
+                                <Label Text="26" FontAttributes="Bold" HorizontalOptions="Center" TextColor="Black"></Label>
+                                <Label Text="Visits" TextColor="Gray" HorizontalOptions="Center"></Label>
+                            </StackLayout>
+                            <StackLayout Grid.Column="1" HorizontalOptions="Center">
+                                <Label Text="312" FontAttributes="Bold" TextColor="Black" HorizontalOptions="Center"></Label>
+                                <Label Text="Posts" TextColor="Gray" HorizontalOptions="Center"></Label>
+                            </StackLayout>
+                        </Grid>
+
+                        <BoxView HeightRequest="1" Margin="20,0,20,0" BackgroundColor="Gray"></BoxView>
+
+                        <Image x:Name="qrContainer" Margin="0,30,0,0" HeightRequest="150" WidthRequest="150" HorizontalOptions="Center"></Image>
+
+                        <Label Text="Scan this at check in" HorizontalOptions="Center" TextColor="Gray"></Label>
+                        </StackLayout>
+                        
+                        <Label
+                    x:Name="ValidationError"
+                    Margin="0,8,0,0"
+                    Font="{x:Static local:VisualConstants.StandardFont}"
+                    HorizontalOptions="Center"
+                    TextColor="{StaticResource Color_SoftRed}" />
+                        <StackLayout HorizontalOptions="FillAndExpand" x:Name="EditLayout" IsVisible="False">
+                            <Label x:Name="editName" Text="Name" TextColor="Gray" Margin="20,0,0,0"></Label>
+
+                            <customcontrol:EmptyEntry x:Name="NameForm"  Text="Stella Summers" FontSize="14" TextColor="Black"  Margin="20,0,0,0">
+                                <customcontrol:EmptyEntry.Effects>
+                                    <effects:BorderlessEffect />
+                             </customcontrol:EmptyEntry.Effects>
+                            </customcontrol:EmptyEntry>
+
+
+                            <BoxView HeightRequest="1" Margin="20,0,20,0" BackgroundColor="Gray"></BoxView>
+
+                            <Label Text="Country" TextColor="Gray" Margin="20,0,0,0"></Label>
+
+                            <customcontrol:EmptyEntry Text="Japan" FontSize="14" TextColor="Black" Margin="20,0,0,0">
+                                   <customcontrol:EmptyEntry.Effects>
+                                    <effects:BorderlessEffect />
+                             </customcontrol:EmptyEntry.Effects>
+                            </customcontrol:EmptyEntry>
+
+
+                            <BoxView HeightRequest="1" Margin="20,0,20,0"  BackgroundColor="Gray"></BoxView>
+
+                            <Label Text="Email" TextColor="Gray" Margin="20,0,0,0"></Label>
+
+                            <customcontrol:EmptyEntry x:Name="EmailForm" FontSize="14" Text="stella.summers@gmail.com" TextColor="Black" Margin="20,0,0,0">
+                                   <customcontrol:EmptyEntry.Effects>
+                                    <effects:BorderlessEffect />
+                             </customcontrol:EmptyEntry.Effects>
+                            </customcontrol:EmptyEntry>
+
+
+                            <BoxView HeightRequest="1" Margin="20,0,20,0" BackgroundColor="Gray"></BoxView>
+
+                            <Label Text="Gender" TextColor="Gray" Margin="20,0,0,0"></Label>
+
+                            <customcontrol:EmptyEntry Text="Female" FontSize="14" TextColor="Black" Margin="20,0,0,0">
+                                   <customcontrol:EmptyEntry.Effects>
+                                    <effects:BorderlessEffect />
+                             </customcontrol:EmptyEntry.Effects>
+                            </customcontrol:EmptyEntry>
+
+
+                            <BoxView HeightRequest="1" Margin="20,0,20,0" BackgroundColor="Gray"></BoxView>
+
+                            <Label Text="Birth Date" TextColor="Gray" Margin="20,0,0,0"></Label>
+
+                            <customcontrol:EmptyDatePicker x:Name="datePicker" FontSize="14" Margin="15,0,0,0" >
+                                   <customcontrol:EmptyEntry.Effects>
+                                    <effects:BorderlessEffect />
+                             </customcontrol:EmptyEntry.Effects>
+                            </customcontrol:EmptyDatePicker>
+
+                            <BoxView HeightRequest="1" Margin="20,0,20,0" BackgroundColor="Gray"></BoxView>
+                        </StackLayout>
+                    </StackLayout>
+                </ScrollView>
+            </Grid>
+            
+            <StackLayout
+                Grid.Row="1" Grid.RowSpan="2"
+                            Orientation="Horizontal"
+                        HorizontalOptions="Center"
+                            VerticalOptions="Center">
+
+                <AbsoluteLayout>
+
+                    <controls:CircleImage
+                                    x:Name="ProfilePicture"
+                                    Aspect="AspectFit"
+                                    BorderColor="White"
+                                    BorderThickness="1"
+                                    HeightRequest="90"
+                                    Source="account_circle_gray"
+                                    WidthRequest="90" />
+
+                    <controls:CircleImage
+                        Aspect="AspectFit"
+                                    x:Name="FlagImage"
+                                    AbsoluteLayout.LayoutBounds="1, 0, 32, 32"
+                                    AbsoluteLayout.LayoutFlags="PositionProportional" />
+                </AbsoluteLayout>
+            </StackLayout>
+            <Button x:Name="Edit" BackgroundColor="Transparent" TextColor="White" Text="Edit" HorizontalOptions="End" VerticalOptions="Start" Clicked="OnEditProfileButton"></Button>
+            <Button x:Name="EditFinish" BackgroundColor="Transparent" TextColor="White" Text="Edit Profile" HorizontalOptions="Center" VerticalOptions="Start" IsVisible="false"></Button>
+        </Grid>
+        
+    </ContentPage.Content>
+</ContentPage>

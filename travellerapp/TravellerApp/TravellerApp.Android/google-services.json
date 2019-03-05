@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "46793563754",
+    "firebase_url": "https://kamooni-traveller.firebaseio.com",
+    "project_id": "kamooni-traveller",
+    "storage_bucket": "kamooni-traveller.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:46793563754:android:e87139c8d7f35713",
+        "android_client_info": {
+          "package_name": "com.kamooni.traveller"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "46793563754-ker24p9rogmoet9a63fmonuqe1u5fcqa.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kamooni.traveller",
+            "certificate_hash": "620c1d0c1d6129ffadca5d5e98deb7207e2d738d"
+          }
+        },
+        {
+          "client_id": "46793563754-480jeqrtpkboeu7n71bd1bb5m588di9e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbqhQUrt-jnKOdZYFIAm5SCghUuCaxacg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "46793563754-480jeqrtpkboeu7n71bd1bb5m588di9e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="KamooniHost.Views.LoginPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:c="clr-namespace:Xamarin.Forms.Controls"
+    xmlns:ex="clr-namespace:Xamarin.Forms.Extensions"
+    xmlns:popup="clr-namespace:KamooniHost.Views.Popup"
+    x:Name="this"
+    NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <AbsoluteLayout
+            BackgroundColor="{StaticResource colorPrimary}"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+            <StackLayout
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                VerticalOptions="CenterAndExpand">
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="32"
+                    HorizontalOptions="Center"
+                    Text="Login"
+                    TextColor="White" />
+                <c:RoundedEntry
+                    Margin="20,20,20,0"
+                    HorizontalOptions="FillAndExpand"
+                    Keyboard="Email"
+                    NextFocus="{x:Reference PasswordEntry}"
+                    Placeholder="Email"
+                    ReturnType="Next"
+                    Text="{Binding Email}" />
+                <c:RoundedEntry
+                    x:Name="PasswordEntry"
+                    Margin="20,4,20,0"
+                    HorizontalOptions="FillAndExpand"
+                    IsPassword="True"
+                    Placeholder="Password"
+                    ReturnCommand="{Binding LoginCommand}"
+                    ReturnType="Done"
+                    Text="{Binding Password}" />
+                <Button
+                    Margin="20,8,20,0"
+                    BackgroundColor="{StaticResource colorAccent}"
+                    Command="{Binding LoginCommand}"
+                    CornerRadius="5"
+                    FontAttributes="Bold"
+                    FontSize="18"
+                    HorizontalOptions="FillAndExpand"
+                    Text="{ex:Translate Key=button_login}"
+                    TextColor="White" />
+                <StackLayout
+                    Margin="0,10,0,0"
+                    HorizontalOptions="Center"
+                    Orientation="Horizontal">
+                    <Label Text="{ex:Translate Key=content_dont_have_an_account}" TextColor="White" />
+                    <c:ClickableText
+                        Command="{Binding SignUpCommand}"
+                        FontAttributes="Bold"
+                        Text="{ex:Translate Key=clickable_sign_up}"
+                        TextColor="{StaticResource colorAccent}" />
+                </StackLayout>
+                <c:ClickableText
+                    Margin="0,10,0,0"
+                    Command="{Binding ForgotPasswordCommand}"
+                    FontAttributes="Bold"
+                    HorizontalOptions="Center"
+                    Text="{ex:Translate Key=clickable_forgot_password}"
+                    TextColor="{StaticResource colorAccent}" />
+                <Label
+                    x:Name="ValidationError"
+                    Margin="0,10,0,0"
+                    HorizontalOptions="Center"
+                    Text="{Binding ValidationError}"
+                    TextColor="Red" />
+            </StackLayout>
+            <c:ClickableText
+                AbsoluteLayout.LayoutBounds="0.5, 0.95, 120, 60"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                Command="{Binding ScanLoginCommand}"
+                FontAttributes="Bold"
+                FontSize="Medium"
+                Text="{ex:Translate Key=clickable_scan_to_login}"
+                TextColor="{StaticResource colorAccent}" />
+            <popup:LoadingScreenDimmed
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                IsVisible="{Binding BindingContext.IsBusy, Source={x:Reference this}}" />
+        </AbsoluteLayout>
+    </ContentPage.Content>
+
+</ContentPage>

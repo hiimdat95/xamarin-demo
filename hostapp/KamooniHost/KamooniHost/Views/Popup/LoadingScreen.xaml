@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="KamooniHost.Views.Popup.LoadingScreen"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <ContentView.Content>
+        <AbsoluteLayout>
+            <ContentView
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                BackgroundColor="White" />
+            <ActivityIndicator
+                AbsoluteLayout.LayoutBounds=".5,.5,AutoSize,AutoSize"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                IsRunning="True" />
+        </AbsoluteLayout>
+    </ContentView.Content>
+</ContentView>

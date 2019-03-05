@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="TravellerApp.Views.WriteReviewPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:circle="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+    xmlns:controls="clr-namespace:Xamarin.Forms.Controls">
+
+    <ContentPage.ToolbarItems>
+
+        <ToolbarItem Clicked="SubmitReview_Clicked" Text="Publish" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+
+        <AbsoluteLayout
+            Padding="0"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+
+            <ScrollView AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+
+                <Frame
+                    Padding="10"
+                    BackgroundColor="White"
+                    HasShadow="False"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand">
+
+                    <StackLayout Spacing="10">
+
+                        <StackLayout Orientation="Horizontal">
+
+                            <circle:CircleImage
+                                x:Name="profilePicture"
+                                Aspect="AspectFill"
+                                BorderColor="White"
+                                BorderThickness="2"
+                                HeightRequest="60"
+                                HorizontalOptions="Center"
+                                Source="account_circle_gray"
+                                WidthRequest="60" />
+
+                            <Label
+                                x:Name="lbName"
+                                Margin="10,00,0,0"
+                                FontSize="16"
+                                LineBreakMode="TailTruncation"
+                                TextColor="Black"
+                                VerticalOptions="Start" />
+                        </StackLayout>
+
+                        <Editor
+                            x:Name="txtContent"
+                            HorizontalOptions="FillAndExpand"
+                            MinimumHeightRequest="200"
+                            Placeholder="Tell Travellers what's happening at your destination"
+                            PlaceholderColor="LightGray"
+                            VerticalOptions="FillAndExpand" />
+
+                        <RelativeLayout>
+
+                            <controls:ImageWithLongPressGesture x:Name="image" />
+
+                            <Image
+                                x:Name="imgDelete"
+                                HeightRequest="40"
+                                IsVisible="false"
+                                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                                  Property=Height,
+                                                                                  Factor=0.88,
+                                                                                  Constant=0}"
+                                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                                  Property=Height,
+                                                                                  Factor=0,
+                                                                                  Constant=0}"
+                                Source="icon_delete.png"
+                                WidthRequest="40">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnDeleteImageTapped" />
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </RelativeLayout>
+
+                        <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+
+                            <controls:RatingView
+                                x:Name="rating"
+                                HorizontalOptions="Start"
+                                MaxStars="5"
+                                Rating="5"
+                                StarSize="40"
+                                VerticalOptions="Start" />
+
+                            <Image
+                                HeightRequest="30"
+                                HorizontalOptions="EndAndExpand"
+                                Source="icon_camera.png"
+                                WidthRequest="30">
+
+                                <Image.GestureRecognizers>
+
+                                    <TapGestureRecognizer Tapped="OnCameraTapped" />
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+            </ScrollView>
+
+            <ContentView
+                x:Name="popupShareIns1"
+                Padding="10,0"
+                AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                AbsoluteLayout.LayoutFlags="All"
+                BackgroundColor="#C0808080"
+                IsVisible="false">
+                <StackLayout
+                    x:Name="popupChil1"
+                    Margin="10,0,10,0"
+                    AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                    AbsoluteLayout.LayoutFlags="All"
+                    BackgroundColor="White"
+                    HorizontalOptions="FillAndExpand"
+                    Orientation="Vertical"
+                    VerticalOptions="Center">
+                    <StackLayout
+                        Margin="10,10,10,10"
+                        BackgroundColor="White"
+                        HeightRequest="100"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="CenterAndExpand">
+                        <Image
+                            HeightRequest="100"
+                            Source="icon_noti.png"
+                            WidthRequest="100" />
+                    </StackLayout>
+                    <Label
+                        Margin="16,10,16,0"
+                        FontSize="14"
+                        HorizontalTextAlignment="Center"
+                        Text="Thank you for your post! You have earned 5 points"
+                        TextColor="Black" />
+
+                    <Label
+                        Margin="16,10,16,10"
+                        FontSize="14"
+                        HorizontalTextAlignment="Center"
+                        Text="Double your points by sharing it on social media"
+                        TextColor="Black" />
+                    <Label
+                        BackgroundColor="Black"
+                        HeightRequest="1"
+                        HorizontalOptions="FillAndExpand" />
+                    <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                        <Image
+                            Margin="20,0,0,0"
+                            HeightRequest="40"
+                            Source="instagram"
+                            VerticalOptions="Center"
+                            WidthRequest="40" />
+                        <Label
+                            x:Name="shareInstagram"
+                            BackgroundColor="White"
+                            FontAttributes="Bold"
+                            FontSize="Medium"
+                            HorizontalOptions="CenterAndExpand"
+                            HorizontalTextAlignment="Center"
+                            Text="SHARE ON INSTAGRAM"
+                            TextColor="Black"
+                            VerticalOptions="CenterAndExpand" />
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="shareOnInstagram_Tapped" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    <Label
+                        BackgroundColor="Black"
+                        HeightRequest="1"
+                        HorizontalOptions="FillAndExpand" />
+
+                    <StackLayout
+                        HeightRequest="40"
+                        HorizontalOptions="FillAndExpand"
+                        Orientation="Horizontal">
+                        <Label
+                            BackgroundColor="White"
+                            FontAttributes="Bold"
+                            FontSize="Medium"
+                            HorizontalOptions="CenterAndExpand"
+                            HorizontalTextAlignment="Center"
+                            Text="No Thanks"
+                            TextColor="Gray"
+                            VerticalOptions="CenterAndExpand" />
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="noThanhs_Tapped" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                </StackLayout>
+            </ContentView>
+
+            <!--  Popup Share  -->
+            <ContentView
+                x:Name="popupShareIns"
+                Padding="10,0"
+                AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                AbsoluteLayout.LayoutFlags="All"
+                BackgroundColor="#C0808080"
+                IsVisible="false">
+                <ScrollView AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+
+                    <StackLayout
+                        x:Name="popupChil"
+                        AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                        AbsoluteLayout.LayoutFlags="All"
+                        BackgroundColor="White"
+                        HorizontalOptions="FillAndExpand"
+                        Orientation="Vertical"
+                        VerticalOptions="Center">
+                        <StackLayout
+                            Margin="10,10,10,0"
+                            BackgroundColor="White"
+                            HeightRequest="72"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="CenterAndExpand">
+                            <Image
+                                HeightRequest="72"
+                                Source="icon_noti.png"
+                                WidthRequest="72" />
+                        </StackLayout>
+                        <Label
+                            Margin="10,10,10,0"
+                            FontSize="Medium"
+                            HorizontalOptions="CenterAndExpand"
+                            HorizontalTextAlignment="Center"
+                            Text="We've copied your caption"
+                            TextColor="Black"
+                            VerticalOptions="CenterAndExpand"
+                            VerticalTextAlignment="Center" />
+                        <Label
+                            Margin="10,10,10,0"
+                            FontSize="Small"
+                            HorizontalOptions="CenterAndExpand"
+                            HorizontalTextAlignment="Center"
+                            Text=" ー Latest version of Instagram no longer supports transferring captions"
+                            TextColor="Black"
+                            VerticalOptions="CenterAndExpand"
+                            VerticalTextAlignment="Center" />
+                        <Label
+                            x:Name="lbTapAndHold"
+                            Margin="10,0,10,10"
+                            FontSize="Small"
+                            HorizontalOptions="CenterAndExpand"
+                            HorizontalTextAlignment="Center"
+                            TextColor="Black"
+                            VerticalOptions="CenterAndExpand"
+                            VerticalTextAlignment="Center" />
+                        <Image
+                            HorizontalOptions="FillAndExpand"
+                            Source="icon_tutorial_post_ins.png"
+                            VerticalOptions="StartAndExpand" />
+                        <BoxView
+                            BackgroundColor="Gray"
+                            HeightRequest="1"
+                            HorizontalOptions="FillAndExpand" />
+                        <Label
+                            x:Name="lbShare"
+                            HeightRequest="48"
+                            HorizontalOptions="FillAndExpand"
+                            HorizontalTextAlignment="Center"
+                            Text="Okay, Got It!"
+                            TextColor="Blue"
+                            VerticalOptions="Center"
+                            VerticalTextAlignment="Center" />
+                    </StackLayout>
+                </ScrollView>
+            </ContentView>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

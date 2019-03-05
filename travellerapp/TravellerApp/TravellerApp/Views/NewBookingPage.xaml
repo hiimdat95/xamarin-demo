@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns:controls="clr-namespace:Xamarin.Forms.Controls"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    x:Class="TravellerApp.Views.NewBookingPage"
+    xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms">
+
+    <ContentPage.Content>
+       <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+         <StackLayout
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                BackgroundColor="WhiteSmoke">
+           <ScrollView
+            HorizontalOptions="FillAndExpand"
+            Orientation="Vertical"
+            VerticalOptions="FillAndExpand"
+            VerticalScrollBarVisibility="Never">
+
+            <StackLayout
+                BackgroundColor="White"
+                HorizontalOptions="FillAndExpand"
+                Orientation="Vertical"
+                VerticalOptions="FillAndExpand">
+
+                <Image
+                    Aspect="AspectFill"
+                    HorizontalOptions="FillAndExpand"
+                    HeightRequest="180"
+                    x:Name="imgActivity" />
+
+                <Label
+                    FontSize="Medium"
+                    HorizontalOptions="StartAndExpand"
+                    Margin="15,0,15,0"
+                    Text="Select Activity:"
+                    TextColor="Gray" />
+
+                <Picker
+                    HorizontalOptions="FillAndExpand"
+                    IsVisible="false"
+                    ItemDisplayBinding="{Binding activity_name}"
+                    Margin="15,0,15,0"
+                    SelectedItem="OnPickerSelectedIndexChanged"
+                    TextColor="Teal"
+                    Title="Select Activity"
+                    x:Name="pickerActivity" />
+
+                <Button
+                    BackgroundColor="White"
+                    BorderColor="Teal"
+                    BorderWidth="2"
+                    Clicked="SelectActivityClicked"
+                    CornerRadius="4"
+                    HeightRequest="40"
+                    Margin="15,0,15,0"
+                    TextColor="Teal"
+                    x:Name="buttonPicker" />
+
+                <Label
+                    FontSize="Small"
+                    HorizontalOptions="StartAndExpand"
+                    Margin="20,10,20,10"
+                    TextColor="Gray"
+                    x:Name="lbSummary" />
+
+
+                <controls:RepeaterView
+                    HorizontalOptions="FillAndExpand"
+                    Orientation="Vertical"
+                    Spacing="25"
+                    x:Name="lvPeriods">
+
+                    <controls:RepeaterView.ItemTemplate>
+
+                        <DataTemplate>
+
+                            <StackLayout
+                                HorizontalOptions="FillAndExpand"
+                                Orientation="Vertical">
+
+                                <StackLayout
+                                    BackgroundColor="Gray"
+                                    HeightRequest="0.5"
+                                    HorizontalOptions="FillAndExpand" />
+
+                                <Label
+                                    FontSize="Small"
+                                    Grid.Column="0"
+                                    Grid.Row="0"
+                                    HorizontalOptions="StartAndExpand"
+                                    Margin="20,10,20,10"
+                                    Text="{Binding Id}"
+                                    TextColor="Gray" />
+
+                                <StackLayout
+                                    BackgroundColor="Gray"
+                                    HeightRequest="0.5"
+                                    HorizontalOptions="FillAndExpand"
+                                    Margin="20,0,20,0" />
+                                
+                                 <controls:RepeaterView
+                                    HorizontalOptions="FillAndExpand"
+                                    Orientation="Vertical"
+                                    Spacing="25"
+                                    x:Name="lvPeriodGroup"
+                                    ItemsSource="{Binding ListPeriod}"
+                                    
+                                    >
+
+                                    <controls:RepeaterView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid
+                                                HorizontalOptions="FillAndExpand"
+                                                Margin="20,10,20,10"
+                                                MinimumWidthRequest="50">
+
+                                                <Grid.ColumnDefinitions>
+
+                                                    <ColumnDefinition Width="5*" />
+
+                                                    <ColumnDefinition Width="2*" />
+                                                </Grid.ColumnDefinitions>
+
+                                                <StackLayout
+                                                    Grid.Column="0"
+                                                    Grid.Row="0"
+                                                    Orientation="Vertical">
+
+                                                    <Label
+                                                        FontSize="Micro"
+                                                        HorizontalOptions="StartAndExpand"
+                                                        Text="{Binding detail_date}"
+                                                        TextColor="Gray" />
+
+                                                    <Label
+                                                        FontSize="Small"
+                                                        HorizontalOptions="StartAndExpand"
+                                                        Text="{Binding detail}"
+                                                        TextColor="Gray" />
+                                                </StackLayout>
+
+                                                <AbsoluteLayout
+                                                    Grid.Column="1"
+                                                    Grid.Row="0"
+                                                    HorizontalOptions="FillAndExpand"
+                                                    VerticalOptions="CenterAndExpand">
+                                                    <Button
+                                                        BorderColor="Teal"
+                                                        BorderWidth="2"
+                                                        CornerRadius="4"
+                                                        HeightRequest="44"
+                                                        WidthRequest="84"
+                                                        Text=""
+                                                        TextColor="Teal" />
+                                                        <Picker
+                                                            Margin="1,1,1,1"
+                                                            FontSize="15"
+                                                            HorizontalOptions="Center"
+                                                            VerticalOptions="Center"
+                                                            ItemsSource="{Binding list_person}"
+                                                            SelectedIndexChanged="ChooseClicked"
+                                                            SelectedItem="{Binding selected_person}"
+                                                            BackgroundColor="Transparent"
+                                                            HeightRequest="40"
+                                                            WidthRequest="80"
+                                                            TextColor="Teal"
+                                                            Title="Choose"
+                                                            />
+                                                    
+                                                  
+                                                </AbsoluteLayout>
+                                               
+                                            </Grid>
+                                          
+                                           
+                                        </DataTemplate>
+                                    </controls:RepeaterView.ItemTemplate>
+                                 </controls:RepeaterView>
+                                
+                            </StackLayout>
+                        </DataTemplate>
+                    </controls:RepeaterView.ItemTemplate>
+                </controls:RepeaterView>
+            </StackLayout>
+        </ScrollView>
+        </StackLayout>
+        <Frame
+                x:Name="frCheckOut"
+                Padding="1"
+                AbsoluteLayout.LayoutBounds="1,1,1,AutoSize"
+                AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional"
+                BackgroundColor="#FCC84C"
+                BorderColor="#DDDDDD"
+                CornerRadius="0"
+                HasShadow="False"
+                HeightRequest="180"
+                IsVisible="false"
+                Opacity="0.9">
+                <ScrollView>
+                    <StackLayout>
+                        <controls:RepeaterView
+                            x:Name="listBookedPeriod"
+                            HorizontalOptions="FillAndExpand"
+                            IsVisible="True"
+                            Spacing="5"
+                           
+                            >
+                            <controls:RepeaterView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackLayout>
+                                        <Grid Padding="5" RowSpacing="0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="100" />
+                                                <ColumnDefinition Width="10" />
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="auto" />
+                                                <RowDefinition Height="auto" />
+                                                <RowDefinition Height="auto" />
+                                            </Grid.RowDefinitions>
+                                            <Label
+                                                Grid.Row="0"
+                                                Grid.Column="0"
+                                                Text="{Binding activity_name}"
+                                                TextColor="White" />
+                                            <Label
+                                                Grid.Row="0"
+                                                Grid.Column="1"
+                                                HorizontalTextAlignment="Start"
+                                                Text="ZAR"
+                                                TextColor="White" />
+                                            <Label
+                                                Grid.Row="0"
+                                                Grid.Column="1"
+                                                HorizontalTextAlignment="End"
+                                                Text="{Binding totalPrice,StringFormat='{0:N2}'}"
+                                                TextColor="White" />
+                                            <forms:CachedImage
+                                                Grid.Row="0"
+                                                Grid.Column="2"
+                                                HeightRequest="20"
+                                                HorizontalOptions="EndAndExpand"
+                                                Source="cancel_red">
+                                                <forms:CachedImage.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="OnCancelItemClick" />
+                                                </forms:CachedImage.GestureRecognizers>
+                                            </forms:CachedImage>
+                                        </Grid>
+                                    </StackLayout>
+                                </DataTemplate>
+                            </controls:RepeaterView.ItemTemplate>
+                        </controls:RepeaterView>
+                        <StackLayout VerticalOptions="End">
+                            <Grid Padding="5" RowSpacing="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="100" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    FontAttributes="Bold"
+                                    FontSize="Medium"
+                                    Text="Total"
+                                    TextColor="White" />
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="2"
+                                    FontAttributes="Bold"
+                                    FontSize="Medium"
+                                    HorizontalTextAlignment="Start"
+                                    Text="ZAR"
+                                    TextColor="White" />
+                                <Label
+                                    x:Name="total_pay"
+                                    Grid.Row="0"
+                                    Grid.Column="2"
+                                    FontAttributes="Bold"
+                                    FontSize="Medium"
+                                    HorizontalOptions="EndAndExpand"
+                                    HorizontalTextAlignment="End"
+                                    TextColor="White" />
+                                <Button
+                                    Grid.Row="2"
+                                    Grid.Column="2"
+                                    Padding="0"
+                                    BackgroundColor="#52B499"
+                                    Clicked="createBookingActivity"
+                                    CornerRadius="18"
+                                    FontSize="Medium"
+                                    HeightRequest="35"
+                                    Text="Check Out"
+                                    TextColor="White" />
+                            </Grid>
+                        </StackLayout>
+                    </StackLayout>
+                </ScrollView>
+            </Frame>
+       </AbsoluteLayout> 
+    </ContentPage.Content>
+</ContentPage>

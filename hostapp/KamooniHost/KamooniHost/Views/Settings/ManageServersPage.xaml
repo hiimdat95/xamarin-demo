@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="KamooniHost.Views.ManageServersPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviors="clr-namespace:Xamarin.Forms.Behaviors"
+    xmlns:converters="clr-namespace:Xamarin.Forms.Converters"
+    xmlns:ex="clr-namespace:Xamarin.Forms.Extensions"
+    x:Name="this"
+    Title="{ex:Translate Key=title_activity_manage_servers}">
+    <ContentPage.Content>
+        <StackLayout
+            BackgroundColor="White"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+            <Label
+                Margin="0,8,0,0"
+                FontAttributes="Bold"
+                FontSize="22"
+                HorizontalOptions="Center"
+                Text="{ex:Translate Key=heading_currently_selected_server}"
+                TextColor="{StaticResource colorPrimary}" />
+            <Frame
+                Margin="16,8,16,0"
+                Padding="5"
+                CornerRadius="5">
+                <StackLayout Spacing="0">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalOptions="Center"
+                        Text="{Binding CurrentHost.Name}" />
+                    <Label HorizontalOptions="Center" Text="{Binding CurrentHost.Url}" />
+                </StackLayout>
+            </Frame>
+            <BoxView
+                Margin="16,16,16,0"
+                HeightRequest="1"
+                HorizontalOptions="FillAndExpand"
+                Color="{StaticResource grayShade_0}" />
+            <Label
+                Margin="0,8,0,0"
+                FontAttributes="Bold"
+                FontSize="20"
+                HorizontalOptions="Center"
+                Text="{ex:Translate Key=heading_your_other_servers}"
+                TextColor="{StaticResource colorPrimary}" />
+            <ListView
+                BackgroundColor="White"
+                CachingStrategy="RecycleElement"
+                HorizontalOptions="FillAndExpand"
+                ItemsSource="{Binding Hosts}"
+                SelectionMode="None"
+                VerticalOptions="FillAndExpand">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding Name}" TextColor="Black">
+                            <TextCell.ContextActions>
+                                <MenuItem
+                                    Command="{Binding BindingContext.DeleteHostCommand, Source={x:Reference this}}"
+                                    CommandParameter="{Binding .}"
+                                    IsDestructive="True"
+                                    Text="Delete" />
+                            </TextCell.ContextActions>
+                        </TextCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.Behaviors>
+                    <behaviors:EventToCommandBehavior
+                        Command="{Binding SelectHostCommand}"
+                        EventArgsConverter="{StaticResource ItemTappedConverter}"
+                        EventName="ItemTapped" />
+                </ListView.Behaviors>
+            </ListView>
+            <Button
+                BackgroundColor="{StaticResource colorAccent}"
+                Command="{Binding AddServerCommand}"
+                CornerRadius="0"
+                FontSize="16"
+                HeightRequest="55"
+                HorizontalOptions="FillAndExpand"
+                Text="{ex:Translate Key=button_add_new_server}"
+                TextColor="White"
+                VerticalOptions="EndAndExpand" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

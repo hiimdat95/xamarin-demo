@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="KamooniHost.Views.CheckOutPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Xamarin.Forms.Controls"
+    xmlns:ex="clr-namespace:Xamarin.Forms.Extensions"
+    x:Name="this"
+    Title="{ex:Translate Key=title_activity_checked_out}">
+    <NavigationPage.TitleView>
+        <StackLayout Padding="{OnPlatform Android=0, iOS='0,20,0,0'}">
+            <StackLayout
+                IsEnabled="{Binding ListCheckedInBooking, Converter={StaticResource HasDataConverter}}"
+                IsVisible="{Binding IsSearching, Converter={StaticResource ReverseBoolConverter}}"
+                Orientation="Horizontal"
+                VerticalOptions="Center">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding StartSearchBookingsCommand}" />
+                </StackLayout.GestureRecognizers>
+                <Label
+                    FontSize="18"
+                    HorizontalOptions="FillAndExpand"
+                    Text="Search Bookings"
+                    TextColor="White"
+                    VerticalTextAlignment="Center" />
+                <Image
+                    Margin="0,0,20,0"
+                    HeightRequest="25"
+                    HorizontalOptions="End"
+                    Source="ic_search_white.png"
+                    VerticalOptions="Center"
+                    WidthRequest="25" />
+            </StackLayout>
+            <StackLayout
+                IsVisible="{Binding IsSearching}"
+                Orientation="Horizontal"
+                VerticalOptions="Center">
+                <controls:RoundedSearchBar
+                    BackgroundColor="{StaticResource colorPrimary}"
+                    HorizontalOptions="FillAndExpand"
+                    MinimumWidthRequest="50"
+                    Placeholder="Search Bookings"
+                    Text="{Binding SearchKey}"
+                    VerticalOptions="Center" />
+                <Label
+                    FontSize="16"
+                    HorizontalOptions="End"
+                    HorizontalTextAlignment="Center"
+                    Text="Cancel"
+                    TextColor="White"
+                    VerticalOptions="FillAndExpand"
+                    VerticalTextAlignment="Center"
+                    WidthRequest="80">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding StopSearchBookingsCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </StackLayout>
+        </StackLayout>
+    </NavigationPage.TitleView>
+    <ContentPage.Content>
+        <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <controls:ExtendedListView
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                BackgroundColor="White"
+                HasUnevenRows="True"
+                IsPullToRefreshEnabled="True"
+                IsRefreshing="{Binding IsLoading}"
+                ItemTappedCommand="{Binding ViewBillsCommand}"
+                ItemsSource="{Binding ListCheckedInBooking}"
+                RefreshCommand="{Binding GetCheckedInBookingsCommand}"
+                SelectionMode="None"
+                SeparatorColor="DimGray">
+                <controls:ExtendedListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="16,5,8,5" RowSpacing="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="75" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    FontAttributes="Bold"
+                                    FontSize="13"
+                                    Text="{Binding Name}"
+                                    TextColor="Black"
+                                    VerticalOptions="Center" />
+                                <StackLayout
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    Orientation="Horizontal">
+                                    <Label
+                                        FontAttributes="Italic"
+                                        FontSize="14"
+                                        HorizontalOptions="Start"
+                                        Text="{Binding Reference}"
+                                        TextColor="DimGray"
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        Margin="8,0,0,0"
+                                        FontAttributes="Bold"
+                                        FontSize="12"
+                                        Text="{Binding Dates}"
+                                        TextColor="Green"
+                                        VerticalOptions="Center" />
+                                </StackLayout>
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    FontAttributes="Bold"
+                                    FontSize="12"
+                                    HorizontalOptions="End"
+                                    Text="{Binding TotalPrice, StringFormat='R {0:N2}'}"
+                                    TextColor="DimGray"
+                                    VerticalOptions="Center" />
+                                <Button
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    BackgroundColor="{Binding ButtonColor}"
+                                    Command="{Binding BindingContext.ProceedCommand, Source={x:Reference this}}"
+                                    CommandParameter="{Binding .}"
+                                    CornerRadius="0"
+                                    FontAttributes="Bold"
+                                    FontSize="10"
+                                    HeightRequest="22"
+                                    HorizontalOptions="End"
+                                    Text="{Binding ButtonText}"
+                                    TextColor="White"
+                                    VerticalOptions="Center"
+                                    WidthRequest="50" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </controls:ExtendedListView.ItemTemplate>
+            </controls:ExtendedListView>
+            <controls:ExtendedListView
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                BackgroundColor="White"
+                HasUnevenRows="True"
+                IsVisible="{Binding SearchResultVisible}"
+                ItemTappedCommand="{Binding ViewBillsCommand}"
+                ItemsSource="{Binding ListSearchResultBooking}"
+                SelectionMode="None"
+                SeparatorColor="DimGray">
+                <controls:ExtendedListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="16,5,8,5" RowSpacing="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="75" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    FontAttributes="Bold"
+                                    FontSize="13"
+                                    Text="{Binding Name}"
+                                    TextColor="Black"
+                                    VerticalOptions="Center" />
+                                <StackLayout
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    Orientation="Horizontal">
+                                    <Label
+                                        FontAttributes="Italic"
+                                        FontSize="14"
+                                        HorizontalOptions="Start"
+                                        Text="{Binding Reference}"
+                                        TextColor="DimGray"
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        Margin="8,0,0,0"
+                                        FontAttributes="Bold"
+                                        FontSize="12"
+                                        Text="{Binding Dates}"
+                                        TextColor="Green"
+                                        VerticalOptions="Center" />
+                                </StackLayout>
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    FontAttributes="Bold"
+                                    FontSize="12"
+                                    HorizontalOptions="End"
+                                    Text="{Binding TotalPrice, StringFormat='R {0:N2}'}"
+                                    TextColor="DimGray"
+                                    VerticalOptions="Center" />
+                                <Button
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    BackgroundColor="{Binding ButtonColor}"
+                                    Command="{Binding BindingContext.ProceedCommand, Source={x:Reference this}}"
+                                    CommandParameter="{Binding .}"
+                                    CornerRadius="0"
+                                    FontAttributes="Bold"
+                                    FontSize="10"
+                                    HeightRequest="22"
+                                    HorizontalOptions="End"
+                                    Text="{Binding ButtonText}"
+                                    TextColor="White"
+                                    VerticalOptions="Center"
+                                    WidthRequest="50" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </controls:ExtendedListView.ItemTemplate>
+            </controls:ExtendedListView>
+            <ContentView
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                BackgroundColor="White"
+                InputTransparent="True"
+                IsVisible="{Binding EmptyMessageVisible}">
+                <Label
+                    FontSize="20"
+                    HorizontalOptions="Center"
+                    HorizontalTextAlignment="Center"
+                    Text="Nice work! Everyone is checked out!"
+                    TextColor="DimGray"
+                    VerticalOptions="Center" />
+            </ContentView>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

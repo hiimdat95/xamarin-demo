@@ -1,0 +1,1306 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <WarningsAsErrors>NU1605</WarningsAsErrors>
+    <NoWarn>1701;1702</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DefineConstants>TRACE</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="AppResources\Assets\check_in_background.png" />
+    <None Remove="AppResources\Assets\flag_ac.png" />
+    <None Remove="AppResources\Assets\flag_ad.png" />
+    <None Remove="AppResources\Assets\flag_ae.png" />
+    <None Remove="AppResources\Assets\flag_af.png" />
+    <None Remove="AppResources\Assets\flag_ag.png" />
+    <None Remove="AppResources\Assets\flag_ai.png" />
+    <None Remove="AppResources\Assets\flag_al.png" />
+    <None Remove="AppResources\Assets\flag_am.png" />
+    <None Remove="AppResources\Assets\flag_an.png" />
+    <None Remove="AppResources\Assets\flag_ao.png" />
+    <None Remove="AppResources\Assets\flag_aq.png" />
+    <None Remove="AppResources\Assets\flag_ar.png" />
+    <None Remove="AppResources\Assets\flag_as.png" />
+    <None Remove="AppResources\Assets\flag_at.png" />
+    <None Remove="AppResources\Assets\flag_au.png" />
+    <None Remove="AppResources\Assets\flag_aw.png" />
+    <None Remove="AppResources\Assets\flag_ax.png" />
+    <None Remove="AppResources\Assets\flag_az.png" />
+    <None Remove="AppResources\Assets\flag_ba.png" />
+    <None Remove="AppResources\Assets\flag_bb.png" />
+    <None Remove="AppResources\Assets\flag_bd.png" />
+    <None Remove="AppResources\Assets\flag_be.png" />
+    <None Remove="AppResources\Assets\flag_bf.png" />
+    <None Remove="AppResources\Assets\flag_bg.png" />
+    <None Remove="AppResources\Assets\flag_bh.png" />
+    <None Remove="AppResources\Assets\flag_bi.png" />
+    <None Remove="AppResources\Assets\flag_bj.png" />
+    <None Remove="AppResources\Assets\flag_bl.png" />
+    <None Remove="AppResources\Assets\flag_bm.png" />
+    <None Remove="AppResources\Assets\flag_bn.png" />
+    <None Remove="AppResources\Assets\flag_bo.png" />
+    <None Remove="AppResources\Assets\flag_bq.png" />
+    <None Remove="AppResources\Assets\flag_br.png" />
+    <None Remove="AppResources\Assets\flag_bs.png" />
+    <None Remove="AppResources\Assets\flag_bt.png" />
+    <None Remove="AppResources\Assets\flag_bv.png" />
+    <None Remove="AppResources\Assets\flag_bw.png" />
+    <None Remove="AppResources\Assets\flag_by.png" />
+    <None Remove="AppResources\Assets\flag_bz.png" />
+    <None Remove="AppResources\Assets\flag_ca.png" />
+    <None Remove="AppResources\Assets\flag_cc.png" />
+    <None Remove="AppResources\Assets\flag_cd.png" />
+    <None Remove="AppResources\Assets\flag_cf.png" />
+    <None Remove="AppResources\Assets\flag_cg.png" />
+    <None Remove="AppResources\Assets\flag_ch.png" />
+    <None Remove="AppResources\Assets\flag_ci.png" />
+    <None Remove="AppResources\Assets\flag_ck.png" />
+    <None Remove="AppResources\Assets\flag_cl.png" />
+    <None Remove="AppResources\Assets\flag_cm.png" />
+    <None Remove="AppResources\Assets\flag_cn.png" />
+    <None Remove="AppResources\Assets\flag_co.png" />
+    <None Remove="AppResources\Assets\flag_cr.png" />
+    <None Remove="AppResources\Assets\flag_cu.png" />
+    <None Remove="AppResources\Assets\flag_cv.png" />
+    <None Remove="AppResources\Assets\flag_cw.png" />
+    <None Remove="AppResources\Assets\flag_cx.png" />
+    <None Remove="AppResources\Assets\flag_cy.png" />
+    <None Remove="AppResources\Assets\flag_cz.png" />
+    <None Remove="AppResources\Assets\flag_de.png" />
+    <None Remove="AppResources\Assets\flag_dj.png" />
+    <None Remove="AppResources\Assets\flag_dk.png" />
+    <None Remove="AppResources\Assets\flag_dm.png" />
+    <None Remove="AppResources\Assets\flag_do.png" />
+    <None Remove="AppResources\Assets\flag_dz.png" />
+    <None Remove="AppResources\Assets\flag_ec.png" />
+    <None Remove="AppResources\Assets\flag_ee.png" />
+    <None Remove="AppResources\Assets\flag_eg.png" />
+    <None Remove="AppResources\Assets\flag_eh.png" />
+    <None Remove="AppResources\Assets\flag_er.png" />
+    <None Remove="AppResources\Assets\flag_es.png" />
+    <None Remove="AppResources\Assets\flag_et.png" />
+    <None Remove="AppResources\Assets\flag_fi.png" />
+    <None Remove="AppResources\Assets\flag_fj.png" />
+    <None Remove="AppResources\Assets\flag_fk.png" />
+    <None Remove="AppResources\Assets\flag_fm.png" />
+    <None Remove="AppResources\Assets\flag_fo.png" />
+    <None Remove="AppResources\Assets\flag_fr.png" />
+    <None Remove="AppResources\Assets\flag_fx.png" />
+    <None Remove="AppResources\Assets\flag_ga.png" />
+    <None Remove="AppResources\Assets\flag_gb.png" />
+    <None Remove="AppResources\Assets\flag_gd.png" />
+    <None Remove="AppResources\Assets\flag_ge.png" />
+    <None Remove="AppResources\Assets\flag_gf.png" />
+    <None Remove="AppResources\Assets\flag_gg.png" />
+    <None Remove="AppResources\Assets\flag_gh.png" />
+    <None Remove="AppResources\Assets\flag_gi.png" />
+    <None Remove="AppResources\Assets\flag_gl.png" />
+    <None Remove="AppResources\Assets\flag_gm.png" />
+    <None Remove="AppResources\Assets\flag_gn.png" />
+    <None Remove="AppResources\Assets\flag_gp.png" />
+    <None Remove="AppResources\Assets\flag_gq.png" />
+    <None Remove="AppResources\Assets\flag_gr.png" />
+    <None Remove="AppResources\Assets\flag_gs.png" />
+    <None Remove="AppResources\Assets\flag_gt.png" />
+    <None Remove="AppResources\Assets\flag_gu.png" />
+    <None Remove="AppResources\Assets\flag_gw.png" />
+    <None Remove="AppResources\Assets\flag_gy.png" />
+    <None Remove="AppResources\Assets\flag_hk.png" />
+    <None Remove="AppResources\Assets\flag_hm.png" />
+    <None Remove="AppResources\Assets\flag_hn.png" />
+    <None Remove="AppResources\Assets\flag_hr.png" />
+    <None Remove="AppResources\Assets\flag_ht.png" />
+    <None Remove="AppResources\Assets\flag_hu.png" />
+    <None Remove="AppResources\Assets\flag_id.png" />
+    <None Remove="AppResources\Assets\flag_ie.png" />
+    <None Remove="AppResources\Assets\flag_il.png" />
+    <None Remove="AppResources\Assets\flag_im.png" />
+    <None Remove="AppResources\Assets\flag_in.png" />
+    <None Remove="AppResources\Assets\flag_io.png" />
+    <None Remove="AppResources\Assets\flag_iq.png" />
+    <None Remove="AppResources\Assets\flag_ir.png" />
+    <None Remove="AppResources\Assets\flag_is.png" />
+    <None Remove="AppResources\Assets\flag_it.png" />
+    <None Remove="AppResources\Assets\flag_je.png" />
+    <None Remove="AppResources\Assets\flag_jm.png" />
+    <None Remove="AppResources\Assets\flag_jo.png" />
+    <None Remove="AppResources\Assets\flag_jp.png" />
+    <None Remove="AppResources\Assets\flag_ke.png" />
+    <None Remove="AppResources\Assets\flag_kg.png" />
+    <None Remove="AppResources\Assets\flag_kh.png" />
+    <None Remove="AppResources\Assets\flag_ki.png" />
+    <None Remove="AppResources\Assets\flag_km.png" />
+    <None Remove="AppResources\Assets\flag_kn.png" />
+    <None Remove="AppResources\Assets\flag_kp.png" />
+    <None Remove="AppResources\Assets\flag_kr.png" />
+    <None Remove="AppResources\Assets\flag_kw.png" />
+    <None Remove="AppResources\Assets\flag_ky.png" />
+    <None Remove="AppResources\Assets\flag_kz.png" />
+    <None Remove="AppResources\Assets\flag_la.png" />
+    <None Remove="AppResources\Assets\flag_lb.png" />
+    <None Remove="AppResources\Assets\flag_lc.png" />
+    <None Remove="AppResources\Assets\flag_li.png" />
+    <None Remove="AppResources\Assets\flag_lk.png" />
+    <None Remove="AppResources\Assets\flag_lr.png" />
+    <None Remove="AppResources\Assets\flag_ls.png" />
+    <None Remove="AppResources\Assets\flag_lt.png" />
+    <None Remove="AppResources\Assets\flag_lu.png" />
+    <None Remove="AppResources\Assets\flag_lv.png" />
+    <None Remove="AppResources\Assets\flag_ly.png" />
+    <None Remove="AppResources\Assets\flag_ma.png" />
+    <None Remove="AppResources\Assets\flag_mc.png" />
+    <None Remove="AppResources\Assets\flag_md.png" />
+    <None Remove="AppResources\Assets\flag_me.png" />
+    <None Remove="AppResources\Assets\flag_mf.png" />
+    <None Remove="AppResources\Assets\flag_mg.png" />
+    <None Remove="AppResources\Assets\flag_mh.png" />
+    <None Remove="AppResources\Assets\flag_mk.png" />
+    <None Remove="AppResources\Assets\flag_ml.png" />
+    <None Remove="AppResources\Assets\flag_mm.png" />
+    <None Remove="AppResources\Assets\flag_mn.png" />
+    <None Remove="AppResources\Assets\flag_mo.png" />
+    <None Remove="AppResources\Assets\flag_mp.png" />
+    <None Remove="AppResources\Assets\flag_mq.png" />
+    <None Remove="AppResources\Assets\flag_mr.png" />
+    <None Remove="AppResources\Assets\flag_ms.png" />
+    <None Remove="AppResources\Assets\flag_mt.png" />
+    <None Remove="AppResources\Assets\flag_mu.png" />
+    <None Remove="AppResources\Assets\flag_mv.png" />
+    <None Remove="AppResources\Assets\flag_mw.png" />
+    <None Remove="AppResources\Assets\flag_mx.png" />
+    <None Remove="AppResources\Assets\flag_my.png" />
+    <None Remove="AppResources\Assets\flag_mz.png" />
+    <None Remove="AppResources\Assets\flag_na.png" />
+    <None Remove="AppResources\Assets\flag_nc.png" />
+    <None Remove="AppResources\Assets\flag_ne.png" />
+    <None Remove="AppResources\Assets\flag_nf.png" />
+    <None Remove="AppResources\Assets\flag_ng.png" />
+    <None Remove="AppResources\Assets\flag_ni.png" />
+    <None Remove="AppResources\Assets\flag_nl.png" />
+    <None Remove="AppResources\Assets\flag_no.png" />
+    <None Remove="AppResources\Assets\flag_np.png" />
+    <None Remove="AppResources\Assets\flag_nr.png" />
+    <None Remove="AppResources\Assets\flag_nu.png" />
+    <None Remove="AppResources\Assets\flag_nz.png" />
+    <None Remove="AppResources\Assets\flag_om.png" />
+    <None Remove="AppResources\Assets\flag_pa.png" />
+    <None Remove="AppResources\Assets\flag_pe.png" />
+    <None Remove="AppResources\Assets\flag_pf.png" />
+    <None Remove="AppResources\Assets\flag_pg.png" />
+    <None Remove="AppResources\Assets\flag_ph.png" />
+    <None Remove="AppResources\Assets\flag_pk.png" />
+    <None Remove="AppResources\Assets\flag_pl.png" />
+    <None Remove="AppResources\Assets\flag_pm.png" />
+    <None Remove="AppResources\Assets\flag_pn.png" />
+    <None Remove="AppResources\Assets\flag_pr.png" />
+    <None Remove="AppResources\Assets\flag_ps.png" />
+    <None Remove="AppResources\Assets\flag_pt.png" />
+    <None Remove="AppResources\Assets\flag_pw.png" />
+    <None Remove="AppResources\Assets\flag_py.png" />
+    <None Remove="AppResources\Assets\flag_qa.png" />
+    <None Remove="AppResources\Assets\flag_re.png" />
+    <None Remove="AppResources\Assets\flag_ro.png" />
+    <None Remove="AppResources\Assets\flag_rs.png" />
+    <None Remove="AppResources\Assets\flag_ru.png" />
+    <None Remove="AppResources\Assets\flag_rw.png" />
+    <None Remove="AppResources\Assets\flag_sa.png" />
+    <None Remove="AppResources\Assets\flag_sb.png" />
+    <None Remove="AppResources\Assets\flag_sc.png" />
+    <None Remove="AppResources\Assets\flag_sd.png" />
+    <None Remove="AppResources\Assets\flag_se.png" />
+    <None Remove="AppResources\Assets\flag_sg.png" />
+    <None Remove="AppResources\Assets\flag_sh.png" />
+    <None Remove="AppResources\Assets\flag_si.png" />
+    <None Remove="AppResources\Assets\flag_sj.png" />
+    <None Remove="AppResources\Assets\flag_sk.png" />
+    <None Remove="AppResources\Assets\flag_sl.png" />
+    <None Remove="AppResources\Assets\flag_sm.png" />
+    <None Remove="AppResources\Assets\flag_sn.png" />
+    <None Remove="AppResources\Assets\flag_so.png" />
+    <None Remove="AppResources\Assets\flag_sr.png" />
+    <None Remove="AppResources\Assets\flag_ss.png" />
+    <None Remove="AppResources\Assets\flag_st.png" />
+    <None Remove="AppResources\Assets\flag_sv.png" />
+    <None Remove="AppResources\Assets\flag_sx.png" />
+    <None Remove="AppResources\Assets\flag_sy.png" />
+    <None Remove="AppResources\Assets\flag_sz.png" />
+    <None Remove="AppResources\Assets\flag_tc.png" />
+    <None Remove="AppResources\Assets\flag_td.png" />
+    <None Remove="AppResources\Assets\flag_tf.png" />
+    <None Remove="AppResources\Assets\flag_tg.png" />
+    <None Remove="AppResources\Assets\flag_th.png" />
+    <None Remove="AppResources\Assets\flag_tj.png" />
+    <None Remove="AppResources\Assets\flag_tk.png" />
+    <None Remove="AppResources\Assets\flag_tl.png" />
+    <None Remove="AppResources\Assets\flag_tm.png" />
+    <None Remove="AppResources\Assets\flag_tn.png" />
+    <None Remove="AppResources\Assets\flag_to.png" />
+    <None Remove="AppResources\Assets\flag_tr.png" />
+    <None Remove="AppResources\Assets\flag_tt.png" />
+    <None Remove="AppResources\Assets\flag_tv.png" />
+    <None Remove="AppResources\Assets\flag_tw.png" />
+    <None Remove="AppResources\Assets\flag_tz.png" />
+    <None Remove="AppResources\Assets\flag_ua.png" />
+    <None Remove="AppResources\Assets\flag_ug.png" />
+    <None Remove="AppResources\Assets\flag_um.png" />
+    <None Remove="AppResources\Assets\flag_us.png" />
+    <None Remove="AppResources\Assets\flag_uy.png" />
+    <None Remove="AppResources\Assets\flag_uz.png" />
+    <None Remove="AppResources\Assets\flag_va.png" />
+    <None Remove="AppResources\Assets\flag_vc.png" />
+    <None Remove="AppResources\Assets\flag_ve.png" />
+    <None Remove="AppResources\Assets\flag_vg.png" />
+    <None Remove="AppResources\Assets\flag_vi.png" />
+    <None Remove="AppResources\Assets\flag_vn.png" />
+    <None Remove="AppResources\Assets\flag_vu.png" />
+    <None Remove="AppResources\Assets\flag_wf.png" />
+    <None Remove="AppResources\Assets\flag_ws.png" />
+    <None Remove="AppResources\Assets\flag_xk.png" />
+    <None Remove="AppResources\Assets\flag_ye.png" />
+    <None Remove="AppResources\Assets\flag_yt.png" />
+    <None Remove="AppResources\Assets\flag_yu.png" />
+    <None Remove="AppResources\Assets\flag_za.png" />
+    <None Remove="AppResources\Assets\flag_zm.png" />
+    <None Remove="AppResources\Assets\flag_zw.png" />
+    <None Remove="AppResources\Assets\ic_dislike.png" />
+    <None Remove="AppResources\Assets\ic_like.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="AppResources\Assets\ic_dislike.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="AppResources\Assets\check_in_background.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\ic_btn_minus.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\ic_btn_add.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="AppResources\Assets\flag_ac.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_ad.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_ae.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_af.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_ag.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_ai.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_al.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_am.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_an.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_ao.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_aq.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_ar.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_as.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_at.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_au.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_aw.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_ax.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_az.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_ba.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_bb.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_bd.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_be.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_bf.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_bg.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_bh.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_bi.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_bj.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_bl.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_bm.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_bn.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_bo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_bq.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_br.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_bs.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_bt.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_bv.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_bw.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_by.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_bz.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_ca.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_cc.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_cd.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_cf.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_cg.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_ch.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_ci.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_ck.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_cl.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_cm.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_cn.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_co.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_cr.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_cu.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_cv.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_cw.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_cx.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_cy.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_cz.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_de.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_dj.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_dk.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_dm.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_do.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_dz.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_ec.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_ee.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_eg.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_eh.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_er.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_es.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_et.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_fi.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_fj.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_fk.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_fm.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_fo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_fr.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_fx.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_ga.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_gb.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_gd.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_ge.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_gf.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_gg.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_gh.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_gi.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_gl.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_gm.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_gn.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_gp.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_gq.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_gr.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_gs.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_gt.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_gu.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_gw.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_gy.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_hk.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_hm.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_hn.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_hr.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_ht.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_hu.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_id.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_ie.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_il.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_im.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_in.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_io.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_iq.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_ir.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_is.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_it.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_je.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_jm.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_jo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_jp.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_ke.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_kg.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_kh.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_ki.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_km.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_kn.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_kp.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_kr.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_kw.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_ky.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_kz.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_la.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_lb.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_lc.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_li.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_lk.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_lr.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_ls.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_lt.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_lu.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_lv.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_ly.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_ma.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_mc.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_md.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_me.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_mf.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_mg.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_mh.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_mk.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_ml.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_mm.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_mn.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_mo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_mp.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_mq.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_mr.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_ms.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_mt.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_mu.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_mv.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_mw.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_mx.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_my.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_mz.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_na.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_nc.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_ne.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_nf.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_ng.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_ni.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_nl.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_no.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_np.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_nr.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_nu.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_nz.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_om.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_pa.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_pe.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_pf.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_pg.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_ph.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_pk.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_pl.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_pm.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_pn.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_pr.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_ps.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_pt.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_pw.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_py.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_qa.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_re.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_ro.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_rs.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_ru.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_rw.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_sa.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_sb.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_sc.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_sd.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_se.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_sg.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_sh.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_si.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_sj.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_sk.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_sl.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_sm.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_sn.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_so.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_sr.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_ss.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_st.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_sv.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_sx.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_sy.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_sz.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_tc.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_td.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_tf.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_tg.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_th.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_tj.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_tk.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_tl.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_tm.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_tn.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_to.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_tr.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_tt.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_tv.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_tw.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_tz.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_ua.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_ug.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_um.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_us.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_uy.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_uz.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_va.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_vc.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_ve.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_vg.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_vi.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_vn.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_vu.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_wf.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_ws.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_xk.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_ye.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_yt.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_yu.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_za.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_zm.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\flag_zw.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\Assets\ic_like.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Acr.UserDialogs" Version="7.0.3" />
+    <PackageReference Include="Calendar.Plugin" Version="1.0.3" />
+    <PackageReference Include="CarouselView.FormsPlugin" Version="5.2.0" />
+    <PackageReference Include="ImageCropper.Forms" Version="0.1.6" />
+    <PackageReference Include="Microcharts.Forms" Version="0.8.3-pre" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+    <PackageReference Include="Plugin.Permissions" Version="4.0.4-beta" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.5.231" />
+    <PackageReference Include="Xam.Plugin.Connectivity" Version="4.0.0.190-beta" />
+    <PackageReference Include="Xam.Plugin.Geolocator" Version="4.5.4-beta" />
+    <PackageReference Include="Xam.Plugin.Media" Version="4.0.1.5" />
+    <PackageReference Include="Xam.Plugin.SimpleAudioPlayer" Version="1.3.0" />
+    <PackageReference Include="Xam.Plugins.Forms.ImageCircle" Version="3.1.1.1-beta" />
+    <PackageReference Include="Xam.Plugins.Notifier" Version="3.0.1" />
+    <PackageReference Include="Xam.Plugins.Settings" Version="4.1.0-beta" />
+    <PackageReference Include="Xamarin.Build.Download" Version="0.4.11" />
+    <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.5.867-pre" />
+    <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.5.867-pre" />
+    <PackageReference Include="Xamarin.Forms" Version="3.5.0.169047" />
+    <PackageReference Include="Xamarin.Forms.GoogleMaps" Version="3.0.4" />
+    <PackageReference Include="Xamarin.Forms.TinyMVVM" Version="1.1.2" />
+    <PackageReference Include="XamFileStorage.Netstandard" Version="1.1.0" />
+    <PackageReference Include="ZXing.Net.Mobile" Version="2.4.1" />
+    <PackageReference Include="ZXing.Net.Mobile.Forms" Version="2.4.1" />  
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Views\Settings\AddNewOrUpdatePINPage.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="AppResources\Localization\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Navigation\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Navigation\MenuPage.xaml.cs">
+      <DependentUpon>MenuPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Navigation\HomeMenuItem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Bookings\BookingsPage.xaml.cs">
+      <DependentUpon>BookingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Popup\LoadingScreenDimmed.xaml.cs">
+      <DependentUpon>LoadingScreenDimmed.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Login\SignUpHostDirectoryPage.xaml.cs">
+      <DependentUpon>SignUpHostDirectoryPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Settings\CameraSettingsPage.xaml.cs">
+      <DependentUpon>CameraSettingsPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="AppResources\Localization\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Navigation\MainPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Navigation\MenuPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\AddBooking\BookingCalendarPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\AddBooking\BookingCustomerPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\CheckInNonFullUser\CheckInNonFullUserPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\CheckInFullUser\CheckInPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Popup\CountrySelector.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Bookings\ExtraAddPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Bookings\ExtraSelectGuestPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Bookings\ExtraSummaryPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\GuestBook\GuestBookPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\CheckInFullUser\GuestDetailsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\GuestBook\GuestProfilePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\HomePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Login\HostVerificationPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Login\LoginPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Popup\PremindIcon.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Popup\PremindNotification.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\PostsAndReviews\PostsAndReviewsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Settings\CameraSettingsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Settings\ManageServersPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Bookings\BookingsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Bookings\PayNowPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Popup\LoadingScreenDimmed.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Popup\LoadingScreen.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Popup\PopupView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Popup\TermsAndConditions.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Settings\MyProfilePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Settings\SettingsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Settings\ModifyMasterMenuPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Login\SignInDescriptionPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Login\SignUpCreateHostPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Login\SignUpHostDirectoryPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Shared\PickMapPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Stats\StatsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Settings\TermsConditionsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Bookings\ViewBillsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Navigation\MasterDetailNavigation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Navigation\MasterDetailNavigationMaster.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\AddServerPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\BookingCalendarPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\BookingCustomerPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\BookingRoomPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\CheckInPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\GuestDetailsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\HomePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\LoginPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\ManageServersPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\OpenBookingsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Popup\LoadingScreen.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Popup\LoadingScreenDimmed.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Popup\LookUpView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Popup\PopupView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\SelectServerPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\SignInDescriptionPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\StatsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\ViewBillsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+  </ItemGroup>
+</Project>

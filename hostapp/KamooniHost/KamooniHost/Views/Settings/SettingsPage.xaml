@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="KamooniHost.Views.Settings.SettingsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviors="clr-namespace:Xamarin.Forms.Behaviors"
+    xmlns:ex="clr-namespace:Xamarin.Forms.Extensions"
+    Title="{ex:Translate Key=title_activity_settings}">
+    <ContentPage.Content>
+        <StackLayout
+            BackgroundColor="White"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+            <ListView
+                CachingStrategy="RecycleElement"
+                HasUnevenRows="true"
+                HorizontalOptions="FillAndExpand"
+                ItemsSource="{Binding MenuItems}"
+                SelectionMode="None"
+                VerticalOptions="FillAndExpand">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout
+                                Padding="10"
+                                BackgroundColor="White"
+                                HorizontalOptions="FillAndExpand"
+                                Orientation="Horizontal">
+                                <Image
+                                    HeightRequest="28"
+                                    HorizontalOptions="Start"
+                                    Source="{Binding Icon}"
+                                    VerticalOptions="Center"
+                                    WidthRequest="40" />
+                                <Label
+                                    FontSize="15"
+                                    Text="{Binding Title}"
+                                    TextColor="Black"
+                                    VerticalOptions="Center" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.Behaviors>
+                    <behaviors:EventToCommandBehavior
+                        Command="{Binding NavigateToDetailCommand}"
+                        EventArgsConverter="{StaticResource ItemTappedConverter}"
+                        EventName="ItemTapped" />
+                </ListView.Behaviors>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

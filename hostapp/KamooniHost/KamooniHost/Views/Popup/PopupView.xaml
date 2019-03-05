@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="KamooniHost.Views.Popup.PopupView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    IsVisible="False"
+    Opacity="0">
+    <ContentView.Content>
+        <AbsoluteLayout>
+            <ContentView
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                BackgroundColor="Black"
+                Opacity="0.4" />
+            <Frame
+                Padding="0"
+                AbsoluteLayout.LayoutBounds=".5,.5,.9,.9"
+                AbsoluteLayout.LayoutFlags="All"
+                CornerRadius="5"
+                HasShadow="False">
+                <StackLayout Spacing="0">
+                    <Label
+                        x:Name="LblTitle"
+                        FontAttributes="Bold"
+                        FontSize="16"
+                        HeightRequest="45"
+                        HorizontalOptions="Center"
+                        TextColor="DodgerBlue"
+                        VerticalOptions="Start"
+                        VerticalTextAlignment="Center" />
+                    <BoxView HeightRequest="1" Color="LightGray" />
+                    <ListView
+                        x:Name="ListView"
+                        Margin="1,0,1,0"
+                        BackgroundColor="White"
+                        CachingStrategy="RecycleElement"
+                        HasUnevenRows="True"
+                        ItemSelected="ListView_ItemSelected"
+                        ItemTapped="ListView_ItemTapped" />
+                    <BoxView HeightRequest="1" Color="LightGray" />
+                    <Label
+                        x:Name="LblClose"
+                        Margin="10,0,10,0"
+                        FontAttributes="Bold"
+                        FontSize="16"
+                        HeightRequest="45"
+                        HorizontalOptions="EndAndExpand"
+                        TextColor="DodgerBlue"
+                        VerticalOptions="End"
+                        VerticalTextAlignment="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Close_Tapped" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+            </Frame>
+        </AbsoluteLayout>
+    </ContentView.Content>
+</ContentView>

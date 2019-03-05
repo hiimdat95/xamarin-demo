@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="KamooniHost.Views.SignInDescriptionPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ex="clr-namespace:Xamarin.Forms.Extensions"
+    xmlns:popup="clr-namespace:KamooniHost.Views.Popup"
+    Title="Login"
+    x:Name="this">
+    <ContentPage.Content>
+        <AbsoluteLayout 
+            HorizontalOptions="FillAndExpand" 
+            VerticalOptions="FillAndExpand"
+            BackgroundColor="White">
+            <StackLayout
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                Spacing="0">
+                <Image
+                    Margin="0,16,0,0"
+                    HeightRequest="100"
+                    HorizontalOptions="Center"
+                    Source="main_logo_purple"
+                    VerticalOptions="Start" />
+                <Label
+                    Margin="0,-16,0,0"
+                    FontAttributes="Bold"
+                    FontSize="48"
+                    HorizontalOptions="Center"
+                    Text="Kamooni"
+                    TextColor="{StaticResource colorPrimary}"
+                    VerticalOptions="Start" />
+                <Label
+                    Margin="16,12,0,0"
+                    FontAttributes="Bold"
+                    FontSize="20"
+                    Text="{ex:Translate Key=subheading_qr_TextView}"
+                    TextColor="{StaticResource colorAccent}"
+                    VerticalOptions="Start" />
+                <Label
+                    Margin="32,8,0,0"
+                    FontSize="16"
+                    Text="{ex:Translate Key=qr_content_1_TextView}"
+                    VerticalOptions="Start" />
+                <Label
+                    Margin="32,4,0,0"
+                    FontSize="16"
+                    Text="{ex:Translate Key=qr_content_2_TextView}"
+                    VerticalOptions="Start" />
+                <Label
+                    Margin="32,4,0,0"
+                    FontSize="16"
+                    Text="{ex:Translate Key=qr_content_3_TextView}"
+                    VerticalOptions="Start" />
+                <Label
+                    Margin="32,4,0,0"
+                    FontSize="16"
+                    Text="{ex:Translate Key=qr_content_4_TextView}"
+                    VerticalOptions="Start" />
+                <Label
+                    Margin="32,4,0,0"
+                    FontSize="16"
+                    Text="{ex:Translate Key=qr_content_5_TextView}"
+                    VerticalOptions="Start" />
+                <Button
+                    Margin="0,16,0,0"
+                    BackgroundColor="{StaticResource colorPrimary}"
+                    Command="{Binding QRScanCommand}"
+                    CornerRadius="5"
+                    FontSize="18"
+                    HorizontalOptions="Center"
+                    Text="{ex:Translate Key=button_scan}"
+                    TextColor="White"
+                    VerticalOptions="Start" />
+            </StackLayout>
+            <popup:LoadingScreenDimmed
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                IsVisible="{Binding BindingContext.IsBusy, Source={x:Reference this}}" />
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

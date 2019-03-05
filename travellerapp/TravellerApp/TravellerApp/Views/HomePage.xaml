@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="TravellerApp.Views.HomePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+    Title="Home">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="Scan QR" Clicked="ScanQR_Clicked" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <StackLayout
+                Padding="20,10,20,10"
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All">
+                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40" />
+                    </Grid.RowDefinitions>
+                    <Image
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        HeightRequest="40"
+                        HorizontalOptions="Center"
+                        Source="location"
+                        VerticalOptions="Center"
+                        WidthRequest="40" />
+                    <Frame
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Padding="5,1,5,1"
+                        BackgroundColor="Transparent"
+                        BorderColor="White"
+                        CornerRadius="0"
+                        HasShadow="False">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Currently_Tapped" />
+                        </Frame.GestureRecognizers>
+                        <Label
+                            x:Name="currentlyStatus"
+                            FontAttributes="Italic"
+                            FontSize="16"
+                            LineBreakMode="TailTruncation"
+                            VerticalOptions="Center" />
+                    </Frame>
+                </Grid>
+                <ListView
+                    x:Name="listPlatforms"
+                    BackgroundColor="#FCC84C"
+                    HorizontalOptions="FillAndExpand"
+                    IsPullToRefreshEnabled="True"
+                    VerticalOptions="Center">
+                    <ListView.Header>
+                        <StackLayout Padding="0,10,0,0" HorizontalOptions="FillAndExpand">
+                            <Frame
+                                Padding="0,0,0,0"
+                                BackgroundColor="{StaticResource Color_Accent}"
+                                CornerRadius="10"
+                                IsClippedToBounds="true">
+                                <StackLayout Orientation="Vertical" Spacing="0">
+                                    <StackLayout Padding="16,8,16,8" Orientation="Horizontal">
+                                        <Label
+                                            FontAttributes="Bold, Italic"
+                                            FontSize="Large"
+                                            HorizontalOptions="Start"
+                                            Text="Traveller ID"
+                                            VerticalOptions="CenterAndExpand" />
+                                        <Image
+                                            HeightRequest="36"
+                                            HorizontalOptions="EndAndExpand"
+                                            Source="main_logo_small"
+                                            VerticalOptions="CenterAndExpand"
+                                            WidthRequest="36" />
+                                    </StackLayout>
+                                    <BoxView BackgroundColor="{StaticResource Color_Background}" HeightRequest="1" />
+                                    <StackLayout
+                                        Padding="16"
+                                        Orientation="Horizontal"
+                                        VerticalOptions="CenterAndExpand">
+                                        <AbsoluteLayout>
+                                            <controls:CircleImage
+                                                x:Name="profilePicture"
+                                                Aspect="AspectFit"
+                                                BorderColor="White"
+                                                BorderThickness="1"
+                                                HeightRequest="90"
+                                                Source="account_circle_gray"
+                                                WidthRequest="90" />
+                                            <Image
+                                                x:Name="flagImage"
+                                                AbsoluteLayout.LayoutBounds="1, 1, 32, 32"
+                                                AbsoluteLayout.LayoutFlags="PositionProportional" />
+                                        </AbsoluteLayout>
+                                        <StackLayout Padding="8" Spacing="2">
+                                            <Label
+                                                x:Name="name"
+                                                FontAttributes="Bold"
+                                                FontSize="Small" />
+                                            <Label x:Name="passportId" FontSize="Small" />
+                                            <Label x:Name="email" FontSize="Small" />
+                                            <Label x:Name="mobile" FontSize="Small" />
+                                        </StackLayout>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
+                            <!--  QR CODE  -->
+                            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="Medium"
+                                    HorizontalTextAlignment="Center"
+                                    Text="Your Unique Traveller QR Code:" />
+                                <Frame
+                                    BorderColor="Accent"
+                                    CornerRadius="5"
+                                    HeightRequest="160"
+                                    HorizontalOptions="Center"
+                                    IsClippedToBounds="true"
+                                    WidthRequest="160">
+                                    <Image
+                                        x:Name="qrContainer"
+                                        Margin="1"
+                                        Aspect="AspectFit" />
+                                </Frame>
+                                <Label
+                                    FontSize="Medium"
+                                    HorizontalTextAlignment="Center"
+                                    Text="Present at reception for identification" />
+                            </StackLayout>
+                        </StackLayout>
+                    </ListView.Header>
+                </ListView>
+            </StackLayout>
+            <AbsoluteLayout
+                x:Name="RoomSelector"
+                AbsoluteLayout.LayoutBounds=".5,0,.9,.95"
+                AbsoluteLayout.LayoutFlags="All"
+                IsVisible="False">
+                <BoxView
+                    AbsoluteLayout.LayoutBounds=".5,0,.9,.95"
+                    AbsoluteLayout.LayoutFlags="All"
+                    BackgroundColor="Black"
+                    CornerRadius="10"
+                    Opacity=".8" />
+                <Frame
+                    Padding="10"
+                    AbsoluteLayout.LayoutBounds=".5,0,.9,.95"
+                    AbsoluteLayout.LayoutFlags="All"
+                    BackgroundColor="Transparent"
+                    BorderColor="White"
+                    CornerRadius="10"
+                    HasShadow="False">
+                    <StackLayout>
+                        <ListView
+                            x:Name="ListRoom"
+                            HasUnevenRows="True"
+                            HorizontalOptions="FillAndExpand"
+                            ItemTapped="ListRoom_ItemTapped"
+                            SelectionMode="None"
+                            SeparatorColor="LightGray"
+                            VerticalOptions="FillAndExpand">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Grid Padding="5,10,5,10" HorizontalOptions="FillAndExpand">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="100" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <Label
+                                                Grid.Row="0"
+                                                Grid.Column="0"
+                                                FontAttributes="Bold"
+                                                FontSize="14"
+                                                HorizontalOptions="Center"
+                                                Text="{Binding ProductId}"
+                                                TextColor="{Binding TextColor}"
+                                                VerticalOptions="Center" />
+                                            <Label
+                                                Grid.Row="0"
+                                                Grid.Column="1"
+                                                FontAttributes="Bold"
+                                                FontSize="14"
+                                                HorizontalOptions="Center"
+                                                LineBreakMode="TailTruncation"
+                                                Text="{Binding Customer}"
+                                                TextColor="{Binding TextColor}"
+                                                VerticalOptions="Center" />
+                                        </Grid>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                        <StackLayout
+                            HorizontalOptions="Center"
+                            Orientation="Horizontal"
+                            VerticalOptions="End">
+                            <Button
+                                x:Name="SubmitRoom"
+                                BackgroundColor="{StaticResource Color_Accent}"
+                                BorderColor="White"
+                                BorderWidth="2"
+                                Clicked="SubmitRoom_Clicked"
+                                CornerRadius="20"
+                                FontSize="14"
+                                HeightRequest="40"
+                                HorizontalOptions="Center"
+                                Text="Submit"
+                                TextColor="White"
+                                WidthRequest="100" />
+                            <Button
+                                x:Name="CancelSelectRoom"
+                                BackgroundColor="{StaticResource Color_SoftRed}"
+                                BorderColor="White"
+                                BorderWidth="2"
+                                Clicked="CancelSelectRoom_Clicked"
+                                CornerRadius="20"
+                                FontSize="14"
+                                HeightRequest="40"
+                                HorizontalOptions="Center"
+                                Text="Cancel"
+                                TextColor="White"
+                                WidthRequest="100" />
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+            </AbsoluteLayout>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

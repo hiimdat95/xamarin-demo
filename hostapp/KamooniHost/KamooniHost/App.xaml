@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application
+    x:Class="KamooniHost.App"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:c="clr-namespace:Xamarin.Forms.Converters">
+    <Application.Resources>
+        <ResourceDictionary>
+            <!--  PRIMARY  -->
+            <Color x:Key="colorPrimary">#835e7e</Color>
+            <Color x:Key="colorPrimaryDark">#6d4769</Color>
+            <Color x:Key="colorAccent">#6bc5a9</Color>
+            <Color x:Key="colorAccentDark">#3eb993</Color>
+            <Color x:Key="colorGray">#999999</Color>
+            <Color x:Key="colorSunflower">#fcc84c</Color>
+            <!--  NATIVE  -->
+            <Color x:Key="Black">#000000</Color>
+            <Color x:Key="White">#ffffff</Color>
+            <Color x:Key="Grey">#D8D8D8</Color>
+            <Color x:Key="Red">#d9534f</Color>
+            <Color x:Key="Blue">#53a9d7</Color>
+            <Color x:Key="Yellow">#FFC82D</Color>
+            <!--  YEALLOW  -->
+            <Color x:Key="colorYellow">#FCC84C</Color>
+            <Color x:Key="colorYellowDark">#efba3e</Color>
+            <!--  GREEN  -->
+            <Color x:Key="colorGreen">#73C33A</Color>
+            <Color x:Key="colorGreenDark">#67b530</Color>
+            <!--  GRAY SHADE  -->
+            <Color x:Key="grayShade_0">#c3c3c3</Color>
+            <Color x:Key="grayShade_1">#a3a3a3</Color>
+            <Color x:Key="grayShade_2">#686868</Color>
+            <Color x:Key="grayShade_3">#3b3b3b</Color>
+            <!--  BACKGROUNDS  -->
+            <Color x:Key="transparent_light">#49000000</Color>
+            <Color x:Key="transparent_dark">#6e000000</Color>
+            <Color x:Key="help_background">#ff434343</Color>
+            <!--  Global Styles  -->
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="{StaticResource colorPrimary}" />
+                <Setter Property="BarTextColor" Value="White" />
+            </Style>
+            <!--  Converters  -->
+            <c:SelectedItemConverter x:Key="SelectedItemConverter" />
+            <c:ItemTappedConverter x:Key="ItemTappedConverter" />
+            <c:ReverseBoolConverter x:Key="ReverseBoolConverter" />
+            <c:HasDataConverter x:Key="HasDataConverter" />
+            <c:IsEmptyDataConverter x:Key="IsEmptyDataConverter" />
+            <c:LowerTextConverter x:Key="LowerTextConverter" />
+            <c:UpperTextConverter x:Key="UpperTextConverter" />
+            <c:Base64StringToImageSourceConverter x:Key="Base64StringToImageSourceConverter" />
+            <c:StreamToImageSourceConverter x:Key="StreamToImageSourceConverter" />
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
